@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCTD Community Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --green:    #0F6E56;
+  --green-lt: #E1F5EE;
+  --green-md: #5DCAA5;
+  --blue:     #1A5FA8;
+  --blue-lt:  #E6F1FB;
+  --pink:     #A0335A;
+  --pink-lt:  #FBEAF0;
+  --amber:    #B8700F;
+  --amber-lt: #FEF3E2;
+  --ink:      #1A1A18;
+  --ink-mid:  #4A4A46;
+  --ink-soft: #888882;
+  --border:   #E4E3DC;
+  --surface:  #F8F7F3;
+  --white:    #FFFFFF;
+  --radius:   12px;
+  --shadow:   0 2px 16px rgba(0,0,0,.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,.06);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo {
+  width: 34px; height: 34px;
+  background: var(--green);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nav-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.nav-title span { color: var(--green); }
+.nav-tabs {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+.nav-tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: .83rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: all .15s;
+}
+.nav-tab:hover { background: var(--surface); color: var(--ink); }
+.nav-tab.active { background: var(--green-lt); color: var(--green); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: .76rem;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+}
+.pill.live { background: var(--green-lt); color: var(--green); border-color: var(--green-md); }
+.pill.live::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; }
+.pill.err { background: var(--pink-lt); color: var(--pink); border-color: #E8A8C0; }
+.btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: .83rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s;
+  font-family: inherit;
+}
+.btn:hover { border-color: #ccc; background: var(--surface); }
+.btn.primary { background: var(--green); color: #fff; border-color: var(--green); }
+.btn.primary:hover { background: #0a5440; }
+
+/* PANELS */
+.panel { display: none; padding: 2rem; max-width: 1060px; margin: 0 auto; }
+.panel.active { display: block; }
+
+/* LOADING */
+.load-state {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--ink-soft);
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.err-box {
+  padding: 1.25rem 1.5rem;
+  background: var(--pink-lt);
+  border: 1px solid #E8A8C0;
+  border-radius: var(--radius);
+  color: #7A1F40;
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+/* VERIFY BANNER */
+.verify-banner {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.verify-icon {
+  width: 38px; height: 38px;
+  background: var(--green-lt);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.verify-icon svg { width:18px; height:18px; fill:none; stroke:var(--green); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.verify-text { flex: 1; min-width: 200px; }
+.verify-text p { font-size: .83rem; color: var(--ink-soft); margin-top: 2px; }
+.verify-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.verify-input {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: .85rem;
+  font-family: inherit;
+  width: 175px;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s;
+}
+.verify-input:focus { border-color: var(--green); }
+.vstatus {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 20px;
+  font-size: .78rem; font-weight: 600;
+  background: var(--surface); color: var(--ink-soft);
+  border: 1px solid var(--border);
+}
+.vstatus.ok { background: var(--green-lt); color: var(--green); }
+.vmsg { font-size: .78rem; margin-top: 5px; color: var(--ink-soft); }
+
+/* STAT CARDS */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 1.75rem;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .15s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-card.g { border-top: 3px solid var(--green); }
+.stat-card.b { border-top: 3px solid var(--blue); }
+.stat-card.pk { border-top: 3px solid var(--pink); }
+.stat-card.am { border-top: 3px solid var(--amber); }
+.stat-card.tl { border-top: 3px solid var(--green-md); }
+.stat-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.stat-card.g .stat-num { color: var(--green); }
+.stat-card.b .stat-num { color: var(--blue); }
+.stat-card.pk .stat-num { color: var(--pink); }
+.stat-card.am .stat-num { color: var(--amber); }
+.stat-lbl { font-size: .78rem; color: var(--ink-soft); margin-top: 4px; line-height: 1.3; }
+
+/* SECTION */
+.sec { margin-bottom: 1.75rem; }
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.5rem; }
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+.card-title {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 12px;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; font-size: .8rem; color: var(--ink-soft); }
+.legend span { display: flex; align-items: center; gap: 5px; }
+.ldot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* BARS */
+.brow { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.bl { font-size: .8rem; width: 145px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
+.bt { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.bf { height: 100%; border-radius: 4px; transition: width .6s ease; }
+.bcount { font-size: .78rem; color: var(--ink-soft); min-width: 32px; text-align: right; flex-shrink: 0; }
+
+/* GAP TRACKER */
+.gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.gc { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; box-shadow: var(--shadow); }
+.gh { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.gt { font-size: .9rem; font-weight: 600; }
+.gp { font-size: .78rem; color: var(--ink-soft); }
+.gtrack { height: 5px; background: var(--border); border-radius: 3px; margin-bottom: 10px; overflow: hidden; }
+.gfill { height: 100%; border-radius: 3px; }
+.chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.chip { padding: 2px 7px; border-radius: 20px; font-size: .7rem; font-weight: 600; cursor: default; }
+.chip.y { background: var(--green-lt); color: var(--green); }
+.chip.n { background: var(--pink-lt); color: var(--pink); }
+
+/* DIRECTORY */
+.dir-layout { display: grid; grid-template-columns: 220px 1fr; gap: 16px; }
+.sidebar { display: flex; flex-direction: column; gap: 10px; }
+.filter-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.filter-head {
+  background: var(--ink);
+  color: var(--white);
+  padding: 8px 12px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.filter-box select {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  font-size: .83rem;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+.tbl-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+thead { background: var(--ink); }
+th {
+  padding: 10px 10px;
+  text-align: left;
+  color: #ccc;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+th:hover { color: white; }
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface); }
+.nc { position: relative; cursor: pointer; font-weight: 600; color: var(--green); }
+
+/* TOOLTIP */
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 0; top: calc(100% + 6px);
+  z-index: 999;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  min-width: 220px; max-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.14);
+  font-size: .82rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+.nc:hover .tooltip { display: block; }
+.tt-name { font-weight: 700; font-size: .95rem; margin-bottom: 6px; color: var(--ink); font-family: 'DM Serif Display', serif; }
+.tt-row { display: flex; align-items: flex-start; gap: 6px; color: var(--ink-soft); font-size: .8rem; margin-bottom: 2px; }
+.tt-row span { color: var(--ink); }
+.tt-lock { font-size: .78rem; color: var(--ink-soft); margin-top: 6px; font-style: italic; display: flex; align-items: center; gap: 4px; }
+
+/* BADGES */
+.badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: .72rem; font-weight: 600; }
+.bm { background: var(--blue-lt); color: var(--blue); }
+.bw { background: var(--pink-lt); color: var(--pink); }
+.bs { background: var(--green-lt); color: var(--green); }
+.bc { background: var(--amber-lt); color: var(--amber); }
+
+/* PAGI */
+.pagi { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: .82rem; color: var(--ink-soft); }
+.pagi .btn { padding: 5px 10px; font-size: .78rem; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: .78rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .panel { padding: 1rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .dir-layout { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-tabs { display: none; }
+  .mobile-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 8px 1rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-tab {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--white);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: inherit;
+  }
+  .mobile-tab.active { background: var(--green-lt); color: var(--green); border-color: var(--green-md); }
+}
+@media (min-width: 721px) { .mobile-tabs { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <span class="nav-title">KC <span>Tres Días</span></span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+    <button class="nav-tab" onclick="switchTab('directory')">📋 Directory</button>
+    <button class="nav-tab" onclick="switchTab('gaps')">🗂 Missing Data</button>
+  </div>
+  <div class="nav-right">
+    <span class="pill" id="pill">Loading…</span>
+    <button class="btn" onclick="go(true)">↺ Refresh</button>
+  </div>
+</nav>
+
+<!-- Mobile tabs -->
+<div class="mobile-tabs">
+  <button class="mobile-tab active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+  <button class="mobile-tab" onclick="switchTab('directory')">📋 Directory</button>
+  <button class="mobile-tab" onclick="switchTab('gaps')">🗂 Missing Data</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="panel-dashboard" class="panel active">
+  <div id="load" class="load-state"><div class="spinner"></div><p>Fetching live data from Google Sheets…</p></div>
+  <div id="errbox" class="err-box" style="display:none"></div>
+  <div id="dash" style="display:none">
+
+    <!-- Verify -->
+    <div class="verify-banner">
+      <div class="verify-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="verify-text">
+        <strong style="font-size:.9rem">Community Verification</strong>
+        <p>Enter your phone number to verify membership and unlock contact details on hover.</p>
+      </div>
+      <div>
+        <div class="verify-row">
+          <input type="tel" id="vphone" class="verify-input" placeholder="(816) 555-1234" oninput="fmtPhone(this)" onkeydown="if(event.key==='Enter')doVerify()">
+          <button class="btn primary" onclick="doVerify()">✓ Verify</button>
+          <span class="vstatus" id="vstatus">🔒 Guest</span>
+        </div>
+        <div class="vmsg" id="vmsg"></div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card g"><div class="stat-icon">👥</div><div class="stat-num" id="s-tot">0</div><div class="stat-lbl">Total records</div></div>
+      <div class="stat-card b"><div class="stat-icon">🙋</div><div class="stat-num" id="s-uniq">0</div><div class="stat-lbl">Unique people</div></div>
+      <div class="stat-card tl"><div class="stat-icon">📅</div><div class="stat-num" id="s-wk">0</div><div class="stat-lbl">Weekends with data</div></div>
+      <div class="stat-card pk"><div class="stat-icon">❤️</div><div class="stat-num" id="s-back">—</div><div class="stat-lbl">Came back to serve</div></div>
+      <div class="stat-card am"><div class="stat-icon">⛪</div><div class="stat-num" id="s-ch">0</div><div class="stat-lbl">Churches</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Servants vs Candidates</div>
+        <div class="legend" id="leg1"></div>
+        <div style="position:relative;height:200px"><canvas id="pie1"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Men vs Women</div>
+        <div class="legend" id="leg2"></div>
+        <div style="position:relative;height:200px"><canvas id="pie2"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card sec">
+      <div class="card-title">Attendance per Weekend</div>
+      <div style="position:relative" id="bwrap"><canvas id="bwknd"></canvas></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card"><div class="card-title">Top Churches</div><div id="d-church"></div></div>
+      <div class="card"><div class="card-title">Top Cities</div><div id="d-city"></div></div>
+    </div>
+    <div class="two-col" style="margin-top:14px">
+      <div class="card"><div class="card-title">Most Weekends Served</div><div id="d-multi"></div></div>
+      <div class="card"><div class="card-title">Top Servant Roles</div><div id="d-role"></div></div>
+    </div>
+
+    <p style="font-size:.78rem;color:var(--ink-soft);text-align:right;margin-top:.5rem" id="ts"></p>
+  </div>
+</div>
+
+<!-- DIRECTORY -->
+<div id="panel-directory" class="panel">
+  <div id="dir-load" class="load-state" style="display:none"><div class="spinner"></div><p>Loading directory…</p></div>
+  <div id="dir-content">
+    <div class="dir-layout">
+      <div class="sidebar">
+        <div class="filter-box"><div class="filter-head">Gender</div><select id="f-gender" onchange="pg=1;renderDir()"><option value="">All</option><option value="Men">Men</option><option value="Women">Women</option></select></div>
+        <div class="filter-box"><div class="filter-head">Weekend Number</div><select id="f-wknd" onchange="pg=1;renderDir()"><option value="">All</option></select></div>
+        <div class="filter-box"><div class="filter-head">Role Type</div><select id="f-role" onchange="pg=1;renderDir()"><option value="">All</option><option value="Servant">Servants</option><option value="Candidate">Candidates</option></select></div>
+        <div class="filter-box"><div class="filter-head">Position</div><select id="f-pos" onchange="pg=1;renderDir()"><option value="">All</option></select></div>
+        <div class="filter-box"><div class="filter-head">Name</div><select id="f-name" onchange="pg=1;renderDir()"><option value="">All</option></select></div>
+        <button class="btn" onclick="clearF()" style="font-size:.8rem">↺ Clear filters</button>
+      </div>
+      <div>
+        <div class="tbl-wrap">
+          <table>
+            <colgroup><col style="width:155px"><col style="width:75px"><col style="width:115px"><col style="width:80px"><col style="width:130px"><col style="width:120px"></colgroup>
+            <thead><tr>
+              <th onclick="srt('name')">Name ↕</th>
+              <th onclick="srt('gender')">Gender ↕</th>
+              <th onclick="srt('weekendNum')">Weekend # ↕</th>
+              <th>Type</th>
+              <th onclick="srt('position')">Position ↕</th>
+              <th onclick="srt('church')">Church ↕</th>
+            </tr></thead>
+            <tbody id="dir-body"></tbody>
+          </table>
+        </div>
+        <div class="pagi">
+          <button class="btn" onclick="prevPg()">← Prev</button>
+          <span id="pg-info">Page 1</span>
+          <button class="btn" onclick="nextPg()">Next →</button>
+          <span id="pg-total" style="margin-left:auto"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSING DATA -->
+<div id="panel-gaps" class="panel">
+  <div class="sec">
+    <div class="sec-title">Missing Data Tracker</div>
+    <div class="gap-grid" id="d-gap"></div>
+    <p style="font-size:.78rem;color:var(--ink-soft);margin-top:10px">
+      <span class="chip y">#1</span> data in sheet &nbsp;·&nbsp; <span class="chip n">#2</span> not yet uploaded to Google Sheet
+    </p>
+  </div>
+</div>
+
+<footer>
+  KCTD Community Directory · Data live from Google Sheets · Verified members only for contact details
+</footer>
+
+<script>
+const CSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQJuUcQ1RK2eqi-xyK_fbwVJ9RDD_2XvL8kYbqxuptC1USlSoEhrQi19rjmkkB_rQ/pub?output=csv';
+const C={teal:'#0F6E56',blue:'#1A5FA8',pink:'#A0335A',amber:'#B8700F',tealmd:'#5DCAA5'};
+let DB=[],CH={},verified=false,pg=1,sortCol='name',sortDir=1;
+const PER=30;
+
+// ── VERIFY ──────────────────────────────────────────────────────────────────
+function fmtPhone(el){
+  let v=el.value.replace(/\D/g,'').slice(0,10);
+  if(v.length>6)v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6);
+  else if(v.length>3)v='('+v.slice(0,3)+') '+v.slice(3);
+  else if(v.length)v='('+v;
+  el.value=v;
+}
+function normP(p){return(p||'').replace(/\D/g,'');}
+function doVerify(){
+  const d=normP(document.getElementById('vphone').value);
+  const msg=document.getElementById('vmsg'),st=document.getElementById('vstatus');
+  if(d.length<10){msg.textContent='Please enter a 10-digit number.';msg.style.color='var(--pink)';return;}
+  const match=DB.find(r=>normP(r.phone||'')===d);
+  if(match){
+    verified=true;
+    st.className='vstatus ok';st.textContent='✓ '+match.name;
+    msg.textContent='Verified! Hover any name in the directory to see contact details.';
+    msg.style.color='var(--green)';
+    renderDir();
+  } else {
+    verified=false;
+    st.className='vstatus';st.textContent='🔒 Guest';
+    msg.textContent='Number not found — contact info will appear once your weekend data is uploaded with phone numbers.';
+    msg.style.color='var(--amber)';
+  }
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────────────
+function switchTab(t){
+  ['dashboard','directory','gaps'].forEach((n,i)=>{
+    document.querySelectorAll('.nav-tab')[i]?.classList.toggle('active',n===t);
+    document.querySelectorAll('.mobile-tab')[i]?.classList.toggle('active',n===t);
+    document.getElementById('panel-'+n).classList.toggle('active',n===t);
+  });
+  if(t==='directory'&&DB.length)renderDir();
+}
+
+// ── FETCH ─────────────────────────────────────────────────────────────────────
+function setPill(txt,cls){const p=document.getElementById('pill');p.className='pill '+(cls||'');p.textContent=txt;}
+function showDash(id){['load','errbox','dash'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');}
+
+async function go(force){
+  showDash('load');setPill('Loading…','');
+  try{
+    const resp=await fetch(CSV);
+    if(!resp.ok)throw new Error('HTTP '+resp.status);
+    const text=await resp.text();
+    if(!text||text.length<50)throw new Error('Empty response');
+    DB=parseCSV(text);
+    if(!DB.length)throw new Error('No rows — check column headers');
+    render();
+  }catch(e){
+    showDash('errbox');
+    document.getElementById('errbox').innerHTML='<strong>Could not load data:</strong> '+esc(e.message)+'<br><small>Make sure the Google Sheet is published: File → Share → Publish to web → CSV</small>';
+    setPill('Error','err');
+  }
+}
+
+function parseCSV(text){
+  const lines=text.replace(/\r/g,'').split('\n').filter(l=>l.trim());
+  const hdrs=split(lines[0]);
+  return lines.slice(1).map(l=>{
+    const v=split(l),o={};
+    hdrs.forEach((h,i)=>o[h.trim()]=(v[i]||'').trim());
+    return o;
+  }).filter(r=>(r['Name']||'').trim()).map(row=>{
+    const wknd=(row['Weekend']||'').trim();
+    const gender=wknd.toLowerCase().includes('women')?'Women':'Men';
+    const role=wknd.toLowerCase().includes('candidate')?'Candidate':'Servant';
+    return{name:row['Name'],weekend:wknd,weekendNum:(row['Weekend Number']||'').trim(),
+      position:(row['Position']||'').trim(),gender,role,
+      phone:(row['Phone']||'').trim(),email:(row['Email']||'').toLowerCase().trim(),
+      city:(row['City']||'').trim(),state:(row['State']||'').trim(),
+      church:(row['Church']||'').trim()};
+  });
+}
+function split(line){
+  const res=[];let cur='';let q=false;
+  for(const c of line){if(c==='"'){q=!q;}else if(c===','&&!q){res.push(cur);cur='';}else cur+=c;}
+  res.push(cur);return res;
+}
+
+// ── RENDER DASHBOARD ─────────────────────────────────────────────────────────
+function render(){
+  const data=DB;
+  const servants=data.filter(r=>r.role==='Servant');
+  const candidates=data.filter(r=>r.role==='Candidate');
+  const uN=new Set(data.map(r=>r.name));
+  const cN=new Set(candidates.map(r=>r.name));
+  const sN=new Set(servants.map(r=>r.name));
+  const back=[...cN].filter(n=>sN.has(n)).length;
+  const churches=new Set(data.map(r=>r.church).filter(Boolean));
+  const wknds=new Set(data.map(r=>r.weekendNum).filter(Boolean));
+
+  set('s-tot',data.length.toLocaleString());
+  set('s-uniq',uN.size.toLocaleString());
+  set('s-wk',wknds.size);
+  set('s-back',cN.size?Math.round(back/cN.size*100)+'%':'—');
+  set('s-ch',churches.size);
+
+  const men=data.filter(r=>r.gender==='Men').length;
+  const women=data.filter(r=>r.gender==='Women').length;
+  mkPie('pie1','leg1',[servants.length,candidates.length],['Servants','Candidates'],[C.teal,C.amber]);
+  mkPie('pie2','leg2',[men,women],['Men','Women'],[C.blue,C.pink]);
+
+  const wkC={};
+  data.forEach(r=>{if(r.weekendNum)wkC[r.weekendNum]=(wkC[r.weekendNum]||0)+1;});
+  const sw=Object.entries(wkC).sort((a,b)=>a[0].localeCompare(b[0]));
+  document.getElementById('bwrap').style.height=Math.max(260,sw.length*26+60)+'px';
+  mkBarH('bwknd',
+    sw.map(([w])=>w.replace("KCTD Men's #","M#").replace("KCTD Women's #","W#").replace("KCTD Men Candidate #","MC#").replace("KCTD Women Candidate #","WC#")),
+    sw.map(([,n])=>n),
+    sw.map(([w])=>w.toLowerCase().includes('women')?C.pink:C.blue));
+
+  const chC={};data.forEach(r=>{if(r.church)chC[r.church]=(chC[r.church]||0)+1;});
+  const topCh=Object.entries(chC).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  set('d-church',topCh.length?topCh.map(([c,n])=>br(c,n,topCh[0][1],C.teal)).join(''):'<p style="font-size:.82rem;color:var(--ink-soft)">No church data yet.</p>');
+
+  const ciC={};data.forEach(r=>{if(r.city)ciC[r.city]=(ciC[r.city]||0)+1;});
+  const topCi=Object.entries(ciC).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  set('d-city',topCi.length?topCi.map(([c,n])=>br(c,n,topCi[0][1],C.pink)).join(''):'<p style="font-size:.82rem;color:var(--ink-soft)">No city data yet.</p>');
+
+  const nW={};servants.forEach(r=>{if(r.weekendNum){if(!nW[r.name])nW[r.name]=new Set();nW[r.name].add(r.weekendNum);}});
+  const multi=Object.entries(nW).filter(([,s])=>s.size>1).sort((a,b)=>b[1].size-a[1].size).slice(0,12);
+  set('d-multi',multi.length?multi.map(([n,s])=>br(n,s.size,multi[0][1].size,C.blue,s.size+' wknd'+(s.size!==1?'s':''))).join(''):'<p style="font-size:.82rem;color:var(--ink-soft)">Will grow as more weekends are added.</p>');
+
+  const rC={};servants.forEach(r=>{if(r.position)rC[r.position]=(rC[r.position]||0)+1;});
+  const topR=Object.entries(rC).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  set('d-role',topR.length?topR.map(([p,n])=>br(p,n,topR[0][1],C.amber)).join(''):'<p style="font-size:.82rem;color:var(--ink-soft)">No role data yet.</p>');
+
+  buildGaps(data);
+  buildFilters();
+
+  set('ts','Last updated: '+new Date().toLocaleString());
+  showDash('dash');
+  setPill('● Live','live');
+}
+
+// ── CHARTS ───────────────────────────────────────────────────────────────────
+function mkPie(id,lid,vals,labels,colors){
+  if(CH[id])CH[id].destroy();
+  const tot=vals.reduce((a,b)=>a+b,0);
+  document.getElementById(lid).innerHTML=labels.map((l,i)=>`<span><span class="ldot" style="background:${colors[i]}"></span>${l} — ${Math.round(vals[i]/tot*100)}% (${vals[i].toLocaleString()})</span>`).join('');
+  CH[id]=new Chart(document.getElementById(id),{type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderWidth:3,borderColor:'#fff',hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'64%',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.label+': '+ctx.raw.toLocaleString()+' ('+Math.round(ctx.raw/tot*100)+'%)'}}}}});
+}
+function mkBarH(id,labels,vals,colors){
+  if(CH[id])CH[id].destroy();
+  CH[id]=new Chart(document.getElementById(id),{type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:colors,borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+ctx.raw+' people'}}},
+      scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:11},color:'#888'}},
+              y:{grid:{display:false},ticks:{font:{size:11},color:'#555',autoSkip:false}}}}});
+}
+function br(label,val,max,color,suf){
+  const pct=max?Math.round(val/max*100):0;
+  return`<div class="brow"><span class="bl" title="${esc(label)}">${esc(label)}</span><div class="bt"><div class="bf" style="width:${pct}%;background:${color}"></div></div><span class="bcount">${suf!==undefined?suf:val}</span></div>`;
+}
+
+// ── GAP TRACKER ──────────────────────────────────────────────────────────────
+function buildGaps(data){
+  const msH=new Set(),mcH=new Set(),wsH=new Set(),wcH=new Set();
+  data.forEach(r=>{
+    const m=(r.weekendNum||'').match(/#(\d+)/);if(!m)return;
+    const n=+m[1],w=(r.weekend||'').toLowerCase();
+    if(w==='kctd men')msH.add(n);
+    else if(w==='kctd men candidate')mcH.add(n);
+    else if(w==='kctd women')wsH.add(n);
+    else if(w==='kctd women candidate')wcH.add(n);
+  });
+  set('d-gap',
+    mkGap(msH,26,C.blue,"Men's Servants")+mkGap(mcH,26,C.blue,"Men's Candidates")+
+    mkGap(wsH,25,C.pink,"Women's Servants")+mkGap(wcH,25,C.pink,"Women's Candidates"));
+}
+function mkGap(have,total,color,title){
+  const pct=Math.round(have.size/total*100);
+  const missing=[];for(let i=1;i<=total;i++)if(!have.has(i))missing.push(i);
+  return`<div class="gc">
+    <div class="gh"><span class="gt" style="color:${color}">${esc(title)}</span><span class="gp">${have.size}/${total} · ${pct}%</span></div>
+    <div class="gtrack"><div class="gfill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="chips">${Array.from({length:total},(_,i)=>{const n=i+1;return`<span class="chip ${have.has(n)?'y':'n'}" title="${have.has(n)?'#'+n+' in sheet':'#'+n+' missing'}">#${n}</span>`;}).join('')}</div>
+    ${missing.length?`<p style="font-size:.72rem;color:var(--ink-soft);margin-top:5px">Missing: ${missing.map(n=>'#'+n).join(', ')}</p>`:`<p style="font-size:.72rem;color:var(--green);margin-top:5px">✓ All weekends uploaded!</p>`}
+  </div>`;
+}
+
+// ── DIRECTORY ────────────────────────────────────────────────────────────────
+function buildFilters(){
+  const wknds=[...new Set(DB.map(r=>r.weekendNum).filter(Boolean))].sort();
+  const pos=[...new Set(DB.map(r=>r.position).filter(Boolean))].sort();
+  const names=[...new Set(DB.map(r=>r.name).filter(Boolean))].sort();
+  fillSel('f-wknd',wknds);fillSel('f-pos',pos);fillSel('f-name',names);
+}
+function fillSel(id,arr){
+  const s=document.getElementById(id),prev=s.value;
+  s.innerHTML='<option value="">All</option>'+arr.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  if(prev)s.value=prev;
+}
+function clearF(){['f-gender','f-wknd','f-role','f-pos','f-name'].forEach(id=>document.getElementById(id).value='');pg=1;renderDir();}
+function gv(id){return document.getElementById(id).value;}
+function srt(col){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=1;}pg=1;renderDir();}
+
+function renderDir(){
+  if(!DB.length)return;
+  const fg=gv('f-gender'),fw=gv('f-wknd'),fr=gv('f-role'),fp=gv('f-pos'),fn=gv('f-name');
+  let rows=DB.filter(r=>{
+    if(fg&&r.gender!==fg)return false;
+    if(fw&&r.weekendNum!==fw)return false;
+    if(fr&&r.role!==fr)return false;
+    if(fp&&r.position!==fp)return false;
+    if(fn&&r.name!==fn)return false;
+    return true;
+  });
+  rows.sort((a,b)=>(a[sortCol]||'').localeCompare(b[sortCol]||'')*sortDir);
+  const total=rows.length;
+  const maxPg=Math.max(1,Math.ceil(total/PER));
+  if(pg>maxPg)pg=maxPg;
+  const slice=rows.slice((pg-1)*PER,pg*PER);
+  set('pg-info','Page '+pg+' of '+maxPg);
+  set('pg-total',total.toLocaleString()+' record'+(total!==1?'s':''));
+  set('dir-body',slice.map(r=>{
+    const gc=r.gender==='Men'?'bm':r.gender==='Women'?'bw':'';
+    const rb=r.role==='Servant'?'<span class="badge bs">Servant</span>':'<span class="badge bc">Candidate</span>';
+    return`<tr>
+      <td class="nc">${esc(r.name)}${mkTip(r)}</td>
+      <td>${gc?`<span class="badge ${gc}">${esc(r.gender)}</span>`:''}</td>
+      <td style="font-size:.78rem">${esc(r.weekendNum||'—')}</td>
+      <td>${rb}</td>
+      <td style="font-size:.78rem;color:var(--ink-soft)">${esc(r.position||'—')}</td>
+      <td style="font-size:.78rem">${esc(r.church||'—')}</td>
+    </tr>`;
+  }).join(''));
+}
+
+function mkTip(r){
+  let h=`<div class="tooltip"><div class="tt-name">${esc(r.name)}</div>`;
+  h+=`<div class="tt-row">📅 <span>${esc(r.weekendNum||'—')} · ${esc(r.role)}</span></div>`;
+  if(r.position)h+=`<div class="tt-row">🏅 <span>${esc(r.position)}</span></div>`;
+  if(r.church)h+=`<div class="tt-row">⛪ <span>${esc(r.church)}</span></div>`;
+  if(r.city||r.state)h+=`<div class="tt-row">📍 <span>${esc([r.city,r.state].filter(Boolean).join(', '))}</span></div>`;
+  if(verified){
+    if(r.phone)h+=`<div class="tt-row">📞 <span>${esc(r.phone)}</span></div>`;
+    if(r.email)h+=`<div class="tt-row">✉️ <span>${esc(r.email)}</span></div>`;
+    if(!r.phone&&!r.email)h+=`<div class="tt-row" style="color:var(--ink-soft)">ℹ️ <span>No contact info on file</span></div>`;
+  }else if(r.phone||r.email){
+    h+=`<div class="tt-lock">🔒 Verify your number to see contact info</div>`;
+  }
+  return h+'</div>';
+}
+
+function prevPg(){if(pg>1){pg--;renderDir();}}
+function nextPg(){pg++;renderDir();}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function set(id,val){const el=document.getElementById(id);if(el){if(typeof val==='string'&&val.includes('<'))el.innerHTML=val;else el.textContent=val;}}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+go();
+</script>
+</body>
+</html>
