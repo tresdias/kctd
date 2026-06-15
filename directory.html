@@ -427,13 +427,21 @@ function parseCSV(text){
     return o;
   }).filter(r=>(r['Name']||'').trim()).map(row=>{
     const wknd=(row['Weekend']||'').trim();
-    const gender=wknd.toLowerCase().includes('women')?'Women':'Men';
-    const role=wknd.toLowerCase().includes('candidate')?'Candidate':'Team';
-    // Extract weekend number as integer for sorting (most recent = highest number)
+    const pos=(row['Position']||'').trim();
+    const wkndLow=wknd.toLowerCase();
+    // Gender: women if weekend column contains 'women'
+    const gender=wkndLow.includes('women')?'Women':'Men';
+    // Role: candidate if Weekend column OR Position column says "Candidate"
+    const role=(wkndLow.includes('candidate')||pos.toLowerCase()==='candidate')?'Candidate':'Team';
+    // Weekend number
     const wNum=(row['Weekend Number']||'').trim();
     const wNumInt=parseInt((wNum.match(/#(\d+)/)||[0,0])[1])||0;
+    // Normalize weekend type for gap tracker (handles both old and new data formats)
+    const weekendType=role==='Candidate'
+      ?(gender==='Women'?'kctd women candidate':'kctd men candidate')
+      :(gender==='Women'?'kctd women':'kctd men');
     return{name:row['Name'],weekend:wknd,weekendNum:wNum,weekendNumInt:wNumInt,
-      position:(row['Position']||'').trim(),gender,role,
+      weekendType,position:pos,gender,role,
       phone:(row['Phone']||'').trim(),email:(row['Email']||'').toLowerCase().trim(),
       address:(row['Street Address']||'').trim(),city:(row['City']||'').trim(),
       state:(row['State']||'').trim(),zip:(row['Zip']||'').trim(),
@@ -585,7 +593,7 @@ function buildGaps(){
   const msH=new Set(),mcH=new Set(),wsH=new Set(),wcH=new Set();
   DB.forEach(r=>{
     const m=(r.weekendNum||'').match(/#(\d+)/);if(!m)return;
-    const n=+m[1],w=(r.weekend||'').toLowerCase();
+    const n=+m[1],w=r.weekendType||(r.weekend||'').toLowerCase();
     if(w==='kctd men')msH.add(n);
     else if(w==='kctd men candidate')mcH.add(n);
     else if(w==='kctd women')wsH.add(n);
