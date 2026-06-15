@@ -586,12 +586,22 @@ function buildGaps(){
   DB.forEach(r=>{
     const m=(r.weekendNum||'').match(/#(\d+)/);if(!m)return;
     const n=+m[1],w=(r.weekend||'').toLowerCase();
-    if(w==='kctd men')msH.add(n);else if(w==='kctd men candidate')mcH.add(n);
-    else if(w==='kctd women')wsH.add(n);else if(w==='kctd women candidate')wcH.add(n);
+    if(w==='kctd men')msH.add(n);
+    else if(w==='kctd men candidate')mcH.add(n);
+    else if(w==='kctd women')wsH.add(n);
+    else if(w==='kctd women candidate')wcH.add(n);
   });
+  // Totals are dynamic — highest weekend number seen in data, no hardcoding
+  const msTotal=msH.size?Math.max(...msH):0;
+  const mcTotal=mcH.size?Math.max(...mcH):0;
+  const wsTotal=wsH.size?Math.max(...wsH):0;
+  const wcTotal=wcH.size?Math.max(...wcH):0;
   set('d-gap',
-    mkGap(msH,26,C.blue,"Men's Team")+mkGap(mcH,26,C.blue,"Men's Candidates")+
-    mkGap(wsH,25,C.pink,"Women's Team")+mkGap(wcH,25,C.pink,"Women's Candidates"));
+    (msTotal?mkGap(msH,msTotal,C.blue,"Men's Team"):'')+
+    (mcTotal?mkGap(mcH,mcTotal,C.blue,"Men's Candidates"):'')+
+    (wsTotal?mkGap(wsH,wsTotal,C.pink,"Women's Team"):'')+
+    (wcTotal?mkGap(wcH,wcTotal,C.pink,"Women's Candidates"):'')
+  );
 }
 function mkGap(have,total,color,title){
   const pct=Math.round(have.size/total*100);
@@ -599,8 +609,10 @@ function mkGap(have,total,color,title){
   return`<div class="gc">
     <div class="gh"><span class="gt" style="color:${color}">${esc(title)}</span><span class="gp">${have.size}/${total} · ${pct}%</span></div>
     <div class="gtrack"><div class="gfill" style="width:${pct}%;background:${color}"></div></div>
-    <div class="chips">${Array.from({length:total},(_,i)=>{const n=i+1;return`<span class="chip ${have.has(n)?'y':'n'}">#${n}</span>`;}).join('')}</div>
-    ${missing.length?`<p style="font-size:.7rem;color:var(--ink-soft);margin-top:5px">Missing: ${missing.map(n=>'#'+n).join(', ')}</p>`:`<p style="font-size:.7rem;color:var(--green);margin-top:5px">✓ All weekends uploaded!</p>`}
+    <div class="chips">${Array.from({length:total},(_,i)=>{const n=i+1;return`<span class="chip ${have.has(n)?'y':'n'}" title="${have.has(n)?'Weekend #'+n+' — data in sheet':'Weekend #'+n+' — missing'}">#${n}</span>`;}).join('')}</div>
+    ${missing.length
+      ?`<p style="font-size:.7rem;color:var(--ink-soft);margin-top:5px">Missing: ${missing.map(n=>'#'+n).join(', ')}</p>`
+      :`<p style="font-size:.7rem;color:var(--green);margin-top:5px">✓ All weekends uploaded!</p>`}
   </div>`;
 }
 
