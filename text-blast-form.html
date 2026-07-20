@@ -171,6 +171,7 @@
 <div class="card hidden" id="mainCard">
   <h1>Send a group text</h1>
   <p class="sub">Fill this in and it goes out through EZ Texting.</p>
+  <p class="sub" style="margin-top:-20px;">Keep it short and sweet — the weekend line and message together have <strong>160 characters</strong> to work with.</p>
 
   <div class="field">
     <label for="sender">Sender first and last name</label>
@@ -192,8 +193,8 @@
 
   <div class="field">
     <label for="message">Message</label>
-    <textarea id="message" maxlength="100" placeholder="Type the text here…"></textarea>
-    <div class="charcount" id="charcount">0 / 100</div>
+    <textarea id="message" maxlength="160" placeholder="Type the text here…"></textarea>
+    <div class="charcount" id="charcount">0 / 160</div>
   </div>
 
   <button class="send" id="sendBtn">Send text</button>
@@ -289,11 +290,14 @@
       });
   }
 
-  messageEl.addEventListener('input', function () {
-    const len = messageEl.value.length;
-    charcountEl.textContent = len + ' / 100';
-    charcountEl.classList.toggle('over', len > 100);
-  });
+  function updateCharCount() {
+    const total = subjectEl.value.length + messageEl.value.length;
+    charcountEl.textContent = total + ' / 160';
+    charcountEl.classList.toggle('over', total > 160);
+    sendBtn.disabled = total > 160;
+  }
+  messageEl.addEventListener('input', updateCharCount);
+  subjectEl.addEventListener('input', updateCharCount);
 
   sendBtn.addEventListener('click', function () {
     const sender = senderEl.value.trim();
@@ -315,7 +319,7 @@
           setStatus('Sent to ' + data.result.RecipientsCount + ' recipients.', 'ok');
           subjectEl.value = '';
           messageEl.value = '';
-          charcountEl.textContent = '0 / 100';
+          updateCharCount();
           selectedGroups.clear();
           document.querySelectorAll('.chip.selected').forEach(function (c) { c.classList.remove('selected'); });
         } else {
