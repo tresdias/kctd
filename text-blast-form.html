@@ -178,6 +178,12 @@
   </div>
 
   <div class="field">
+    <label for="subject">Weekend name and number</label>
+    <input type="text" id="subject" maxlength="13" placeholder="e.g. KCTD#13">
+    <div class="hint">Max 13 characters — appears as the message header recipients see.</div>
+  </div>
+
+  <div class="field">
     <label for="groupList">Send to</label>
     <div id="groupList" class="groups">
       <span style="font-size:13px;color:#948d7a;">Loading groups…</span>
@@ -225,6 +231,7 @@
 
   const groupListEl = document.getElementById('groupList');
   const senderEl = document.getElementById('sender');
+  const subjectEl = document.getElementById('subject');
   const messageEl = document.getElementById('message');
   const charcountEl = document.getElementById('charcount');
   const sendBtn = document.getElementById('sendBtn');
@@ -290,6 +297,7 @@
 
   sendBtn.addEventListener('click', function () {
     const sender = senderEl.value.trim();
+    const subject = subjectEl.value.trim();
     const message = messageEl.value.trim();
     const groups = Array.from(selectedGroups);
 
@@ -300,11 +308,12 @@
     sendBtn.disabled = true;
     setStatus('Sending…', 'pending');
 
-    callBackend({ action: 'send', code: ACCESS_CODE, sender: sender, message: message, groups: groups })
+    callBackend({ action: 'send', code: ACCESS_CODE, sender: sender, subject: subject, message: message, groups: groups })
       .then(function (data) {
         sendBtn.disabled = false;
         if (data.ok) {
           setStatus('Sent to ' + data.result.RecipientsCount + ' recipients.', 'ok');
+          subjectEl.value = '';
           messageEl.value = '';
           charcountEl.textContent = '0 / 100';
           selectedGroups.clear();
