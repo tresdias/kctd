@@ -139,8 +139,8 @@
   <p class="sub">Fill this in and it goes out through EZ Texting.</p>
 
   <div class="field">
-    <label for="sender">Your name</label>
-    <input type="text" id="sender" placeholder="e.g. Sarah M.">
+    <label for="sender">Sender first and last name</label>
+    <input type="text" id="sender" placeholder="e.g. Sarah Miller">
   </div>
 
   <div class="field">
@@ -152,8 +152,8 @@
 
   <div class="field">
     <label for="message">Message</label>
-    <textarea id="message" maxlength="480" placeholder="Type the text here…"></textarea>
-    <div class="charcount" id="charcount">0 / 160</div>
+    <textarea id="message" maxlength="100" placeholder="Type the text here…"></textarea>
+    <div class="charcount" id="charcount">0 / 100</div>
   </div>
 
   <button class="send" id="sendBtn">Send text</button>
@@ -226,8 +226,8 @@
 
   messageEl.addEventListener('input', function () {
     const len = messageEl.value.length;
-    charcountEl.textContent = len + ' / 160';
-    charcountEl.classList.toggle('over', len > 160);
+    charcountEl.textContent = len + ' / 100';
+    charcountEl.classList.toggle('over', len > 100);
   });
 
   sendBtn.addEventListener('click', function () {
@@ -248,7 +248,7 @@
         if (data.ok) {
           setStatus('Sent to ' + data.result.RecipientsCount + ' recipients.', 'ok');
           messageEl.value = '';
-          charcountEl.textContent = '0 / 160';
+          charcountEl.textContent = '0 / 100';
           selectedGroups.clear();
           document.querySelectorAll('.chip.selected').forEach(function (c) { c.classList.remove('selected'); });
         } else {
