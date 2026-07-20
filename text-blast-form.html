@@ -215,25 +215,25 @@
     <p class="sub limit">Keep it short and sweet — the weekend line and message together have <strong>160 characters</strong> to work with.</p>
 
     <div class="field">
-      <label for="sender">Sender first and last name</label>
+      <label for="sender">Sender first and last name *</label>
       <input type="text" id="sender" placeholder="e.g. Sarah Miller" autocomplete="name">
     </div>
 
     <div class="field">
-      <label for="subject">Weekend name and number</label>
+      <label for="subject">Weekend name and number *</label>
       <input type="text" id="subject" maxlength="13" placeholder="e.g. KCTD#13">
       <div class="hint">Max 13 characters — appears as the message header recipients see.</div>
     </div>
 
     <div class="field">
-      <label for="groupSelect">Send to</label>
+      <label for="groupSelect">Send to *</label>
       <select id="groupSelect">
         <option value="" disabled selected>Loading groups…</option>
       </select>
     </div>
 
     <div class="field">
-      <label for="message">Message</label>
+      <label for="message">Message *</label>
       <textarea id="message" maxlength="160" placeholder="Type the text here…"></textarea>
       <div class="charcount" id="charcount">0 / 160</div>
     </div>
@@ -361,6 +361,7 @@
     const group = groupSelect.value;
 
     if (!sender) { setStatus('Enter your name first.', 'error'); return; }
+    if (!subject) { setStatus('Enter the weekend name and number.', 'error'); return; }
     if (!message) { setStatus('Type a message first.', 'error'); return; }
     if (!group) { setStatus('Pick a group.', 'error'); return; }
 
