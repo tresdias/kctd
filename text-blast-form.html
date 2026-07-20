@@ -48,14 +48,20 @@
     margin-bottom: 18px;
   }
   .brand .mark {
-    width: 44px; height: 44px;
+    width: 52px; height: 52px;
     margin: 0 auto 10px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    border-radius: 14px;
+    background: var(--panel);
+    border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 14px rgba(32, 63, 58, 0.25);
+    box-shadow: 0 4px 14px rgba(32, 63, 58, 0.12);
+    overflow: hidden;
   }
-  .brand .mark svg { width: 22px; height: 22px; }
+  .brand .mark img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+  }
   .brand .kicker {
     font-size: 12px;
     font-weight: 600;
@@ -135,74 +141,7 @@
     line-height: 1.4;
   }
 
-  /* Custom dropdown for group selection */
-  .dropdown { position: relative; }
-  .dropdown-toggle {
-    width: 100%;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    font-size: 16px;
-    font-family: inherit;
-    text-align: left;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: #fcfbf7;
-    color: var(--muted-light);
-    cursor: pointer;
-  }
-  .dropdown-toggle.has-value { color: var(--ink); }
-  .dropdown-toggle .chevron {
-    flex-shrink: 0;
-    transition: transform 0.15s ease;
-    color: var(--muted-light);
-  }
-  .dropdown.open .dropdown-toggle {
-    border-color: var(--teal);
-    box-shadow: 0 0 0 3px rgba(47, 94, 86, 0.14);
-  }
-  .dropdown.open .chevron { transform: rotate(180deg); }
-  .dropdown-panel {
-    display: none;
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    right: 0;
-    z-index: 20;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 8px 28px -8px rgba(28,43,46,0.28);
-    max-height: 260px;
-    overflow-y: auto;
-    padding: 6px;
-  }
-  .dropdown.open .dropdown-panel { display: block; }
-  .dropdown-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-  }
-  .dropdown-option:hover, .dropdown-option:active { background: var(--teal-tint); }
-  .dropdown-option input[type="checkbox"] {
-    width: 18px; height: 18px;
-    accent-color: var(--teal);
-    flex-shrink: 0;
-    min-height: 0;
-  }
-  .dropdown-empty {
-    padding: 12px 10px;
-    font-size: 13px;
-    color: var(--muted-light);
-  }
-  .dropdown-empty.error { color: var(--error); }
+  /* Group selection */
 
   button.send {
     width: 100%;
@@ -257,10 +196,7 @@
 <div class="wrap">
   <div class="brand">
     <div class="mark">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 3v18M5 8l7-5 7 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M4 21c2-2 4-3 8-3s6 1 8 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <img src="data:image/png;base64,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" alt="Kansas City Tres Días cross logo">
     </div>
     <div class="kicker">Kansas City Tres Días</div>
   </div>
@@ -290,18 +226,10 @@
     </div>
 
     <div class="field">
-      <label for="groupToggle">Send to</label>
-      <div class="dropdown" id="groupDropdown">
-        <button type="button" class="dropdown-toggle" id="groupToggle">
-          <span id="groupToggleLabel">Select group(s)</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="dropdown-panel" id="groupPanel">
-          <div class="dropdown-empty" id="groupPanelStatus">Loading groups…</div>
-        </div>
-      </div>
+      <label for="groupSelect">Send to</label>
+      <select id="groupSelect">
+        <option value="" disabled selected>Loading groups…</option>
+      </select>
     </div>
 
     <div class="field">
@@ -351,37 +279,12 @@
   const sendBtn = document.getElementById('sendBtn');
   const statusEl = document.getElementById('status');
 
-  const groupDropdown = document.getElementById('groupDropdown');
-  const groupToggle = document.getElementById('groupToggle');
-  const groupToggleLabel = document.getElementById('groupToggleLabel');
-  const groupPanel = document.getElementById('groupPanel');
-  const groupPanelStatus = document.getElementById('groupPanelStatus');
-
-  let selectedGroups = new Set();
+  const groupSelect = document.getElementById('groupSelect');
 
   function setStatus(text, kind) {
     statusEl.className = 'status ' + kind;
     statusEl.textContent = text;
   }
-
-  function updateGroupToggleLabel() {
-    if (selectedGroups.size === 0) {
-      groupToggleLabel.textContent = 'Select group(s)';
-      groupToggle.classList.remove('has-value');
-    } else {
-      groupToggleLabel.textContent = Array.from(selectedGroups).join(', ');
-      groupToggle.classList.add('has-value');
-    }
-  }
-
-  groupToggle.addEventListener('click', function () {
-    groupDropdown.classList.toggle('open');
-  });
-  document.addEventListener('click', function (e) {
-    if (!groupDropdown.contains(e.target)) {
-      groupDropdown.classList.remove('open');
-    }
-  });
 
   // Apps Script quirk: sending Content-Type: text/plain avoids a CORS
   // preflight request, which Apps Script Web Apps don't handle. The
@@ -398,41 +301,47 @@
     fetch(API_URL + '?action=groups')
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        groupPanel.innerHTML = '';
+        groupSelect.innerHTML = '';
         if (!data.ok) {
-          groupPanel.innerHTML = '<div class="dropdown-empty error">' + data.error + '</div>';
+          const opt = document.createElement('option');
+          opt.textContent = data.error;
+          opt.disabled = true;
+          opt.selected = true;
+          groupSelect.appendChild(opt);
           return;
         }
         if (!data.groups.length) {
-          groupPanel.innerHTML = '<div class="dropdown-empty">No groups found in EZ Texting.</div>';
+          const opt = document.createElement('option');
+          opt.textContent = 'No groups found in EZ Texting.';
+          opt.disabled = true;
+          opt.selected = true;
+          groupSelect.appendChild(opt);
           return;
         }
-        data.groups.forEach(function (name) {
-          const row = document.createElement('label');
-          row.className = 'dropdown-option';
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select a group';
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        groupSelect.appendChild(placeholder);
 
-          const box = document.createElement('input');
-          box.type = 'checkbox';
-          box.value = name;
-          box.addEventListener('change', function () {
-            if (box.checked) {
-              selectedGroups.add(name);
-            } else {
-              selectedGroups.delete(name);
-            }
-            updateGroupToggleLabel();
+        data.groups
+          .slice()
+          .sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: 'base' }); })
+          .forEach(function (name) {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            groupSelect.appendChild(opt);
           });
-
-          const span = document.createElement('span');
-          span.textContent = name;
-
-          row.appendChild(box);
-          row.appendChild(span);
-          groupPanel.appendChild(row);
-        });
       })
       .catch(function () {
-        groupPanel.innerHTML = '<div class="dropdown-empty error">Couldn\'t reach the backend. Check API_URL.</div>';
+        groupSelect.innerHTML = '';
+        const opt = document.createElement('option');
+        opt.textContent = "Couldn't reach the backend. Check API_URL.";
+        opt.disabled = true;
+        opt.selected = true;
+        groupSelect.appendChild(opt);
       });
   }
 
@@ -449,16 +358,16 @@
     const sender = senderEl.value.trim();
     const subject = subjectEl.value.trim();
     const message = messageEl.value.trim();
-    const groups = Array.from(selectedGroups);
+    const group = groupSelect.value;
 
     if (!sender) { setStatus('Enter your name first.', 'error'); return; }
     if (!message) { setStatus('Type a message first.', 'error'); return; }
-    if (!groups.length) { setStatus('Pick at least one group.', 'error'); return; }
+    if (!group) { setStatus('Pick a group.', 'error'); return; }
 
     sendBtn.disabled = true;
     setStatus('Sending…', 'pending');
 
-    callBackend({ action: 'send', code: ACCESS_CODE, sender: sender, subject: subject, message: message, groups: groups })
+    callBackend({ action: 'send', code: ACCESS_CODE, sender: sender, subject: subject, message: message, groups: [group] })
       .then(function (data) {
         sendBtn.disabled = false;
         if (data.ok) {
@@ -466,9 +375,7 @@
           subjectEl.value = '';
           messageEl.value = '';
           updateCharCount();
-          selectedGroups.clear();
-          updateGroupToggleLabel();
-          document.querySelectorAll('.dropdown-option input[type="checkbox"]').forEach(function (c) { c.checked = false; });
+          groupSelect.selectedIndex = 0;
         } else {
           setStatus(data.error || 'Something went wrong.', 'error');
         }
