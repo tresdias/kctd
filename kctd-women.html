@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCTD Women's Team Portal</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap");
+:root{
+  --sand:#F5EFE4;--sand2:#EDE3D4;--sand3:#E0D4C0;--sand4:#D4C4A8;
+  --bark:#2C1F0E;--bark2:#3D2C14;
+  --accent:var(--th-accent,#C8972A);--accent2:var(--th-accent2,#A67A1A);
+  --accent-light:var(--th-accent-light,#FBF0D6);
+  --heading:var(--th-heading,#6B2A0E);
+  --nav-bg:var(--th-nav-bg,#2C1F0E);
+  --bg:var(--th-bg,#F5EFE4);
+  --bg2:var(--th-bg2,#EDE3D4);
+  --bg3:var(--th-bg3,#E0D4C0);
+  --text:#1E1408;--text2:#5C4A2E;--text3:#9C8A6E;
+  --bd:rgba(80,50,10,0.13);
+  --sh:0 1px 4px rgba(40,20,0,0.07);
+  --shm:0 4px 20px rgba(40,20,0,0.12);
+  --r:14px;--rs:9px;
+  --th-accent:#C8972A;--th-accent2:#A67A1A;--th-accent-light:#FBF0D6;
+  --th-bg:#F5EFE4;--th-bg2:#EDE3D4;--th-bg3:#E0D4C0;
+  --th-heading:#6B2A0E;--th-nav-bg:#2C1F0E;
+}
+body{font-family:"Inter",sans-serif;color:var(--text);font-size:15px;line-height:1.5;background:var(--bg)}
+.page{display:none}.page.active{display:block}
+
+/* ── HERO ── */
+.hero{background:var(--nav-bg);border-radius:var(--r);padding:32px 36px;margin-bottom:12px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 0%,rgba(200,151,42,0.18) 0%,transparent 60%);pointer-events:none}
+.hero-cross{position:absolute;right:28px;top:50%;transform:translateY(-50%);opacity:0.06;width:80px;height:80px}
+.eye{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(245,239,228,0.4);margin-bottom:10px}
+.htitle{font-family:"Crimson Pro",Georgia,serif;font-size:clamp(28px,5vw,48px);font-weight:600;color:#F5EFE4;line-height:1.05;margin-bottom:6px}
+.htitle em{font-style:italic;color:var(--accent)}
+.hverse{font-family:"Crimson Pro",Georgia,serif;font-style:italic;color:rgba(245,239,228,0.55);font-size:15px;margin-bottom:12px}
+.hsub{color:rgba(245,239,228,0.6);font-size:13px;margin-bottom:18px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:4px 12px;font-size:12px;color:rgba(245,239,228,0.7)}
+.tsongs{font-size:12px;color:rgba(245,239,228,0.45)}
+
+/* ── SECTION ── */
+.sec{background:var(--bg2);border-radius:var(--r);padding:22px 26px;margin-bottom:12px}
+.sechdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.sectitle{font-family:"Crimson Pro",Georgia,serif;font-size:22px;font-weight:600;color:var(--bark)}
+.refbtn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;font-family:inherit;display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:var(--rs);transition:.15s}
+.refbtn:hover{color:var(--accent);background:var(--accent-light)}
+
+/* ── DOC GRID ── */
+.docgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dc{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:20px 14px;text-align:center;cursor:pointer;transition:all .18s;text-decoration:none;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:var(--sh)}
+.dc:hover{box-shadow:var(--shm);transform:translateY(-2px);border-color:var(--accent)}
+.dic{width:44px;height:44px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.dlbl{font-size:13px;font-weight:600;color:var(--bark)}
+
+/* ── PILL BUTTONS ── */
+.pillrow{display:flex;gap:10px;flex-wrap:wrap;padding:12px 0 4px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:24px;padding:10px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;text-decoration:none}
+.pill:hover{background:var(--accent2)}
+.pill-o{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.pill-o:hover{background:var(--accent-light)}
+
+/* ── MEETING CARDS ── */
+.mtglist{display:flex;flex-direction:column;gap:10px}
+.mtg{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--sh);transition:.15s}
+.mtg:hover{box-shadow:var(--shm)}
+.mic{width:42px;height:42px;border-radius:10px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mbody{flex:1}
+.mtitle{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px}
+.mbadge{font-size:10px;font-weight:600;padding:2px 9px;border-radius:11px;background:var(--bg3);color:var(--text2)}
+.mdate{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:2px}
+.mloc{font-size:12px;color:var(--text3)}
+.mact{font-size:12px;color:var(--accent);font-weight:600;white-space:nowrap;cursor:pointer;align-self:center;text-decoration:none;background:var(--accent-light);padding:6px 14px;border-radius:20px;border:none;font-family:inherit}
+.mact:hover{background:var(--accent);color:#fff}
+
+/* ── LOCATION CARD ── */
+.lcard{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:20px 24px;display:grid;grid-template-columns:1fr 1px 1fr;gap:20px;box-shadow:var(--sh)}
+.ldiv{background:var(--bd)}
+.lsec h4{font-family:"Crimson Pro",Georgia,serif;font-size:16px;font-weight:600;margin-bottom:8px;color:var(--bark)}
+.lsec p,.lsec li{font-size:14px;color:var(--text2);line-height:1.7}
+.lsec ul{list-style:none}
+.lsec ul li::before{content:"• ";color:var(--accent)}
+.la{color:var(--accent);font-weight:600;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:8px}
+.la:hover{color:var(--accent2)}
+
+/* ── FEE CARDS ── */
+.feegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feecard{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh)}
+.feye{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--text3);text-transform:uppercase;margin-bottom:6px}
+.famt{font-family:"Crimson Pro",Georgia,serif;font-size:44px;font-weight:700;color:var(--bark);line-height:1;margin-bottom:4px}
+.fnote{font-size:13px;color:var(--text3);margin-bottom:12px}
+.fdue{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px}
+.fbtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.fmail{font-size:12px;color:var(--text3);display:flex;align-items:flex-start;gap:6px;line-height:1.6}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--text3);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.7px;padding:10px 12px;border-bottom:1px solid var(--bd)}
+td{padding:12px;border-bottom:1px solid var(--bd);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg2)}
+.avinit{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.avimg{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--bd)}
+.sb{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.sc{background:#E4EEE2;color:#2E4728}.sp2{background:#FFF3E0;color:#E65100}.sw{background:var(--bg3);color:var(--text3)}
+
+/* ── REQUEST CARDS ── */
+.req{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:18px 20px;margin-bottom:10px;box-shadow:var(--sh)}
+.reqh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.reqav{width:36px;height:36px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.reqnm{font-size:14px;font-weight:600}
+.reqmeta{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+.reqbody{font-size:14px;color:var(--text2);line-height:1.6}
+.uurg{background:#FEECE7;color:#B33A1A;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.upr{background:#E4EEE2;color:#2E4728;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.unm{background:var(--bg3);color:var(--text3);font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+
+/* ── FORM CARDS ── */
+.fcrd{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:22px 24px;box-shadow:var(--sh);margin-bottom:16px}
+.fcrd h3{font-family:"Crimson Pro",Georgia,serif;font-size:18px;font-weight:600;margin-bottom:16px;color:var(--bark)}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.fg label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text3)}
+.fg input,.fg select,.fg textarea{font-size:14px;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;color:var(--text);background:var(--bg2);width:100%;transition:.15s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent;background:var(--bg)}
+.fg textarea{resize:vertical;min-height:90px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.subbtn{background:var(--accent);color:#fff;border:none;padding:11px 24px;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+.subbtn:hover{background:var(--accent2)}
+
+/* ── STATUS / MISC ── */
+.strow{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text3)}
+.dot{width:8px;height:8px;border-radius:50%;background:#C0B8B0;flex-shrink:0}
+.dot.g{background:#4CAF50}.dot.o{background:#FF9800}.dot.r{background:#F44336}
+.dot.sp{width:10px;height:10px;border:2px solid #C0B8B0;border-top-color:var(--accent);background:none;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.utbl{width:100%;border-collapse:collapse;font-size:14px}
+.utbl th{text-align:left;padding:10px 12px;color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bd);font-weight:700}
+.utbl td{padding:10px 12px;border-bottom:1px solid var(--bd)}
+.utbl tr:last-child td{border-bottom:none}
+.ui{font-size:13px;padding:7px 10px;border:1px solid var(--bd);border-radius:7px;background:var(--bg2);font-family:monospace;width:100%;color:var(--text)}
+.ui:focus{outline:2px solid var(--accent);border-color:transparent;background:var(--bg)}
+.hintbox{background:var(--accent-light);border-radius:var(--rs);padding:14px 18px;font-size:13px;color:var(--accent2);margin-top:16px;line-height:1.7}
+.hintbox code{background:rgba(0,0,0,0.07);padding:1px 5px;border-radius:4px;font-size:12px;font-family:monospace}
+.step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--bd)}
+.step:last-child{border-bottom:none}
+.stepn{width:28px;height:28px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step p{font-size:13px;color:var(--text2);line-height:1.55}
+.step strong{color:var(--text)}
+code{background:var(--bg3);padding:1px 5px;border-radius:4px;font-size:12px;font-family:monospace}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bark);color:#F5EFE4;padding:12px 24px;border-radius:24px;font-size:13px;opacity:0;transition:all .3s;z-index:9999;white-space:nowrap;box-shadow:var(--shm)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.twocol{display:grid;grid-template-columns:1fr 1.35fr;gap:16px;align-items:start}
+.empty{text-align:center;padding:28px;color:var(--text3);font-size:14px}
+.ovw{overflow-x:auto}
+.metric2{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:16px;text-align:center;box-shadow:var(--sh)}
+.mv{font-family:"Crimson Pro",Georgia,serif;font-size:36px;font-weight:700;color:var(--accent);line-height:1}
+.ml{font-size:12px;color:var(--text3);margin-top:4px}
+.ch-btn{padding:8px 16px;border-radius:24px;border:1px solid var(--bd);background:none;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text2);font-weight:500;transition:all .15s}
+.ch-btn:hover{border-color:var(--accent);color:var(--accent)}
+.ch-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+.rec-btn{padding:7px 14px;border-radius:20px;border:1px solid var(--bd);background:none;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text2);transition:all .15s}
+.rec-btn:hover{border-color:var(--accent);color:var(--accent)}
+.rec-btn.active{background:var(--accent-light);color:var(--accent);border-color:var(--accent);font-weight:600}
+.log-entry{background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:12px 16px;margin-bottom:8px;font-size:13px}
+.log-entry-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;flex-wrap:wrap;gap:6px}
+.log-tag-sms{background:#E8F4FB;color:#0C6B9E;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.log-tag-email{background:#E8F5E9;color:#2E7D32;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.log-tag-both{background:var(--accent-light);color:var(--accent2);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.log-tag-ok{background:#E4EEE2;color:#2E4728;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.log-tag-fail{background:#FEECE7;color:#B33A1A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.reminder-card{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:14px 18px;margin-bottom:9px;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--sh)}
+.reminder-due{background:#FFF3E0;color:#E65100;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.reminder-sent{background:#E4EEE2;color:#2E4728;font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.reminder-ok{background:var(--bg3);color:var(--text3);font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.folder-btn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;padding:8px 10px;font-size:13px;color:var(--text2);cursor:pointer;border-radius:var(--rs);font-family:inherit;transition:.15s;text-align:left}
+.folder-btn:hover{background:var(--bg3);color:var(--text)}
+.folder-btn.active{background:var(--accent-light);color:var(--accent);font-weight:600}
+.folder-count{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;min-width:18px;text-align:center}
+.email-row{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-bottom:1px solid var(--bd);cursor:pointer;transition:.15s;background:var(--bg)}
+.email-row:hover{background:var(--bg2)}
+.email-row.unread{background:#FEFCF7;border-left:3px solid var(--accent)}
+.email-row.selected{background:var(--accent-light)}
+.email-row-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.email-row-from{font-size:13px;font-weight:700;color:var(--text)}
+.email-row-subj{font-size:13px;color:var(--text2);margin-top:1px}
+.email-row-preview{font-size:12px;color:var(--text3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+.email-row-time{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0}
+.email-row-star{background:none;border:none;cursor:pointer;font-size:14px;padding:2px;color:var(--text3);flex-shrink:0}
+.email-row-star.starred{color:var(--accent)}
+.detail-from{font-size:15px;font-weight:600;margin-bottom:2px;font-family:"Crimson Pro",Georgia,serif}
+.detail-meta{font-size:13px;color:var(--text3);margin-bottom:16px}
+.detail-subject{font-family:"Crimson Pro",Georgia,serif;font-size:22px;font-weight:600;margin-bottom:8px;color:var(--bark)}
+.detail-body{font-size:14px;color:var(--text2);line-height:1.7;white-space:pre-wrap}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd)}
+.cm-suggest-row{padding:8px 16px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px}
+.cm-suggest-row:hover{background:var(--bg2)}
+.unread-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:4px}
+@media(max-width:768px){
+  .hero{padding:20px 18px}
+  .sec{padding:16px 14px}
+  .docgrid{grid-template-columns:1fr 1fr}
+  .feegrid{grid-template-columns:1fr}
+  .lcard{grid-template-columns:1fr}.ldiv{display:none}
+  .frow{grid-template-columns:1fr}
+  .twocol{grid-template-columns:1fr}
+  .mact{display:none}
+}
+@media(max-width:400px){.docgrid{grid-template-columns:1fr 1fr}}
+
+
+body{display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:56px;background:var(--nav-bg);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;padding:0 16px;gap:12px;position:sticky;top:0;z-index:300;flex-shrink:0}
+.tb-ham{width:42px;height:42px;background:rgba(255,255,255,0.1);border:none;border-radius:9px;cursor:pointer;display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0}
+.tb-ham span{display:block;width:18px;height:2px;background:rgba(245,239,228,0.8);border-radius:2px;transition:all .25s}
+.tb-ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.tb-ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.tb-ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.tb-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.tb-ic{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tb-nm{font-family:"Crimson Pro",Georgia,serif;font-size:16px;font-weight:600;color:#F5EFE4}
+.tb-sub{font-size:10px;color:rgba(245,239,228,0.4)}
+.tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto}
+.tb-home{background:rgba(255,255,255,0.1);border:none;color:rgba(245,239,228,0.7);padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;text-decoration:none;display:flex;align-items:center;gap:5px;transition:.15s}
+.tb-home:hover{background:rgba(255,255,255,0.18);color:#F5EFE4}
+.app-shell{display:flex;flex:1;min-height:0}
+.sb-overlay{display:none;position:fixed;inset:0;top:56px;background:rgba(0,0,0,0.55);z-index:200}
+.sb-overlay.show{display:block}
+.sidebar{background:var(--bark2);width:230px;flex-shrink:0;display:flex;flex-direction:column;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;overflow-x:hidden;border-right:1px solid rgba(255,255,255,0.06)}
+.sb-logo-row{padding:16px 14px 12px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sb-logo{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo-nm{font-family:"Crimson Pro",Georgia,serif;font-size:14px;font-weight:600;color:rgba(245,239,228,0.9);line-height:1.3}
+.sb-logo-sub{font-size:10px;color:rgba(245,239,228,0.28)}
+.sb-scroll{flex:1;padding:6px 0}
+.sb-sec{font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(245,239,228,0.2);padding:12px 16px 3px}
+.sb-btn{display:flex;align-items:center;width:100%;background:none;border:none;border-left:3px solid transparent;padding:11px 0;color:rgba(245,239,228,0.45);cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;transition:all .15s;text-align:left;white-space:nowrap}
+.sb-btn:hover{background:rgba(255,255,255,0.06);color:rgba(245,239,228,0.9)}
+.sb-btn.active{background:rgba(200,151,42,0.18);color:var(--accent);border-left-color:var(--accent)}
+.sb-ic{width:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.sb-lbl{flex:1;font-size:13px}
+.sb-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:12px;flex-shrink:0}
+.sb-foot{border-top:1px solid rgba(255,255,255,0.07);padding:4px 0;flex-shrink:0}
+.main-content{flex:1;overflow-y:auto;padding:24px 24px 60px;background:var(--bg);min-width:0}
+footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);background:var(--bg2);border-top:1px solid var(--bd)}
+@media(max-width:768px){
+  .tb-ham{display:flex}
+  .sidebar{position:fixed;top:56px;left:0;bottom:0;height:calc(100vh - 56px);z-index:250;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);width:240px}
+  .sidebar.mob-open{transform:translateX(0)}
+  .main-content{padding:16px 14px 60px}
+}
+
+
+.hero{position:relative;overflow:hidden}
+.hero-cross{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:80px;height:80px;pointer-events:none}
+.weekend-card{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:12px}
+.wk-header{background:linear-gradient(135deg,var(--th-nav-bg) 0%,var(--th-heading) 100%);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.wk-badge{background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.4px;white-space:nowrap;flex-shrink:0}
+.wk-title{font-family:"Crimson Pro",Georgia,serif;font-size:18px;font-weight:600;color:#fff;line-height:1.2}
+.wk-body{padding:0}
+.wk-row{display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid var(--bd)}
+.wk-row:last-child{border-bottom:none}
+.wk-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);min-width:60px;flex-shrink:0}
+.wk-val{font-size:14px;color:var(--text);flex:1}
+.rightnow-card{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:12px}
+.rn-header{background:var(--accent);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.rn-pulse{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,0.25);animation:pulse-rn 2s ease-out infinite;flex-shrink:0}
+@keyframes pulse-rn{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.4)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.rn-title{font-size:13px;font-weight:700;color:#fff;letter-spacing:.3px}
+.rn-body{padding:4px 0}
+.rn-item{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bd)}
+.rn-item:last-child{border-bottom:none}
+.rn-item-ic{width:34px;height:34px;border-radius:8px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.rn-item-text{font-size:14px;color:var(--text);font-weight:500;line-height:1.4}
+.rn-item-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.doc-strip{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:none;-ms-overflow-style:none}
+.doc-strip::-webkit-scrollbar{display:none}
+.doc-pill{display:flex;align-items:center;gap:9px;background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0;box-shadow:var(--sh);min-width:130px}
+.doc-pill:hover{border-color:var(--accent);box-shadow:var(--shm);transform:translateY(-1px)}
+.doc-pill-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.doc-pill-name{font-size:13px;font-weight:600;color:var(--bark)}
+.doc-pill-arr{font-size:14px;color:var(--text3);margin-left:auto}
+.doc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:400;align-items:flex-end;justify-content:center}
+.doc-overlay.show{display:flex}
+.doc-panel{background:var(--bg);width:100%;max-width:900px;height:88vh;border-radius:var(--r) var(--r) 0 0;display:flex;flex-direction:column;overflow:hidden;animation:slideUp .3s cubic-bezier(.4,0,.2,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.doc-panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--bd);flex-shrink:0;background:var(--bg2)}
+.doc-panel-title{font-family:"Crimson Pro",Georgia,serif;font-size:17px;font-weight:600;color:var(--bark)}
+.doc-panel-close{width:32px;height:32px;background:var(--bg3);border:none;border-radius:50%;cursor:pointer;font-size:16px;color:var(--text2);display:flex;align-items:center;justify-content:center}
+.doc-panel-close:hover{background:var(--accent-light);color:var(--accent)}
+.doc-panel-loading{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--text3);font-size:14px}
+.doc-panel-iframe{flex:1;border:none;width:100%;background:#fff}
+
+/* ── MEMBER POPUP ── */
+.member-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end;justify-content:center}
+.member-overlay.show{display:flex}
+.member-panel{background:var(--bg);width:100%;max-width:500px;border-radius:var(--r) var(--r) 0 0;overflow:hidden;animation:slideUp .28s cubic-bezier(.4,0,.2,1)}
+.member-panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:linear-gradient(135deg,var(--th-nav-bg),var(--th-heading));flex-shrink:0}
+.member-avatar{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.member-avatar img{width:100%;height:100%;object-fit:cover}
+.member-name{font-family:"Crimson Pro",Georgia,serif;font-size:20px;font-weight:600;color:#fff}
+.member-position{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px}
+.member-panel-body{padding:8px 0}
+.member-detail-row{display:flex;align-items:flex-start;gap:14px;padding:12px 18px;border-bottom:1px solid var(--bd)}
+.member-detail-row:last-child{border-bottom:none}
+.member-detail-ic{font-size:20px;flex-shrink:0;width:28px;text-align:center;margin-top:2px}
+.member-detail-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);margin-bottom:2px}
+.member-detail-val{font-size:15px;color:var(--text)}
+.member-panel-footer{padding:14px 18px;border-top:1px solid var(--bd)}
+.roster-row-click{cursor:pointer}
+.roster-row-click:hover td{background:var(--accent-light) !important}
+.confirmed-yes{background:#E4EEE2;color:#2E6728;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.confirmed-no{background:#FFF3E0;color:#E65100;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.confirmed-pending{background:var(--bg3);color:var(--text3);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="tb-ham" id="tb-ham" onclick="hamClick()" aria-label="Open navigation menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="tb-brand">
+    <div class="tb-ic" id="brand-ic">K</div>
+    <div>
+      <div class="tb-nm" id="brand-nm">KCTD Women</div>
+      <div class="tb-sub" id="brand-sub">Team Portal</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <div class="strow"><div class="dot" id="status-dot"></div><span id="status-text" style="font-size:11px;color:rgba(245,239,228,0.45)">Not connected</span></div>
+    <button onclick="refreshAll()" style="background:rgba(255,255,255,0.1);border:none;padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;color:rgba(245,239,228,0.7);font-family:inherit">&#8635;</button>
+    
+  </div>
+</div>
+
+<div class="sb-overlay" id="sb-overlay" onclick="hamClick()"></div>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo-row">
+      <div class="sb-logo" id="sb-logo-ic">K</div>
+      <div><div class="sb-logo-nm" id="sb-logo-nm">KCTD Women</div><div class="sb-logo-sub">Team Portal</div></div>
+    </div>
+    <div class="sb-scroll">
+      <div class="sb-sec">Weekend</div>
+      <button class="sb-btn active" data-page="home"><span class="sb-ic">&#127968;</span><span class="sb-lbl">Home</span></button>
+      <button class="sb-btn" data-page="roster"><span class="sb-ic">&#128101;</span><span class="sb-lbl">Team Roster</span></button>
+      <button class="sb-btn" data-page="meetings"><span class="sb-ic">&#128197;</span><span class="sb-lbl">Meetings &amp; Travel</span></button>
+      <div class="sb-sec">Requests</div>
+      <button class="sb-btn" data-page="prayer"><span class="sb-ic">&#128591;</span><span class="sb-lbl">Prayer Requests</span></button>
+      <button class="sb-btn" data-page="palanca"><span class="sb-ic">&#128140;</span><span class="sb-lbl">Palanca Requests</span></button>
+      <div class="sb-sec">Communications</div>
+      <button class="sb-btn" data-page="comms" id="snav-comms"><span class="sb-ic">&#128172;</span><span class="sb-lbl">Send Message</span></button>
+      <button class="sb-btn" data-page="inbox" id="snav-inbox"><span class="sb-ic">&#128290;</span><span class="sb-lbl">Inbox</span><span class="sb-badge" id="inbox-badge" style="display:none">0</span></button>
+      <button class="sb-btn" data-page="admin"><span class="sb-ic">&#9881;</span><span class="sb-lbl">Admin</span></button>
+    </div>
+  </aside>
+  <main class="main-content" id="main-content">
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-cross"><svg viewBox="0 0 80 80" fill="none"><rect x="34" y="4" width="12" height="72" rx="6" fill="white" opacity="0.06"/><rect x="8" y="28" width="64" height="12" rx="6" fill="white" opacity="0.06"/></svg></div>
+    <div class="eye" id="s-eyebrow">WELCOME TO THE TEAM PORTAL</div>
+    <div class="htitle" id="s-title">Tres Dias App</div>
+    <div class="hverse" id="s-verse"></div>
+    <div class="hsub" id="s-tagline">Everything you need for the weekend</div>
+    <div class="tags" id="s-tags"></div>
+    <div class="tsongs" id="s-songs"></div>
+  </div>
+
+  <div class="weekend-card" id="weekend-card" style="display:none">
+    <div class="wk-header">
+      <div class="wk-badge" id="wk-badge">Weekend</div>
+      <div class="wk-title" id="wk-title"></div>
+    </div>
+    <div class="wk-body">
+      <div class="wk-row" id="wk-theme-row" style="display:none"><span class="wk-label">Theme</span><span class="wk-val" id="wk-theme"></span></div>
+      <div class="wk-row" id="wk-colors-row" style="display:none"><span class="wk-label">Colors</span><span class="wk-val" id="wk-colors"></span></div>
+      <div class="wk-row" id="wk-symbols-row" style="display:none"><span class="wk-label">Symbols</span><span class="wk-val" id="wk-symbols"></span></div>
+      <div class="wk-row" id="wk-rector-row" style="display:none">
+        <span class="wk-label">Rector</span>
+        <span class="wk-val" id="wk-rector"></span>
+        <button id="wk-rector-letter" data-url="" style="display:none;margin-left:auto;background:var(--accent);color:#fff;border:none;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit" onclick="openDoc(this.getAttribute('data-url'),'Rector Letter')">Read Letter &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightnow-card" id="rightnow-card" style="display:none">
+    <div class="rn-header"><span class="rn-pulse"></span><span class="rn-title">Right Now</span></div>
+    <div class="rn-body" id="rn-body"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sechdr">
+      <div class="sectitle">Important Docs</div>
+      <button class="refbtn" onclick="refreshAll()">&#8635; Refresh</button>
+    </div>
+    <div class="doc-strip" id="doc-grid">
+      <div style="font-size:13px;color:var(--text3);padding:4px">Connect your Settings sheet in Admin to load docs.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TEAM ROSTER -->
+<div id="page-roster" class="page">
+  <div class="sec">
+    <div class="sechdr">
+      <div class="sectitle">Team Roster</div>
+      <div class="strow">
+        <div class="dot" id="rdot"></div>
+        <span id="rst">Not connected</span>
+        <button onclick="refreshAll()" class="refbtn" style="margin-left:4px">&#8635; Refresh</button>
+      </div>
+    </div>
+    <div class="ovw">
+      <table>
+        <thead><tr><th>Name</th><th>Position</th><th>Confirmed</th></tr></thead>
+        <tbody id="roster-body"><tr><td colspan="3" class="empty">Connect your Google Sheet in Admin to load roster.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Member detail popup -->
+  <div class="member-overlay" id="member-overlay" onclick="if(event.target===this)closeMember()">
+    <div class="member-panel">
+      <div class="member-panel-hdr">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="member-avatar" id="mp-avatar">?</div>
+          <div>
+            <div class="member-name" id="mp-name"></div>
+            <div class="member-position" id="mp-position"></div>
+          </div>
+        </div>
+        <button class="doc-panel-close" onclick="closeMember()">&#10005;</button>
+      </div>
+      <div class="member-panel-body">
+        <div class="member-detail-row" id="mp-church-row">
+          <span class="member-detail-ic">&#9962;</span>
+          <div><div class="member-detail-label">Church</div><div class="member-detail-val" id="mp-church"></div></div>
+        </div>
+        <div class="member-detail-row" id="mp-location-row">
+          <span class="member-detail-ic">&#128205;</span>
+          <div><div class="member-detail-label">City / State / Zip</div><div class="member-detail-val" id="mp-location"></div></div>
+        </div>
+        <div class="member-detail-row" id="mp-phone-row">
+          <span class="member-detail-ic">&#128241;</span>
+          <div><div class="member-detail-label">Phone</div><a class="member-detail-val" id="mp-phone" href="#" style="color:var(--accent);text-decoration:none"></a></div>
+        </div>
+        <div class="member-detail-row" id="mp-email-row">
+          <span class="member-detail-ic">&#128231;</span>
+          <div><div class="member-detail-label">Email</div><a class="member-detail-val" id="mp-email" href="#" style="color:var(--accent);text-decoration:none"></a></div>
+        </div>
+      </div>
+      <div class="member-panel-footer">
+        <div style="font-size:12px;color:var(--text3);line-height:1.5;background:var(--bg2);border-radius:var(--rs);padding:10px 14px">
+          <strong>To edit or remove a team member:</strong> update your Google Sheet directly — changes appear after the next Refresh. The sheet is the source of truth.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="page-prayer" class="page">
+  <div class="twocol">
+    <div class="fcrd">
+      <h3>&#128591; Submit a Prayer Request</h3>
+      <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">
+        Prayer requests are submitted via Google Forms so they are automatically saved to the weekend spreadsheet and can be archived. Click the button below to open the form.
+      </p>
+      <div id="prayer-form-area">
+        <div style="background:var(--cr2);border-radius:var(--r);padding:24px;text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">&#128591;</div>
+          <div style="font-size:14px;font-weight:700;color:var(--tx);margin-bottom:6px">Prayer Request Form</div>
+          <div style="font-size:13px;color:var(--t3);margin-bottom:16px">Your request will be saved directly to the weekend spreadsheet.</div>
+          <a id="prayer-form-btn" href="#" target="_blank" class="pill" style="display:inline-flex;font-size:14px;padding:11px 24px;text-decoration:none">
+            &#128279; Open Prayer Request Form
+          </a>
+          <div id="prayer-form-missing" style="display:none;margin-top:12px;font-size:12px;color:var(--t3)">
+            No form linked yet. Go to <button onclick="showPage('admin')" style="background:none;border:none;color:var(--ru);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:0">Admin &rarr; Google Forms</button> to add the link.
+          </div>
+        </div>
+        <div style="margin-top:14px;background:var(--cr2);border-radius:var(--rs);padding:12px 16px;font-size:12px;color:var(--t3);display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">&#128221;</span>
+          <span>Responses are saved to your Google Sheet and visible in the <strong>Prayer Requests</strong> list on the right after a refresh.</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div class="sectitle" style="font-size:18px">Prayer Requests</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="pr-ct" style="font-size:12px;color:var(--t3)"></span>
+          <button onclick="refreshAll()" class="refbtn">&#8635; Refresh</button>
+        </div>
+      </div>
+      <div id="pr-list"><div class="empty">Connect your Prayer sheet in Admin to see submitted requests here.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-palanca" class="page">
+  <div class="twocol">
+    <div class="fcrd">
+      <h3>&#128140; Submit a Palanca</h3>
+      <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px">
+        Palanca letters are submitted via Google Forms — saved directly to the weekend spreadsheet for coordination and archiving.
+      </p>
+      <div id="palanca-form-area">
+        <div style="background:var(--cr2);border-radius:var(--r);padding:24px;text-align:center">
+          <div style="font-size:36px;margin-bottom:12px">&#128140;</div>
+          <div style="font-size:14px;font-weight:700;color:var(--tx);margin-bottom:6px">Palanca Submission Form</div>
+          <div style="font-size:13px;color:var(--t3);margin-bottom:16px">Your letter of encouragement will be saved directly to the weekend spreadsheet.</div>
+          <a id="palanca-form-btn" href="#" target="_blank" class="pill" style="display:inline-flex;font-size:14px;padding:11px 24px;text-decoration:none">
+            &#128279; Open Palanca Form
+          </a>
+          <div id="palanca-form-missing" style="display:none;margin-top:12px;font-size:12px;color:var(--t3)">
+            No form linked yet. Go to <button onclick="showPage('admin')" style="background:none;border:none;color:var(--ru);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:0">Admin &rarr; Google Forms</button> to add the link.
+          </div>
+        </div>
+        <div style="margin-top:14px;background:var(--cr2);border-radius:var(--rs);padding:12px 16px;font-size:12px;color:var(--t3);display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">&#128221;</span>
+          <span>Responses are saved to your Google Sheet and visible in the <strong>Palanca Letters</strong> list on the right after a refresh.</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div class="sectitle" style="font-size:18px">Palanca Letters</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="pa-ct" style="font-size:12px;color:var(--t3)"></span>
+          <button onclick="refreshAll()" class="refbtn">&#8635; Refresh</button>
+        </div>
+      </div>
+      <div id="pa-list"><div class="empty">Connect your Palanca sheet in Admin to see submitted letters here.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-palanca" class="page">
+  <div class="twocol">
+    <div class="fcrd">
+      <h3>Submit a Palanca</h3>
+      <p style="font-size:13px;color:var(--t3);margin-bottom:14px;line-height:1.5">Letters of encouragement and prayer for weekend participants.</p>
+      <div class="fg"><label>Your Name</label><input id="pa-nm" type="text" placeholder="Full name"></div>
+      <div class="fg"><label>For Participant</label><input id="pa-for" type="text" placeholder="Who is this for?"></div>
+      <div class="fg"><label>Message</label><textarea id="pa-msg" placeholder="Write your letter of encouragement&#8230;"></textarea></div>
+      <div class="fg"><label>Delivery</label><select id="pa-del"><option>Deliver during weekend</option><option>Mail ahead</option><option>Email</option></select></div>
+      <button class="subbtn" onclick="addPalanca()">Submit Palanca</button>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="sectitle" style="font-size:18px">Palanca Letters</div>
+        <span id="pa-ct" style="font-size:12px;color:var(--t3)"></span>
+      </div>
+      <div id="pa-list"><div class="empty">Connect palanca sheet or submit a palanca.</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- COMMUNICATIONS -->
+<div id="page-comms" class="page">
+
+  <!-- Gmail OAuth banner -->
+  <div id="gmail-banner" class="fcrd" style="background:#EAF3FB;border-color:#A8D4F0;margin-bottom:8px;display:none">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-size:22px">&#128231;</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:#0C447C">Gmail not connected</div>
+        <div style="font-size:13px;color:#1A6A9A;margin-top:2px">Connect your Gmail account to send emails directly from the app.</div>
+      </div>
+      <button class="subbtn" onclick="connectGmail()" style="background:#1A73E8;font-size:13px;padding:9px 18px;white-space:nowrap">&#128231; Connect Gmail</button>
+    </div>
+  </div>
+
+  <div id="eztxt-banner" class="fcrd" style="background:#FFF8F0;border-color:#E8C090;margin-bottom:8px;display:none">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-size:22px">&#128241;</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:var(--bu)">EZTexting not connected</div>
+        <div style="font-size:13px;color:var(--t2);margin-top:2px">Add your EZTexting API key in Admin → Integrations to send SMS.</div>
+      </div>
+      <button class="subbtn" onclick="showPage('admin');setTimeout(()=>document.getElementById('integrations-card').scrollIntoView({behavior:'smooth'}),200)" style="font-size:13px;padding:9px 18px;white-space:nowrap">&#9881; Go to Admin</button>
+    </div>
+  </div>
+
+  <!-- Reminder badges -->
+  <div id="reminder-alerts" style="margin-bottom:8px"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px" id="comms-stats">
+    <div class="metric2"><div class="mv" id="cs-sent">0</div><div class="ml">Messages sent</div></div>
+    <div class="metric2"><div class="mv" id="cs-pending">0</div><div class="ml">Reminders pending</div></div>
+  </div>
+
+  <!-- COMPOSE -->
+  <div class="sec" style="margin-bottom:8px">
+    <div class="sechdr"><div class="sectitle">Compose Message</div></div>
+
+    <!-- Channel toggle -->
+    <div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap">
+      <button class="ch-btn active" id="ch-sms" onclick="setChannel('sms')">&#128241; SMS Text</button>
+      <button class="ch-btn" id="ch-email" onclick="setChannel('email')">&#128231; Email</button>
+      <button class="ch-btn" id="ch-both" onclick="setChannel('both')">&#128172; Both</button>
+    </div>
+
+    <!-- Recipients -->
+    <div class="fg" style="margin-bottom:14px">
+      <label>Recipients</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <button class="rec-btn active" onclick="setRecipient('all',this)">&#128101; Whole Team</button>
+        <button class="rec-btn" onclick="setRecipient('individual',this)">&#128100; Individual</button>
+        <button class="rec-btn" onclick="setRecipient('group',this)">&#128203; By Role/Day</button>
+        <button class="rec-btn" onclick="setRecipient('custom',this)">&#9999;&#65039; Custom list</button>
+      </div>
+
+      <div id="rec-individual" style="display:none">
+        <select id="sel-individual" style="font-size:14px;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;background:var(--cr);width:100%;color:var(--tx)">
+          <option value="">— Select team member —</option>
+        </select>
+      </div>
+      <div id="rec-group" style="display:none">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div class="fg" style="flex:1;min-width:140px">
+            <label style="font-size:10px">Filter by Role</label>
+            <select id="sel-role" style="font-size:13px;padding:8px 10px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;background:var(--cr);width:100%;color:var(--tx)">
+              <option value="">All roles</option>
+            </select>
+          </div>
+          <div class="fg" style="flex:1;min-width:140px">
+            <label style="font-size:10px">Filter by Day</label>
+            <select id="sel-day" style="font-size:13px;padding:8px 10px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;background:var(--cr);width:100%;color:var(--tx)">
+              <option value="">All days</option>
+              <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option><option>All days</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="rec-custom" style="display:none">
+        <textarea id="txt-custom-recipients" placeholder="Enter phone numbers (SMS) or emails, one per line or comma-separated" style="font-size:13px;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);font-family:monospace;background:var(--cr);width:100%;min-height:80px;color:var(--tx);resize:vertical"></textarea>
+      </div>
+
+      <div id="rec-preview" style="font-size:12px;color:var(--t3);margin-top:6px;font-style:italic"></div>
+    </div>
+
+    <!-- Email subject (shown when email/both) -->
+    <div class="fg" id="email-subject-row" style="display:none">
+      <label>Email Subject</label>
+      <input id="msg-subject" type="text" placeholder="e.g. Team Meeting Reminder – This Saturday">
+    </div>
+
+    <!-- Message body -->
+    <div class="fg">
+      <label>Message</label>
+      <textarea id="msg-body" placeholder="Write your message here&#8230;" style="min-height:110px"></textarea>
+      <div style="display:flex;justify-content:space-between;margin-top:4px">
+        <span id="sms-counter" style="font-size:11px;color:var(--t3)"></span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="insertVar('{name}')" style="font-size:11px;padding:3px 8px;border:1px solid var(--bd);border-radius:5px;background:none;cursor:pointer;color:var(--t2)">{name}</button>
+          <button onclick="insertVar('{role}')" style="font-size:11px;padding:3px 8px;border:1px solid var(--bd);border-radius:5px;background:none;cursor:pointer;color:var(--t2)">{role}</button>
+          <button onclick="insertVar('{date}')" style="font-size:11px;padding:3px 8px;border:1px solid var(--bd);border-radius:5px;background:none;cursor:pointer;color:var(--t2)">{date}</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px">
+      <button class="subbtn" onclick="sendMessage()">&#9992;&#65039; Send Now</button>
+      <button onclick="previewMessage()" style="background:none;border:1px solid var(--bd);padding:10px 18px;border-radius:24px;font-size:14px;cursor:pointer;color:var(--t2);font-family:inherit">&#128065; Preview</button>
+      <span id="send-status" style="font-size:13px;color:var(--t3)"></span>
+    </div>
+  </div>
+
+  <!-- MEETING REMINDERS -->
+  <div class="sec" style="margin-bottom:8px">
+    <div class="sechdr">
+      <div class="sectitle">Meeting Reminders</div>
+      <button class="refbtn" onclick="checkReminders()">&#8635; Check now</button>
+    </div>
+    <div id="reminder-list"><div class="empty">No meetings loaded. Connect your Meetings sheet in Admin.</div></div>
+  </div>
+
+  <!-- SEND LOG -->
+  <div class="sec">
+    <div class="sechdr">
+      <div class="sectitle">Send Log</div>
+      <button onclick="clearLog()" class="refbtn">&#128465; Clear</button>
+    </div>
+    <div id="send-log"><div class="empty">No messages sent yet.</div></div>
+  </div>
+
+</div>
+
+
+<!-- INBOX -->
+<div id="page-inbox" class="page">
+  <div class="section-hdr" style="margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <h2 style="font-size:20px;font-weight:800">&#128290; Reply Inbox</h2>
+      <span id="inbox-unread-badge" style="display:none;background:var(--ru);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px"></span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button class="refbtn" onclick="checkInbox()">&#8635; Refresh</button>
+      <div class="strow"><div class="dot" id="inbox-dot"></div><span id="inbox-status">Not connected</span></div>
+    </div>
+  </div>
+
+  <div id="inbox-no-gmail" class="fcrd" style="background:#FFF8F0;border-color:#E8C090;display:none">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-size:22px">&#128231;</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:var(--bu)">Gmail not configured</div>
+        <div style="font-size:13px;color:var(--t2);margin-top:2px">Add your shared Gmail address and App Password in Admin → Integrations to see replies here.</div>
+      </div>
+      <button class="subbtn" onclick="showPage('admin');setTimeout(()=>document.getElementById('integrations-card').scrollIntoView({behavior:'smooth'}),200)" style="font-size:13px;padding:9px 18px">&#9881; Set up Gmail</button>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap" id="inbox-filters">
+    <button class="rec-btn active" onclick="filterInbox('all',this)">All</button>
+    <button class="rec-btn" onclick="filterInbox('unread',this)">Unread</button>
+    <button class="rec-btn" onclick="filterInbox('replied',this)">Replied</button>
+  </div>
+
+  <div id="inbox-list"><div class="empty">Click Refresh to load replies from the shared Gmail inbox.</div></div>
+</div>
+
+<!-- ADMIN -->
+<div id="page-admin" class="page">
+
+  <div class="fcrd">
+    <h3>&#127942; Weekend Details</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.5">Update every weekend. These fields appear in the Weekend Info and Right Now boxes on the Home page.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="fg"><label>Weekend Name / Number</label><input id="wi-weekend-name" type="text" placeholder="e.g. GLTD Women's #3"></div>
+      <div class="fg"><label>Weekend Title (theme)</label><input id="wi-title" type="text" placeholder="e.g. Here I Am, Lord"></div>
+      <div class="fg"><label>Bible Verse</label><input id="wi-verse" type="text" placeholder="e.g. Isaiah 6:8"></div>
+      <div class="fg"><label>Tagline</label><input id="wi-tagline" type="text" placeholder="e.g. Everything you need for the weekend"></div>
+      <div class="fg"><label>Theme Colors &#127912;</label><input id="wi-colors" type="text" placeholder="e.g. Cream, Sage, Burgundy"></div>
+      <div class="fg"><label>Theme Symbols &#128081;</label><input id="wi-symbols" type="text" placeholder="e.g. Cross, Flowers, Hearts"></div>
+      <div class="fg"><label>Theme Songs</label><input id="wi-songs" type="text" placeholder="e.g. Here I Am To Worship"></div>
+      <div class="fg"><label>Rector Name</label><input id="wi-rector" type="text" placeholder="e.g. Maria Santos"></div>
+      <div class="fg" style="grid-column:1/-1"><label>Rector Letter URL <span style="font-size:10px;color:var(--text3)">(Google Drive or Docs link)</span></label><input id="wi-rector-url" type="url" placeholder="https://drive.google.com/..."></div>
+      <div class="fg"><label>Group Name</label><input id="wi-group" type="text" placeholder="e.g. KCTD Women or GLTD Women"></div>
+      <div class="fg"><label>Group Number</label><input id="wi-number" type="text" placeholder="e.g. 3"></div>
+      <div class="fg"><label>Eyebrow text</label><input id="wi-eyebrow" type="text" placeholder="WELCOME TO THE TEAM PORTAL"></div>
+    </div>
+    <div class="fg" style="margin-top:4px">
+      <label>&#128680; Right Now — Announcement</label>
+      <textarea id="wi-announcement" placeholder="e.g. Team Meeting #1 is on 6/24 at 9am — don't forget to bring your name tag!" style="min-height:70px"></textarea>
+    </div>
+    <div class="fg"><label>Right Now — Sub text</label><input id="wi-announcement-sub" type="text" placeholder="e.g. Oasis Church · 3445 Gateway Dr, Eau Claire"></div>
+    <div style="margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="subbtn" onclick="saveWeekendInfo()">Save &amp; Apply</button>
+      <button onclick="clearWeekendInfo()" style="background:none;border:1px solid var(--bd);padding:10px 18px;border-radius:24px;font-size:14px;cursor:pointer;color:var(--text2);font-family:inherit">Clear</button>
+      <span style="font-size:12px;color:var(--text3)">&#128274; Saved in browser &middot; overrides sheet data</span>
+    </div>
+  </div>
+
+  <div class="fcrd">
+    <h3>&#9881; Admin &mdash; Google Sheet Connections</h3>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">
+      Paste the <strong>published CSV URL</strong> for each Google Sheet tab. Leadership edits the Sheet &mdash; the app reads it live. See the setup guide below.
+    </p>
+    <table class="utbl">
+      <thead><tr><th>Sheet Tab</th><th>Published CSV URL</th><th>What it controls</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap;color:var(--tx)">Settings</td>
+          <td><input class="ui" id="url-settings" type="url" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv"></td>
+          <td style="font-size:12px;color:var(--t3)">Weekend title, verse, theme, venue, fees, doc links</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap;color:var(--tx)">Roster</td>
+          <td><input class="ui" id="url-roster" type="url" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv"></td>
+          <td style="font-size:12px;color:var(--t3)">Team members, roles, photos, status</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap;color:var(--tx)">Meetings</td>
+          <td><input class="ui" id="url-meetings" type="url" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv"></td>
+          <td style="font-size:12px;color:var(--t3)">Meeting dates, locations, agenda links</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap;color:var(--tx)">Prayer</td>
+          <td><input class="ui" id="url-prayer" type="url" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv"></td>
+          <td style="font-size:12px;color:var(--t3)">Prayer requests feed</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap;color:var(--tx)">Palanca</td>
+          <td><input class="ui" id="url-palanca" type="url" placeholder="https://docs.google.com/spreadsheets/.../pub?output=csv"></td>
+          <td style="font-size:12px;color:var(--t3)">Palanca letters feed</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="subbtn" onclick="saveUrls()">Save &amp; Load Data</button>
+      <button onclick="clearUrls()" style="background:none;border:1px solid var(--bd);padding:10px 18px;border-radius:24px;font-size:14px;cursor:pointer;color:var(--t2);font-family:inherit">Clear All</button>
+      <div class="strow" style="margin-left:auto"><div class="dot" id="adot"></div><span id="ast">Not connected</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="fcrd">
+    <h3>&#128279; Google Forms Links</h3>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">
+      Paste your Google Form URLs here. Team members tap the link to submit — responses go straight into your Google Sheet and show up in the app after a refresh. Each weekend create a new form, archive the old Sheet tab, and paste the new URL here.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:var(--cr);border:1px solid var(--bd);border-radius:var(--rs);padding:16px 18px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:8px">&#128591; Prayer Request Form</div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:10px;line-height:1.5">Create a Google Form with fields: Name, Prayer Request, Urgency, Anonymous (yes/no). Link the responses to your Prayer sheet tab.</p>
+        <div class="fg" style="margin-bottom:10px">
+          <label>Google Form URL</label>
+          <input id="url-prayerform" type="url" placeholder="https://forms.gle/..." style="background:var(--wh)">
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="subbtn" onclick="saveFormUrls()" style="font-size:13px;padding:9px 18px">Save</button>
+          <a id="prayer-form-preview" href="#" target="_blank" style="font-size:13px;color:var(--ru);font-weight:600;display:none">Open form &#8599;</a>
+        </div>
+      </div>
+      <div style="background:var(--cr);border:1px solid var(--bd);border-radius:var(--rs);padding:16px 18px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:8px">&#128140; Palanca Submission Form</div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:10px;line-height:1.5">Create a Google Form with fields: From, For (participant name), Message, Delivery method. Link responses to your Palanca sheet tab.</p>
+        <div class="fg" style="margin-bottom:10px">
+          <label>Google Form URL</label>
+          <input id="url-palancaform" type="url" placeholder="https://forms.gle/..." style="background:var(--wh)">
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="subbtn" onclick="saveFormUrls()" style="font-size:13px;padding:9px 18px">Save</button>
+          <a id="palanca-form-preview" href="#" target="_blank" style="font-size:13px;color:var(--ru);font-weight:600;display:none">Open form &#8599;</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--rl);border-radius:var(--rs);padding:12px 16px;font-size:13px;color:var(--bu);line-height:1.6">
+      <strong>How to create a Google Form:</strong><br>
+      Go to <a href="https://forms.google.com" target="_blank" style="color:var(--bu);font-weight:600">forms.google.com</a> &rarr; New form &rarr; Add your questions &rarr; Click the Responses tab &rarr; Link to Sheets &rarr; Choose your existing weekend spreadsheet &rarr; Copy the form URL and paste it above.
+    </div>
+  </div>
+
+  <div class="fcrd">
+    <h3>&#9999;&#65039; Weekend Info</h3>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">Edit the content shown on the Home page hero section. Changes save to your browser instantly — no Google Sheet needed for this.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="fg">
+        <label>Group Name</label>
+        <input id="wi-group" type="text" placeholder="e.g. KCTD Women or KCTD Men">
+      </div>
+      <div class="fg">
+        <label>Group Number</label>
+        <input id="wi-number" type="text" placeholder="e.g. 5">
+      </div>
+      <div class="fg" style="grid-column:1/-1">
+        <label>Eyebrow text <span style="font-size:10px;color:var(--t3)">(small text above title)</span></label>
+        <input id="wi-eyebrow" type="text" placeholder="e.g. WELCOME TO THE TEAM PORTAL">
+      </div>
+      <div class="fg" style="grid-column:1/-1">
+        <label>Weekend Title <span style="font-size:10px;color:var(--t3)">(big heading)</span></label>
+        <input id="wi-title" type="text" placeholder="e.g. Weekend Theme Title">
+      </div>
+      <div class="fg">
+        <label>Bible Verse</label>
+        <input id="wi-verse" type="text" placeholder="e.g. Isaiah 6:8">
+      </div>
+      <div class="fg">
+        <label>Tagline</label>
+        <input id="wi-tagline" type="text" placeholder="e.g. Everything you need for the weekend">
+      </div>
+      <div class="fg" style="grid-column:1/-1">
+        <label>Theme Colors <span style="font-size:10px;color:var(--t3)">(shown as tag with 🎨)</span></label>
+        <input id="wi-colors" type="text" placeholder="e.g. Blue, White, Gold">
+      </div>
+      <div class="fg" style="grid-column:1/-1">
+        <label>Theme Symbols <span style="font-size:10px;color:var(--t3)">(shown as tag with 👑)</span></label>
+        <input id="wi-symbols" type="text" placeholder="e.g. Cross, Dove, Hands">
+      </div>
+      <div class="fg" style="grid-column:1/-1">
+        <label>Theme Songs</label>
+        <input id="wi-songs" type="text" placeholder="e.g. Here I Am To Worship, Amazing Grace">
+      </div>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="subbtn" onclick="saveWeekendInfo()">Save &amp; Apply</button>
+      <button onclick="clearWeekendInfo()" style="background:none;border:1px solid var(--bd);padding:10px 18px;border-radius:24px;font-size:14px;cursor:pointer;color:var(--t2);font-family:inherit">Clear</button>
+      <span style="font-size:12px;color:var(--t3);margin-left:4px">&#128274; Saved in your browser &middot; overrides sheet data</span>
+    </div>
+  </div>
+
+
+  <div class="fcrd" id="integrations-card">
+    <h3>&#128279; Integrations</h3>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">Connect EZTexting and Gmail to enable the Communications tab. Your credentials are saved in your browser only — never sent anywhere except directly to those services.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <div style="background:var(--cr);border:1px solid var(--bd);border-radius:var(--rs);padding:16px 18px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:8px">&#128241; EZTexting SMS</div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:12px;line-height:1.5">Get your API credentials from <a href="https://app.eztexting.com/user/api" target="_blank" style="color:var(--ru)">app.eztexting.com/user/api</a>. Make sure your account has SMS credits.</p>
+        <div id="ezt-hardcoded-notice" style="display:none;background:var(--sl);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--sg);font-weight:600;margin-bottom:12px">
+          &#10003; EZTexting credentials are hardcoded in the file — ready to use for everyone.
+        </div>
+        <div id="ezt-manual-fields">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div class="fg" style="margin-bottom:0"><label>EZTexting Username</label><input id="ezt-user" type="text" placeholder="Your EZTexting username" style="background:var(--wh)"></div>
+            <div class="fg" style="margin-bottom:0"><label>EZTexting Password</label><input id="ezt-pass" type="password" placeholder="Your EZTexting password" style="background:var(--wh)"></div>
+          </div>
+          <div class="fg" style="margin-bottom:10px">
+            <label>Phone number column name in Roster sheet <span style="font-size:10px;color:var(--t3)">(exact header name)</span></label>
+            <input id="ezt-phone-col" type="text" placeholder="e.g. Phone" value="Phone" style="background:var(--wh)">
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <button class="subbtn" onclick="saveEZT()" style="font-size:13px;padding:9px 18px">Save EZTexting</button>
+            <span id="ezt-status" style="font-size:12px;color:var(--t3)"></span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--cr);border:1px solid var(--bd);border-radius:var(--rs);padding:16px 18px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:8px">&#128231; Gmail (Shared Account)</div>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:12px;line-height:1.5">Uses a <strong>Gmail App Password</strong> — set once in the file, works forever, no re-login, no 2FA prompts. The app can send emails <em>and</em> read replies from the shared inbox. <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--ru)">Generate App Password &#8599;</a></p>
+        <div id="gmail-hardcoded-notice" style="display:none;background:var(--sl);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--sg);font-weight:600;margin-bottom:12px">
+          &#10003; Gmail credentials are hardcoded in the file — ready for everyone, no login needed.
+        </div>
+        <div id="gmail-manual-fields">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div class="fg" style="margin-bottom:0">
+              <label>Shared Gmail Address</label>
+              <input id="gmail-from" type="email" placeholder="e.g. kctdteam@gmail.com" style="background:var(--wh)">
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <label>Gmail App Password <span style="font-size:10px;color:var(--t3)">(16 chars, no spaces)</span></label>
+              <input id="gmail-app-pass" type="password" placeholder="16-character app password" style="background:var(--wh)" maxlength="19">
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+            <button class="subbtn" onclick="saveGmailConfig()" style="font-size:13px;padding:9px 18px;background:#1A73E8">Save Gmail</button>
+            <span id="gmail-status" style="font-size:12px;color:var(--t3)"></span>
+          </div>
+        </div>
+        <div class="fg" style="margin-bottom:10px">
+          <label>Email column name in Roster sheet <span style="font-size:10px;color:var(--t3)">(exact header name)</span></label>
+          <input id="gmail-email-col" type="text" placeholder="e.g. Email" value="Email" style="background:var(--wh)">
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="subbtn" onclick="checkInbox()" style="font-size:13px;padding:9px 18px">&#128290; Check Inbox Now</button>
+          <button onclick="saveGmailEmailCol()" style="background:none;border:1px solid var(--bd);padding:9px 14px;border-radius:24px;font-size:13px;cursor:pointer;color:var(--t2);font-family:inherit">Save Column Name</button>
+        </div>
+      </div>
+
+      <div style="background:var(--cr);border:1px solid var(--bd);border-radius:var(--rs);padding:16px 18px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:8px">&#9201;&#65039; Auto-reminder Settings</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="fg" style="margin-bottom:0">
+            <label>Send reminder X days before meeting</label>
+            <select id="reminder-days" style="font-size:14px;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;background:var(--wh);width:100%;color:var(--tx)">
+              <option value="1">1 day before</option>
+              <option value="2">2 days before</option>
+              <option value="3" selected>3 days before</option>
+              <option value="5">5 days before</option>
+              <option value="7">7 days before</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-bottom:0">
+            <label>Reminder channel</label>
+            <select id="reminder-channel" style="font-size:14px;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);font-family:inherit;background:var(--wh);width:100%;color:var(--tx)">
+              <option value="sms">SMS only</option>
+              <option value="email">Email only</option>
+              <option value="both" selected>Both SMS + Email</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg" style="margin-top:10px;margin-bottom:10px">
+          <label>Reminder message template</label>
+          <textarea id="reminder-template" style="min-height:70px;background:var(--wh)" placeholder="Reminder: {meeting} is on {date} at {time}. Location: {location}">Reminder: {meeting} is on {date} at {time}. Location: {location}. See you there! &#127385;</textarea>
+          <span style="font-size:11px;color:var(--t3);margin-top:3px">Variables: {meeting} {date} {time} {location} {name}</span>
+        </div>
+        <button class="subbtn" onclick="saveReminderSettings()" style="font-size:13px;padding:9px 18px">Save Reminder Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="fcrd" id="theme-card">
+    <h3>&#127912; Theme Colors</h3>
+    <p style="font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.5">Customize the app colors to match your weekend theme. Changes are saved to your browser and apply instantly.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px">
+      <div class="fg">
+        <label>Accent Color <span style="font-size:10px;color:var(--t3)">(buttons, links, dates)</span></label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="color" id="tc-accent" value="#B84A1E" style="width:48px;height:38px;padding:2px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;background:none">
+          <input type="text" id="tc-accent-hex" value="#B84A1E" style="flex:1;font-family:monospace;font-size:13px" maxlength="7" placeholder="#B84A1E">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Heading Color <span style="font-size:10px;color:var(--t3)">(hero title)</span></label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="color" id="tc-heading" value="#7A2E12" style="width:48px;height:38px;padding:2px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;background:none">
+          <input type="text" id="tc-heading-hex" value="#7A2E12" style="flex:1;font-family:monospace;font-size:13px" maxlength="7" placeholder="#7A2E12">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Background <span style="font-size:10px;color:var(--t3)">(page tone)</span></label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="color" id="tc-bg" value="#F2EBE0" style="width:48px;height:38px;padding:2px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;background:none">
+          <input type="text" id="tc-bg-hex" value="#F2EBE0" style="flex:1;font-family:monospace;font-size:13px" maxlength="7" placeholder="#F2EBE0">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Nav Background <span style="font-size:10px;color:var(--t3)">(top bar)</span></label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="color" id="tc-nav" value="#FFFFFF" style="width:48px;height:38px;padding:2px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;background:none">
+          <input type="text" id="tc-nav-hex" value="#FFFFFF" style="flex:1;font-family:monospace;font-size:13px" maxlength="7" placeholder="#FFFFFF">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:18px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:10px">Quick themes</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="preset-row"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="subbtn" onclick="applyTheme()">Apply Theme</button>
+      <button onclick="resetTheme()" style="background:none;border:1px solid var(--bd);padding:10px 18px;border-radius:24px;font-size:14px;cursor:pointer;color:var(--t2);font-family:inherit">Reset to Default</button>
+    </div>
+  </div>
+
+
+  <div class="fcrd">
+    <h3>Setup Guide for Leadership</h3>
+    <div>
+      <div class="step"><div class="stepn">1</div><p><strong>Make a copy of the template sheet:</strong> <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" style="color:var(--ru);font-weight:600">Click here to copy the template &#8599;</a> &mdash; it has all 5 tabs with correct headers pre-filled.</p></div>
+      <div class="step"><div class="stepn">2</div><p><strong>Publish each tab as CSV:</strong> File &rarr; Share &rarr; Publish to web &rarr; select the tab &rarr; choose <em>Comma-separated values (.csv)</em> &rarr; Publish &rarr; copy the URL &rarr; paste it above. Repeat for all 5 tabs.</p></div>
+      <div class="step"><div class="stepn">3</div><p><strong>Edit the Settings tab</strong> to set your weekend title, verse, theme colors, venue info, fee amounts, payment links, and doc links. Every row is a <code>Key</code> + <code>Value</code> pair &mdash; just update the Value column.</p></div>
+      <div class="step"><div class="stepn">4</div><p><strong>For photos:</strong> Upload to Google Drive &rarr; Share &rarr; &ldquo;Anyone with the link&rdquo; &rarr; copy the link &rarr; paste in the <code>Photo</code> column of the Roster tab. The app converts it automatically.</p></div>
+      <div class="step"><div class="stepn">5</div><p><strong>Make Sheet URLs work on every device:</strong> Open this HTML file in a text editor, find <code>HARDCODED</code> near the top of the &lt;script&gt;, and paste your published CSV URLs into <code>sheetSettings</code>, <code>sheetRoster</code>, etc. Save and re-upload to GitHub. Now every device automatically loads from the same Sheet — no manual setup needed.</p></div>
+      <div class="step"><div class="stepn">6</div><p><strong>Share the Sheet</strong> with your leadership team as <em>Editor</em>. They edit rows directly &mdash; no app login required. Hit Refresh in the app to pull the latest changes immediately.</p></div>
+    </div>
+
+    <div class="hintbox">
+      <strong>Settings tab &mdash; Key names (edit the Value column):</strong><br><br>
+      <strong>Weekend:</strong> <code>weekend_title</code> &middot; <code>weekend_verse</code> &middot; <code>weekend_tagline</code> &middot; <code>weekend_colors</code> &middot; <code>weekend_symbols</code> &middot; <code>weekend_songs</code> &middot; <code>group_name</code> &middot; <code>group_number</code><br><br>
+      <strong>Venue:</strong> <code>venue_name</code> &middot; <code>venue_address</code> &middot; <code>venue_map_url</code> &middot; <code>airport_1</code> &middot; <code>airport_2</code> &middot; <code>airport_3</code><br><br>
+      <strong>Fees:</strong> <code>fee1_label</code> &middot; <code>fee1_amount</code> &middot; <code>fee1_note</code> &middot; <code>fee1_apply_url</code> &middot; <code>fee1_venmo_url</code> &middot; <code>fee1_due</code> &middot; <code>fee1_mail</code><br>
+      (repeat for <code>fee2_</code>, <code>fee3_</code>, <code>fee4_</code>)<br><br>
+      <strong>Docs:</strong> <code>doc1_label</code> &middot; <code>doc1_url</code> &middot; <code>doc2_label</code> &middot; <code>doc2_url</code> &hellip; up to <code>doc6_</code><br><br>
+      <strong>Meetings tab columns:</strong> <code>Title</code> &middot; <code>Date</code> &middot; <code>Time</code> &middot; <code>Location</code> &middot; <code>Type</code> &middot; <code>AgendaURL</code><br>
+      <strong>Roster tab columns:</strong> <code>Name</code> &middot; <code>Role</code> &middot; <code>Day</code> &middot; <code>Status</code> &middot; <code>Photo</code> &middot; <code>Notes</code><br>
+      <strong>Prayer tab columns:</strong> <code>Name</code> &middot; <code>Request</code> &middot; <code>Urgency</code> &middot; <code>Date</code> &middot; <code>Anonymous</code><br>
+      <strong>Palanca tab columns:</strong> <code>From</code> &middot; <code>For</code> &middot; <code>Message</code> &middot; <code>Delivery</code> &middot; <code>Date</code>
+    </div>
+  </div>
+</div>
+
+    </main>
+  </main>
+</div>
+
+<footer id="footer-txt">KCTD Team Portal &middot; Team Portal</footer>
+
+<div class="doc-overlay" id="doc-overlay" onclick="if(event.target===this)closeDoc()">
+  <div class="doc-panel">
+    <div class="doc-panel-hdr">
+      <span class="doc-panel-title" id="doc-panel-title">Document</span>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a id="doc-panel-ext" href="#" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Open full &#8599;</a>
+        <button class="doc-panel-close" onclick="closeDoc()">&#10005;</button>
+      </div>
+    </div>
+    <div class="doc-panel-loading" id="doc-panel-loading"><div style="font-size:32px">&#128196;</div><div>Loading document&#8230;</div></div>
+    <iframe class="doc-panel-iframe" id="doc-panel-iframe" src="" style="display:none" onload="docLoaded()"></iframe>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+</body>
+</html  </main>
+</div>
+<footer id="footer-txt">KCTD Women &middot; Team Portal</footer>
+
+<div class="doc-overlay" id="doc-overlay" onclick="if(event.target===this)closeDoc()">
+  <div class="doc-panel">
+    <div class="doc-panel-hdr">
+      <span class="doc-panel-title" id="doc-panel-title">Document</span>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a id="doc-panel-ext" href="#" target="_blank" style="font-size:12px;color:var(--accent);font-weight:600;text-decoration:none">Open full &#8599;</a>
+        <button class="doc-panel-close" onclick="closeDoc()">&#10005;</button>
+      </div>
+    </div>
+    <div class="doc-panel-loading" id="doc-panel-loading"><div style="font-size:32px">&#128196;</div><div>Loading document&#8230;</div></div>
+    <iframe class="doc-panel-iframe" id="doc-panel-iframe" src="" style="display:none" onload="docLoaded()"></iframe>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var r = document.documentElement.style;
+  r.setProperty('--th-accent','#7B4EA0');
+  r.setProperty('--th-accent2','#5C3278');
+  r.setProperty('--th-accent-light','#F0E8F8');
+  r.setProperty('--th-heading','#3A1A5C');
+  r.setProperty('--th-nav-bg','#1E0D2E');
+  r.setProperty('--th-bg','#F7F2FC');
+  r.setProperty('--th-bg2','#EDE5F5');
+  r.setProperty('--th-bg3','#DDD0EC');
+})();
+</script>
+
+<script>
+const WI_KEY = 'td_weekend_info';
+
+function saveWeekendInfo() {
+  var info = {
+    weekendName: (document.getElementById('wi-weekend-name')||{}).value||'',
+    title:    (document.getElementById('wi-title')||{}).value||'',
+    verse:    (document.getElementById('wi-verse')||{}).value||'',
+    tagline:  (document.getElementById('wi-tagline')||{}).value||'',
+    colors:   (document.getElementById('wi-colors')||{}).value||'',
+    symbols:  (document.getElementById('wi-symbols')||{}).value||'',
+    songs:    (document.getElementById('wi-songs')||{}).value||'',
+    rector:   (document.getElementById('wi-rector')||{}).value||'',
+    rectorUrl:(document.getElementById('wi-rector-url')||{}).value||'',
+    group:    (document.getElementById('wi-group')||{}).value||'',
+    number:   (document.getElementById('wi-number')||{}).value||'',
+    eyebrow:  (document.getElementById('wi-eyebrow')||{}).value||'',
+    announcement:(document.getElementById('wi-announcement')||{}).value||'',
+    announcementSub:(document.getElementById('wi-announcement-sub')||{}).value||'',
+  };
+  localStorage.setItem(WI_KEY, JSON.stringify(info));
+  applyWeekendInfo(info);
+  toast('Weekend info saved \u2728');
+}
+
+function clearWeekendInfo() {
+  localStorage.removeItem(WI_KEY);
+  ['wi-weekend-name','wi-title','wi-verse','wi-tagline','wi-colors','wi-symbols',
+   'wi-songs','wi-rector','wi-rector-url','wi-group','wi-number','wi-eyebrow',
+   'wi-announcement','wi-announcement-sub'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
+  applyWeekendInfo({});
+  toast('Weekend info cleared');
+}
+
+function applyWeekendInfo(info) {
+  if (!info) info = {};
+  if (info.eyebrow) { var e=document.getElementById('s-eyebrow'); if(e) e.textContent=info.eyebrow; }
+  if (info.title)   { var t=document.getElementById('s-title');   if(t) t.textContent=info.title; }
+  if (info.verse)   { var v=document.getElementById('s-verse');   if(v) v.textContent=info.verse; }
+  if (info.tagline) { var g=document.getElementById('s-tagline'); if(g) g.textContent=info.tagline; }
+  var tags=[];
+  if(info.colors)  tags.push('\uD83C\uDFA8 '+info.colors);
+  if(info.symbols) tags.push('\uD83D\uDC51 '+info.symbols);
+  var tagsEl=document.getElementById('s-tags');
+  if(tagsEl&&tags.length) tagsEl.innerHTML=tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  if(info.songs){var so=document.getElementById('s-songs');if(so)so.innerHTML='<strong>Theme Songs:</strong> '+info.songs;}
+  if(info.group||info.number){
+    var grp=(info.group||'Team Portal')+(info.number?' #'+info.number:'');
+    var bn=document.getElementById('brand-nm'); if(bn) bn.textContent=grp;
+    var sln=document.getElementById('sb-logo-nm'); if(sln) sln.textContent=grp;
+    var bi=document.getElementById('brand-ic'); if(bi) bi.textContent=(info.group||'T')[0].toUpperCase();
+    var sli=document.getElementById('sb-logo-ic'); if(sli) sli.textContent=(info.group||'T')[0].toUpperCase();
+    var ft=document.getElementById('footer-txt'); if(ft) ft.innerHTML=grp+' \u00B7 Team Portal &mdash; <a href="https://tresdias.github.io/kctd/" style="color:var(--text3)">\u2190 Back to Hub</a>';
+  }
+  var wcard=document.getElementById('weekend-card');
+  var hasWk=info.weekendName||info.title||info.rector;
+  if(wcard) wcard.style.display=hasWk?'block':'none';
+  if(info.weekendName){var wb=document.getElementById('wk-badge');if(wb)wb.textContent=info.weekendName;}
+  if(info.title){var wt=document.getElementById('wk-title');if(wt)wt.textContent=info.title+(info.verse?' \u2014 '+info.verse:'');}
+  _showWkRow('wk-theme-row','wk-theme',info.title||null);
+  _showWkRow('wk-colors-row','wk-colors',info.colors||null);
+  _showWkRow('wk-symbols-row','wk-symbols',info.symbols||null);
+  var rrow=document.getElementById('wk-rector-row');
+  if(info.rector){
+    if(rrow) rrow.style.display='flex';
+    var rv=document.getElementById('wk-rector'); if(rv) rv.textContent=info.rector;
+    var rl=document.getElementById('wk-rector-letter');
+    if(rl){rl.setAttribute('data-url',info.rectorUrl||'');rl.style.display=info.rectorUrl?'inline-block':'none';}
+  } else {
+    if(rrow) rrow.style.display='none';
+  }
+  var rncard=document.getElementById('rightnow-card');
+  var rnbody=document.getElementById('rn-body');
+  if(info.announcement&&rncard&&rnbody){
+    rncard.style.display='block';
+    var icons=['\uD83D\uDCC5','\uD83D\uDD14','\u26A0\uFE0F','\uD83D\uDCA1'];
+    rnbody.innerHTML=info.announcement.split('\n').filter(Boolean).map(function(line,i){
+      return '<div class="rn-item"><div class="rn-item-ic">'+icons[i%icons.length]+'</div>'+
+        '<div><div class="rn-item-text">'+line+'</div>'+
+        (i===0&&info.announcementSub?'<div class="rn-item-sub">'+info.announcementSub+'</div>':'')+
+        '</div></div>';
+    }).join('');
+  } else if(rncard){
+    rncard.style.display='none';
+  }
+}
+
+function _showWkRow(rowId,valId,val){
+  var row=document.getElementById(rowId),el=document.getElementById(valId);
+  if(!row||!el) return;
+  if(val){row.style.display='flex';el.textContent=val;}else{row.style.display='none';}
+}
+
+function loadWeekendInfoInputs(info){
+  var map={
+    'wi-weekend-name':info.weekendName||info['weekend_name']||'',
+    'wi-title':   info.title||info['weekend_title']||'',
+    'wi-verse':   info.verse||info['weekend_verse']||'',
+    'wi-tagline': info.tagline||info['weekend_tagline']||'',
+    'wi-colors':  info.colors||info['weekend_colors']||'',
+    'wi-symbols': info.symbols||info['weekend_symbols']||'',
+    'wi-songs':   info.songs||info['weekend_songs']||'',
+    'wi-rector':  info.rector||info['rector_name']||'',
+    'wi-rector-url':info.rectorUrl||info['rector_letter_url']||'',
+    'wi-group':   info.group||info['group_name']||'',
+    'wi-number':  info.number||info['group_number']||'',
+    'wi-eyebrow': info.eyebrow||info['weekend_eyebrow']||'',
+    'wi-announcement':info.announcement||info['announcement']||'',
+    'wi-announcement-sub':info.announcementSub||info['announcement_sub']||'',
+  };
+  Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el&&map[id])el.value=map[id];});
+}
+
+function openDoc(url, title) {
+  if (!url||url==='#'||url==='') { toast('No link set for this document.'); return; }
+  var overlay=document.getElementById('doc-overlay');
+  var iframe=document.getElementById('doc-panel-iframe');
+  var loading=document.getElementById('doc-panel-loading');
+  var titleEl=document.getElementById('doc-panel-title');
+  var extLink=document.getElementById('doc-panel-ext');
+  if (!overlay||!iframe) { window.open(url,'_blank'); return; }
+  if(titleEl) titleEl.textContent=title||'Document';
+  if(extLink) extLink.href=url;
+  iframe.src=''; iframe.style.display='none';
+  if(loading) loading.style.display='flex';
+  overlay.classList.add('show');
+  document.body.style.overflow='hidden';
+  iframe.src=toEmbedUrl(url);
+}
+
+function toEmbedUrl(url) {
+  var docsM=url.match(/docs\.google\.com\/document\/d\/([^/]+)/);
+  if(docsM) return 'https://docs.google.com/document/d/'+docsM[1]+'/preview';
+  var sheetsM=url.match(/docs\.google\.com\/spreadsheets\/d\/([^/]+)/);
+  if(sheetsM) return 'https://docs.google.com/spreadsheets/d/'+sheetsM[1]+'/preview';
+  var driveM=url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if(driveM) return 'https://drive.google.com/file/d/'+driveM[1]+'/preview';
+  var driveOpen=url.match(/drive\.google\.com\/open\?id=([^&]+)/);
+  if(driveOpen) return 'https://drive.google.com/file/d/'+driveOpen[1]+'/preview';
+  return url;
+}
+
+function docLoaded() {
+  var iframe=document.getElementById('doc-panel-iframe');
+  var loading=document.getElementById('doc-panel-loading');
+  if(iframe) iframe.style.display='block';
+  if(loading) loading.style.display='none';
+}
+
+function closeDoc() {
+  var overlay=document.getElementById('doc-overlay');
+  var iframe=document.getElementById('doc-panel-iframe');
+  if(overlay) overlay.classList.remove('show');
+  if(iframe) iframe.src='';
+  document.body.style.overflow='';
+}
+
+function applySettings(){
+  var s=DATA.settings;
+  if(!s||!Object.keys(s).length) return;
+  var _localWI=localStorage.getItem(WI_KEY);
+  if(!_localWI){
+    var info={
+      title:s['weekend_title']||'',verse:s['weekend_verse']||'',tagline:s['weekend_tagline']||'',
+      eyebrow:s['weekend_eyebrow']||'',colors:s['weekend_colors']||'',symbols:s['weekend_symbols']||'',
+      songs:s['weekend_songs']||'',group:s['group_name']||'',number:s['group_number']||'',
+      weekendName:s['weekend_name']||'',rector:s['rector_name']||'',rectorUrl:s['rector_letter_url']||'',
+      announcement:s['announcement']||'',announcementSub:s['announcement_sub']||''
+    };
+    applyWeekendInfo(info);
+  } else {
+    try{loadWeekendInfoInputs(JSON.parse(_localWI));}catch(e){}
+  }
+  var docStrip=document.getElementById('doc-grid');
+  var docs=[];
+  for(var i=1;i<=6;i++){var lbl=s['doc'+i+'_label'],url=s['doc'+i+'_url'];if(lbl)docs.push({lbl:lbl,url:url||''});}
+  if(docs.length&&docStrip){
+    var colors2=['#E8F4FB','#FBF0D6','#E4EEE2','#F8E8F8','#FFF3E0','#E8EEF8'];
+    var icons2=['\uD83D\uDCC4','\uD83D\uDCDA','\uD83D\uDC65','\uD83D\uDCC5','\uD83C\uDFD8','\uD83D\uDCCB'];
+    docStrip.innerHTML=docs.map(function(d,i){
+      return '<div class="doc-pill" onclick="openDoc(\''+d.url.replace(/'/g,"\\'") +'\',\''+d.lbl.replace(/'/g,"\\'")+'\')">' +
+        '<div class="doc-pill-ic" style="background:'+colors2[i%colors2.length]+'">'+icons2[i%icons2.length]+'</div>' +
+        '<span class="doc-pill-name">'+d.lbl+'</span>' +
+        '<span class="doc-pill-arr">\u203A</span></div>';
+    }).join('');
+  }
+  var vn=document.getElementById('s-venue-name');if(vn&&s['venue_name'])vn.textContent=s['venue_name'];
+  var va=document.getElementById('s-venue-addr');if(va&&s['venue_address'])va.textContent=s['venue_address'];
+  var mapEl=document.getElementById('s-venue-map');
+  if(mapEl)mapEl.href=s['venue_map_url']||(s['venue_address']?'https://maps.google.com/?q='+encodeURIComponent(s['venue_address']):'#');
+  var airports=[];
+  for(var j=1;j<=4;j++){if(s['airport_'+j])airports.push(s['airport_'+j]);}
+  var ap=document.getElementById('s-airports');if(ap&&airports.length)ap.innerHTML=airports.map(function(a){return'<li>'+a+'</li>';}).join('');
+  var feeGrid=document.getElementById('fee-grid');
+  if(feeGrid){
+    var fees=[];
+    for(var k=1;k<=4;k++){var lbl2=s['fee'+k+'_label'];if(!lbl2)continue;fees.push({label:lbl2,amount:s['fee'+k+'_amount']||'',note:s['fee'+k+'_note']||'',due:s['fee'+k+'_due']||'',applyUrl:s['fee'+k+'_apply_url']||'',venmoUrl:s['fee'+k+'_venmo_url']||'',mail:s['fee'+k+'_mail']||''});}
+    if(fees.length){feeGrid.innerHTML=fees.map(function(f){
+      var btns='';
+      if(f.applyUrl)btns+='<div class="pill" onclick="openDoc(\''+f.applyUrl+'\',\'Application\')" style="font-size:13px;padding:8px 16px;cursor:pointer">Apply Now \u2197</div> ';
+      if(f.venmoUrl)btns+='<a class="pill pill-o" href="'+f.venmoUrl+'" target="_blank" style="font-size:13px;padding:8px 16px">Pay via Venmo \u2197</a>';
+      return '<div class="feecard"><div class="feye">'+f.label+'</div><div class="famt">'+f.amount+'</div>'+(f.note?'<div class="fnote">'+f.note+'</div>':'')+(f.due?'<div class="fdue">'+f.due+'</div>':'')+(btns?'<div class="fbtns">'+btns+'</div>':'')+(f.mail?'<div class="fmail">\u2709 <div>'+f.mail+'</div></div>':'')+'</div>';
+    }).join('');}
+  }
+}
+
+(function(){
+  var saved=localStorage.getItem(WI_KEY);
+  if(saved){try{var info=JSON.parse(saved);applyWeekendInfo(info);loadWeekendInfoInputs(info);}catch(e){}}
+})();
+
+
+
+
+
+const KEYS=['settings','roster','meetings','prayer','palanca','prayerform','palancaform','rightnow'];
+const URLS={};
+KEYS.forEach(k=>URLS[k]=localStorage.getItem('td_'+k)||'');
+let DATA={settings:{},roster:[],meetings:[],prayer:[],palanca:[]};
+let localPr=[],localPa=[];
+
+
+/* ── GOOGLE FORMS ── */
+function saveFormUrls() {
+  var pf = document.getElementById('url-prayerform');
+  var paf = document.getElementById('url-palancaform');
+  if (pf) { URLS['prayerform'] = pf.value.trim(); localStorage.setItem('td_prayerform', URLS['prayerform']); }
+  if (paf) { URLS['palancaform'] = paf.value.trim(); localStorage.setItem('td_palancaform', URLS['palancaform']); }
+  updateFormLinks();
+  toast('Form URLs saved \u2713');
+}
+
+function updateFormLinks() {
+  var pUrl = URLS['prayerform'] || localStorage.getItem('td_prayerform') || '';
+  var paUrl = URLS['palancaform'] || localStorage.getItem('td_palancaform') || '';
+
+  var pBtn = document.getElementById('prayer-form-btn');
+  var pMiss = document.getElementById('prayer-form-missing');
+  var pPrev = document.getElementById('prayer-form-preview');
+  if (pBtn) { pBtn.href = pUrl || '#'; }
+  if (pMiss) pMiss.style.display = pUrl ? 'none' : 'block';
+  if (pPrev) { pPrev.href = pUrl || '#'; pPrev.style.display = pUrl ? 'inline' : 'none'; }
+
+  var paBtn = document.getElementById('palanca-form-btn');
+  var paMiss = document.getElementById('palanca-form-missing');
+  var paPrev = document.getElementById('palanca-form-preview');
+  if (paBtn) { paBtn.href = paUrl || '#'; }
+  if (paMiss) paMiss.style.display = paUrl ? 'none' : 'block';
+  if (paPrev) { paPrev.href = paUrl || '#'; paPrev.style.display = paUrl ? 'inline' : 'none'; }
+
+  var pfInput = document.getElementById('url-prayerform');
+  var pafInput = document.getElementById('url-palancaform');
+  if (pfInput && pUrl) pfInput.value = pUrl;
+  if (pafInput && paUrl) pafInput.value = paUrl;
+}
+
+
+function renderRightNow() {
+  var items = DATA['rightnow'] || [];
+  var rncard = document.getElementById('rightnow-card');
+  var rnbody = document.getElementById('rn-body');
+  if (!rncard || !rnbody) return;
+  // Filter to non-empty messages
+  var msgs = items.filter(function(r){
+    return (r['Message']||r['message']||'').trim();
+  });
+  if (!msgs.length) {
+    // Fall back to localStorage announcement
+    return;
+  }
+  rncard.style.display = 'block';
+  var icons = ['\uD83D\uDCC5','\uD83D\uDD14','\u26A0\uFE0F','\uD83D\uDCA1','\uD83D\uDCCC'];
+  rnbody.innerHTML = msgs.slice(0,5).map(function(r,i){
+    var msg = r['Message']||r['message']||'';
+    var date = r['Date']||r['date']||'';
+    return '<div class="rn-item">'+
+      '<div class="rn-item-ic">'+icons[i%icons.length]+'</div>'+
+      '<div><div class="rn-item-text">'+msg+'</div>'+
+      (date?'<div class="rn-item-sub">'+date+'</div>':'')+
+      '</div></div>';
+  }).join('');
+}
+
+/* ── NAV ── */
+
+
+
+
+/* ── TOAST ── */
+function toast(m,d=2800){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d);}
+
+/* ── CSV PARSER ── */
+function parseCSV(txt){
+  const lines=txt.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n');
+  const rows=[];
+  for(const line of lines){
+    if(!line.trim()) continue;
+    const cells=[];let cur='',inQ=false;
+    for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){inQ=!inQ;}else if(ch===','&&!inQ){cells.push(cur.trim());cur='';}else cur+=ch;}
+    cells.push(cur.trim());rows.push(cells);
+  }
+  if(rows.length<2) return [];
+  const hdr=rows[0].map(h=>h.replace(/^"|"$/g,'').trim());
+  return rows.slice(1).map(r=>{const o={};hdr.forEach((h,i)=>{o[h]=(r[i]||'').replace(/^"|"$/g,'').trim();});return o;});
+}
+
+/* Settings sheet: two-column Key/Value -> flat object */
+function parseSettings(rows){
+  const s={};
+  rows.forEach(r=>{
+    const k=(r['Key']||r['key']||'').trim();
+    const v=(r['Value']||r['value']||'').trim();
+    if(k) s[k]=v;
+  });
+  return s;
+}
+
+function driveImg(url){if(!url)return'';const m=url.match(/\/d\/([a-zA-Z0-9_-]+)/);if(m)return'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w80';if(url.match(/^https?:\/\//))return url;return'';}
+
+async function fetchSh(url){
+  if(!url) return [];
+  const r=await fetch(url+(url.includes('?')?'&':'?')+'_='+Date.now());
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  return parseCSV(await r.text());
+}
+
+/* ── APPLY SETTINGS ── */
+
+
+/* ── RENDER ROSTER ── */
+function renderRoster(){
+  var tb=document.getElementById('roster-body');
+  if(!DATA.roster.length){tb.innerHTML='<tr><td colspan="3" class="empty">No roster data. Check your sheet URL and column headers.</td></tr>';return;}
+  tb.innerHTML=DATA.roster.map(function(r,i){
+    var confirmed=(r['Confirmed']||r['confirmed']||r['Status']||'').trim().toLowerCase();
+    var confBadge=confirmed==='yes'||confirmed==='confirmed'||confirmed==='y'
+      ?'<span class="confirmed-yes">&#10003; Confirmed</span>'
+      :confirmed==='no'||confirmed==='n'
+      ?'<span class="confirmed-no">Not confirmed</span>'
+      :'<span class="confirmed-pending">'+(r['Confirmed']||r['Status']||'Pending')+'</span>';
+    return '<tr class="roster-row-click" onclick="openMember('+i+')">'+
+      '<td style="font-weight:600">'+(r['Name']||'')+'</td>'+
+      '<td style="color:var(--text2)">'+(r['Position']||r['Role']||'')+'</td>'+
+      '<td>'+confBadge+'</td>'+
+      '</tr>';
+  }).join('');
+}
+
+function openMember(idx) {
+  var r = DATA.roster[idx];
+  if (!r) return;
+  var overlay = document.getElementById('member-overlay');
+  if (!overlay) return;
+
+  var img = typeof driveImg==='function' ? driveImg(r['Photo']||'') : '';
+  var init = ((r['Name']||'?').split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2)||'?').toUpperCase();
+  var av = document.getElementById('mp-avatar');
+  if (av) {
+    if (img) av.innerHTML = '<img src="'+img+'" alt="" onerror="this.parentNode.textContent=\''+init+'\'">';
+    else av.textContent = init;
+  }
+
+  function setField(rowId, valId, val, href) {
+    var row=document.getElementById(rowId), el=document.getElementById(valId);
+    if(!row||!el) return;
+    if(val){row.style.display='flex';el.textContent=val;if(href)el.href=href;}
+    else{row.style.display='none';}
+  }
+
+  var nm=document.getElementById('mp-name'); if(nm) nm.textContent=r['Name']||'';
+  var pos=document.getElementById('mp-position'); if(pos) pos.textContent=r['Position']||r['Role']||'';
+  setField('mp-church-row','mp-church',r['Church']||'');
+  setField('mp-location-row','mp-location',r['City State Zip']||r['City']||'');
+  setField('mp-phone-row','mp-phone',r['Phone']||'','tel:'+(r['Phone']||'').replace(/\D/g,''));
+  setField('mp-email-row','mp-email',r['Email']||'','mailto:'+(r['Email']||''));
+
+  overlay.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeMember() {
+  var overlay=document.getElementById('member-overlay');
+  if(overlay) overlay.classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* ── RENDER MEETINGS ── */
+function renderMeetings(){
+  const list=document.getElementById('mtg-list');
+  if(!DATA.meetings.length){list.innerHTML='<div class="empty">No meetings found. Check your Meetings sheet URL and headers (Title, Date, Time, Location, Type, AgendaURL).</div>';return;}
+  const ic=t=>(t||'').toLowerCase().match(/virtual|zoom|online/)?'&#128249;':'&#128197;';
+  list.innerHTML=DATA.meetings.map(r=>{
+    const badge=r['Type']?'<span class="mbadge">'+r['Type']+'</span>':'';
+    const loc=r['Location']?'<div class="mloc">&#128205; '+r['Location']+'</div>':'';
+    const agendaBtn=r['AgendaURL']
+      ?'<a class="mact" href="'+r['AgendaURL']+'" target="_blank">View Agenda &#8599;</a>'
+      :'';
+    return '<div class="mtg"><div class="mic">'+ic(r['Type'])+'</div><div class="mbody">'+
+      '<div class="mtitle">'+r['Title']+' '+badge+'</div>'+
+      '<div class="mdate">'+r['Date']+(r['Time']?' @ '+r['Time']:'')+'</div>'+
+      loc+'</div>'+agendaBtn+'</div>';
+  }).join('');
+}
+
+/* ── RENDER PRAYER ── */
+function renderPrayer(){
+  const list=document.getElementById('pr-list');
+  const all=[...DATA.prayer,...localPr];
+  document.getElementById('pr-ct').textContent=all.length?all.length+' request'+(all.length!==1?'s':''):'';
+  if(!all.length){list.innerHTML='<div class="empty">No prayer requests yet.</div>';return;}
+  list.innerHTML=all.map(r=>{
+    const anon=r['Anonymous']==='yes'||r['Anonymous']==='true'||r['Anonymous']==='1';
+    const nm=anon?'Anonymous':(r['Name']||'Anonymous');
+    const u=r['Urgency']||'Normal';const uc=u==='Urgent'?'uurg':u==='Praise report'?'upr':'unm';
+    return '<div class="req"><div class="reqh"><div class="reqav">'+nm[0].toUpperCase()+'</div>'+
+      '<div><div class="reqnm">'+nm+'</div><div class="reqmeta"><span class="'+uc+'">'+u+'</span>'+(r['Date']?' \u00B7 '+r['Date']:'')+'</div></div></div>'+
+      '<div class="reqbody">'+r['Request']+'</div></div>';
+  }).join('');
+}
+
+/* ── RENDER PALANCA ── */
+function renderPalanca(){
+  const list=document.getElementById('pa-list');
+  const all=[...DATA.palanca,...localPa];
+  document.getElementById('pa-ct').textContent=all.length?all.length+' letter'+(all.length!==1?'s':''):'';
+  if(!all.length){list.innerHTML='<div class="empty">No palanca letters yet.</div>';return;}
+  list.innerHTML=all.map(r=>'<div class="req"><div class="reqh">'+
+    '<div class="reqav" style="background:var(--sl);color:var(--sg)">'+(r['From']||'?')[0].toUpperCase()+'</div>'+
+    '<div><div class="reqnm">'+(r['From']||'Anonymous')+'</div>'+
+    '<div class="reqmeta">For: <strong>'+(r['For']||'All participants')+'</strong>'+(r['Delivery']?' \u00B7 '+r['Delivery']:'')+(r['Date']?' \u00B7 '+r['Date']:'')+'</div></div></div>'+
+    '<div class="reqbody">'+r['Message']+'</div></div>').join('');
+}
+
+/* ── SUBMIT FORMS ── */
+function addPrayer(){
+  const req=document.getElementById('pr-req').value.trim();
+  if(!req){toast('Please write your prayer request.');return;}
+  const anon=document.getElementById('pr-anon').checked;
+  localPr.unshift({Name:anon?'Anonymous':(document.getElementById('pr-nm').value.trim()||'Anonymous'),Request:req,Urgency:document.getElementById('pr-urg').value,Date:'Today',Anonymous:anon?'yes':'no'});
+  document.getElementById('pr-nm').value='';document.getElementById('pr-req').value='';document.getElementById('pr-anon').checked=false;
+  renderPrayer();toast('Prayer request submitted \uD83D\uDE4F');
+}
+function addPalanca(){
+  const msg=document.getElementById('pa-msg').value.trim();
+  if(!msg){toast('Please write your message.');return;}
+  localPa.unshift({From:document.getElementById('pa-nm').value.trim()||'Anonymous',For:document.getElementById('pa-for').value.trim()||'All participants',Message:msg,Delivery:document.getElementById('pa-del').value,Date:'Today'});
+  document.getElementById('pa-nm').value='';document.getElementById('pa-for').value='';document.getElementById('pa-msg').value='';
+  renderPalanca();toast('Palanca submitted \u2661');
+}
+
+/* ── STATUS DOTS ── */
+/* setDots removed - using setStatus */
+
+/* ── REFRESH ALL ── */
+async function refreshAll(){
+  const any=KEYS.some(k=>URLS[k]);
+  if(!any){setStatus('','Not connected');return;}
+  setStatus('load','Loading\u2026');
+  let err=0;
+  await Promise.all([
+    URLS.settings ? fetchSh(URLS.settings).then(d=>{DATA.settings=parseSettings(d);applySettings();}).catch(()=>err++) : Promise.resolve(),
+    URLS.roster   ? fetchSh(URLS.roster).then(d=>{DATA.roster=d;renderRoster();populateRosterSelects();}).catch(()=>err++) : Promise.resolve(),
+    URLS.meetings ? fetchSh(URLS.meetings).then(d=>{DATA.meetings=d;renderMeetings();renderReminderList();populateRosterSelects();}).catch(()=>err++) : Promise.resolve(),
+    URLS.prayer   ? fetchSh(URLS.prayer).then(d=>{DATA.prayer=d;renderPrayer();}).catch(()=>err++) : Promise.resolve(),
+    URLS.palanca  ? fetchSh(URLS.palanca).then(d=>{DATA.palanca=d;renderPalanca();}).catch(()=>err++) : Promise.resolve(),
+  ]);
+  setStatus(err?'warn':'ok',err?'Loaded with '+err+' error(s)':'Live \u00B7 '+new Date().toLocaleTimeString());
+}
+
+/* ── ADMIN SAVE/CLEAR ── */
+function saveUrls(){
+  // Note: if HARDCODED sheet URLs are set in the file, they override these.
+  // To make URLs permanent for all devices, set HARDCODED.sheetXxx in the file.
+  KEYS.forEach(k=>{URLS[k]=document.getElementById('url-'+k).value.trim();localStorage.setItem('td_'+k,URLS[k]);});
+  toast('URLs saved! Loading data\u2026');refreshAll();
+}
+function clearUrls(){
+  KEYS.forEach(k=>{URLS[k]='';localStorage.removeItem('td_'+k);document.getElementById('url-'+k).value='';});
+  DATA={settings:{},roster:[],meetings:[],prayer:[],palanca:[]};
+  renderRoster();renderMeetings();renderPrayer();renderPalanca();
+  setStatus('','Not connected');toast('All URLs cleared.');
+}
+
+/* ── INIT ── */
+KEYS.forEach(k=>{const el=document.getElementById('url-'+k);if(el)el.value=URLS[k];});
+refreshAll();
+setInterval(refreshAll,60000);
+
+/* ── THEME ENGINE ── */
+const PRESETS = [
+  {name:'Original',  accent:'#B84A1E', heading:'#7A2E12', bg:'#F2EBE0', nav:'#FFFFFF'},
+  {name:'Forest',    accent:'#2D6A4F', heading:'#1B4332', bg:'#EDF4F0', nav:'#FFFFFF'},
+  {name:'Denim',     accent:'#1D3D6B', heading:'#0D2137', bg:'#EAF0F7', nav:'#FFFFFF'},
+  {name:'Plum',      accent:'#6B2D6B', heading:'#3D1040', bg:'#F5EEF5', nav:'#FFFFFF'},
+  {name:'Gold',      accent:'#9C6C00', heading:'#5C3D00', bg:'#FBF5E6', nav:'#FFFFFF'},
+  {name:'Slate',     accent:'#374151', heading:'#111827', bg:'#F0F1F3', nav:'#FFFFFF'},
+  {name:'Rose',      accent:'#9D174D', heading:'#5B0E2D', bg:'#FDF0F4', nav:'#FFFFFF'},
+  {name:'Teal',      accent:'#0F766E', heading:'#134E4A', bg:'#EFFAF9', nav:'#FFFFFF'},
+  {name:'Advent',    accent:'#5B2D8E', heading:'#2E0D5C', bg:'#F3EEF9', nav:'#FFFFFF'},
+  {name:'Easter',    accent:'#7B6FA0', heading:'#3D2B6B', bg:'#F7F3FD', nav:'#FFFFFF'},
+  {name:'Harvest',   accent:'#C2570A', heading:'#7A2E05', bg:'#FBF0E4', nav:'#FFFFFF'},
+  {name:'Desert',    accent:'#A0522D', heading:'#5C2A0A', bg:'#FAF3EA', nav:'#F5ECD8'},
+  {name:'Ocean',     accent:'#0369A1', heading:'#0C2D5E', bg:'#EBF5FB', nav:'#FFFFFF'},
+  {name:'Midnight',  accent:'#5BB8F5', heading:'#E8F4FD', bg:'#0D1B2A', nav:'#162232'},
+  {name:'Ivory',     accent:'#8B7355', heading:'#4A3728', bg:'#FDFAF4', nav:'#FFFFFF'},
+  {name:'Spring',    accent:'#4A7C59', heading:'#1E3D2A', bg:'#F2FAF4', nav:'#FFFFFF'},
+  {name:'Crimson',   accent:'#9B1C1C', heading:'#5C0F0F', bg:'#FEF2F2', nav:'#FFFFFF'},
+  {name:'Copper',    accent:'#B87333', heading:'#6B3D10', bg:'#FBF4EC', nav:'#FFFFFF'},
+  {name:'Storm',     accent:'#4B5E6D', heading:'#1E2D3A', bg:'#EEF2F5', nav:'#FFFFFF'},
+  {name:'Mauve',     accent:'#8B5C7E', heading:'#4A2040', bg:'#F8F0F6', nav:'#FFFFFF'},
+  {name:'Olive',     accent:'#6B7C2D', heading:'#3A4410', bg:'#F4F5EB', nav:'#FFFFFF'},
+  {name:'Cobalt',    accent:'#1A3A6B', heading:'#0A1F40', bg:'#EBF0FA', nav:'#FFFFFF'},
+  {name:'Cedar',     accent:'#7D4E2D', heading:'#3E2010', bg:'#F7F0EA', nav:'#FFFFFF'},
+];
+
+function hexToRgb(hex){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return {r,g,b};
+}
+function darken(hex,amt=0.25){
+  let {r,g,b}=hexToRgb(hex);
+  r=Math.max(0,Math.round(r*(1-amt)));
+  g=Math.max(0,Math.round(g*(1-amt)));
+  b=Math.max(0,Math.round(b*(1-amt)));
+  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function lighten(hex,amt=0.85){
+  let {r,g,b}=hexToRgb(hex);
+  r=Math.min(255,Math.round(r+(255-r)*amt));
+  g=Math.min(255,Math.round(g+(255-g)*amt));
+  b=Math.min(255,Math.round(b+(255-b)*amt));
+  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function adjustBg(hex,step){
+  let {r,g,b}=hexToRgb(hex);
+  const f=1-step;
+  r=Math.max(0,Math.round(r*f));g=Math.max(0,Math.round(g*f));b=Math.max(0,Math.round(b*f));
+  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+function applyThemeVars(accent,heading,bg,nav){
+  const root=document.documentElement;
+  root.style.setProperty('--th-accent',accent);
+  root.style.setProperty('--th-accent2',darken(accent,0.3));
+  root.style.setProperty('--th-accent-light',lighten(accent,0.88));
+  root.style.setProperty('--th-heading',heading);
+  root.style.setProperty('--th-bg',bg);
+  root.style.setProperty('--th-bg2',adjustBg(bg,0.04));
+  root.style.setProperty('--th-bg3',adjustBg(bg,0.08));
+  root.style.setProperty('--th-nav-bg',nav);
+}
+
+function applyTheme(){
+  const accent=document.getElementById('tc-accent').value;
+  const heading=document.getElementById('tc-heading').value;
+  const bg=document.getElementById('tc-bg').value;
+  const nav=document.getElementById('tc-nav').value;
+  applyThemeVars(accent,heading,bg,nav);
+  localStorage.setItem('td_theme',JSON.stringify({accent,heading,bg,nav}));
+  toast('Theme applied \u2728');
+  highlightActivePreset();
+}
+
+function resetTheme(){
+  const def={accent:'#B84A1E',heading:'#7A2E12',bg:'#F2EBE0',nav:'#FFFFFF'};
+  setPickerValues(def);
+  applyThemeVars(def.accent,def.heading,def.bg,def.nav);
+  localStorage.removeItem('td_theme');
+  toast('Theme reset to default');
+  highlightActivePreset();
+}
+
+function setPickerValues({accent,heading,bg,nav}){
+  document.getElementById('tc-accent').value=accent;
+  document.getElementById('tc-accent-hex').value=accent;
+  document.getElementById('tc-heading').value=heading;
+  document.getElementById('tc-heading-hex').value=heading;
+  document.getElementById('tc-bg').value=bg;
+  document.getElementById('tc-bg-hex').value=bg;
+  document.getElementById('tc-nav').value=nav;
+  document.getElementById('tc-nav-hex').value=nav;
+}
+
+function syncHex(colorId){
+  const col=document.getElementById('tc-'+colorId);
+  const hex=document.getElementById('tc-'+colorId+'-hex');
+  if(col&&hex) hex.value=col.value;
+}
+function syncPicker(colorId){
+  const col=document.getElementById('tc-'+colorId);
+  const hex=document.getElementById('tc-'+colorId+'-hex');
+  if(!col||!hex) return;
+  const v=hex.value.trim();
+  if(/^#[0-9A-Fa-f]{6}$/.test(v)) col.value=v;
+}
+
+['accent','heading','bg','nav'].forEach(id=>{
+  const col=document.getElementById('tc-'+id);
+  const hex=document.getElementById('tc-'+id+'-hex');
+  if(col) col.addEventListener('input',()=>syncHex(id));
+  if(hex) hex.addEventListener('input',()=>syncPicker(id));
+});
+
+function highlightActivePreset(){
+  const cur={
+    accent:document.getElementById('tc-accent').value.toLowerCase(),
+    heading:document.getElementById('tc-heading').value.toLowerCase(),
+    bg:document.getElementById('tc-bg').value.toLowerCase(),
+    nav:document.getElementById('tc-nav').value.toLowerCase(),
+  };
+  document.querySelectorAll('.preset-btn').forEach(btn=>{
+    const p=JSON.parse(btn.dataset.p);
+    const match=p.accent.toLowerCase()===cur.accent&&p.heading.toLowerCase()===cur.heading&&p.bg.toLowerCase()===cur.bg&&p.nav.toLowerCase()===cur.nav;
+    btn.style.outline=match?'3px solid var(--th-accent)':'none';
+    btn.style.outlineOffset='2px';
+  });
+}
+
+function buildPresets(){
+  const row=document.getElementById('preset-row');
+  if(!row) return;
+  row.innerHTML=PRESETS.map(p=>`<button class="preset-btn" data-p='${JSON.stringify(p)}' onclick="loadPreset(this)" title="${p.name}"
+    style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 12px;border:1px solid var(--bd);border-radius:var(--r);background:${p.bg};cursor:pointer;transition:.15s;min-width:60px">
+    <div style="display:flex;gap:3px">
+      <div style="width:16px;height:16px;border-radius:50%;background:${p.accent}"></div>
+      <div style="width:16px;height:16px;border-radius:50%;background:${p.heading}"></div>
+      <div style="width:16px;height:16px;border-radius:50%;background:${p.nav};border:1px solid rgba(0,0,0,0.1)"></div>
+    </div>
+    <span style="font-size:10px;font-weight:600;color:${p.heading}">${p.name}</span>
+  </button>`).join('');
+  highlightActivePreset();
+}
+
+function loadPreset(btn){
+  const p=JSON.parse(btn.dataset.p);
+  setPickerValues(p);
+  applyThemeVars(p.accent,p.heading,p.bg,p.nav);
+  localStorage.setItem('td_theme',JSON.stringify(p));
+  toast('Theme: '+p.name+' \u2728');
+  highlightActivePreset();
+}
+
+/* Load saved theme on boot */
+(function(){
+  const saved=localStorage.getItem('td_theme');
+  if(saved){
+    try{
+      const p=JSON.parse(saved);
+      setPickerValues(p);
+      applyThemeVars(p.accent,p.heading,p.bg,p.nav);
+    }catch(e){}
+  }
+  buildPresets();
+})();
+
+/* ── WEEKEND INFO EDITOR ── */
+
+
+
+
+
+
+
+
+
+
+/* Boot: load saved weekend info, pre-fill inputs */
+(function () {
+  const saved = localStorage.getItem(WI_KEY);
+  if (saved) {
+    try {
+      const info = JSON.parse(saved);
+      applyWeekendInfo(info);
+      loadWeekendInfoInputs(info);
+    } catch(e) {}
+  }
+})();
+
+/* ══════════════════════════════════════
+   COMMUNICATIONS ENGINE
+══════════════════════════════════════ */
+
+let COMMS = {
+  channel: 'sms',
+  recipient: 'all',
+  sentCount: 0,
+  log: JSON.parse(localStorage.getItem('td_comms_log') || '[]'),
+  remindersSent: JSON.parse(localStorage.getItem('td_reminders_sent') || '{}'),
+};
+
+/* ── INTEGRATIONS CONFIG ── */
+/* ═══════════════════════════════════════════════════
+   ONE-TIME SETUP — fill these in once, save the file
+   Everyone who uses this file gets SMS + Gmail working
+═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════
+   ONE-TIME SETUP — fill these in once, save the file
+   Everyone who uses this file gets SMS + Gmail working
+═══════════════════════════════════════════════════ */
+const HARDCODED = {
+  // ── FILL THESE IN — saves you from setting up on every device ──
+  sheetSettings: '',   // Published CSV URL for Settings tab
+  sheetRoster:   '',   // Published CSV URL for Roster tab
+  sheetMeetings: '',   // Published CSV URL for Meetings tab
+  sheetPrayer:   '',   // Published CSV URL for Prayer tab
+  sheetPalanca:  '',   // Published CSV URL for Palanca tab
+  sheetRightnow: '',   // Published CSV URL for RightNow tab (Date, Message columns)
+  formPrayer:    '',   // Google Form URL for prayer requests
+  formPalanca:   '',   // Google Form URL for palanca submissions
+
+  eztUser:       '',   // EZTexting username (optional)
+  eztPass:       '',   // EZTexting password (optional)
+  eztPhoneCol:   'Phone',
+  gmailFrom:     '',   // Gmail address (optional)
+  gmailAppPass:  '',   // Gmail app password (optional)
+  gmailEmailCol: 'Email',
+  gmailProxy:    '',   // Apps Script proxy URL (optional)
+};
+/* ═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════ */
+
+const INTEG = {
+  get eztUser()     { return HARDCODED.eztUser || localStorage.getItem('td_ezt_user') || ''; },
+  get eztPass()     { return HARDCODED.eztPass || localStorage.getItem('td_ezt_pass') || ''; },
+  get eztPhoneCol() { return HARDCODED.eztPhoneCol || localStorage.getItem('td_ezt_phone_col') || 'Phone'; },
+  get gmailFrom()   { return HARDCODED.gmailFrom || localStorage.getItem('td_gmail_from') || ''; },
+  get gmailAppPass(){ return HARDCODED.gmailAppPass || localStorage.getItem('td_gmail_app_pass') || ''; },
+  get gmailEmailCol(){ return HARDCODED.gmailEmailCol || localStorage.getItem('td_gmail_email_col') || 'Email'; },
+  get reminderDays(){ return parseInt(localStorage.getItem('td_reminder_days') || '3'); },
+  get reminderChannel(){ return localStorage.getItem('td_reminder_channel') || 'both'; },
+  get reminderTemplate(){ return localStorage.getItem('td_reminder_template') || 'Reminder: {meeting} is on {date} at {time}. Location: {location}'; },
+};
+
+function saveEZT() {
+  const u = document.getElementById('ezt-user').value.trim();
+  const p = document.getElementById('ezt-pass').value.trim();
+  const c = document.getElementById('ezt-phone-col').value.trim();
+  localStorage.setItem('td_ezt_user', u);
+  localStorage.setItem('td_ezt_pass', p);
+  localStorage.setItem('td_ezt_phone_col', c || 'Phone');
+  document.getElementById('ezt-status').textContent = u ? '✓ Saved' : 'Cleared';
+  document.getElementById('ezt-status').style.color = u ? '#4CAF50' : 'var(--t3)';
+  toast('EZTexting credentials saved');
+  updateCommsBanners();
+}
+
+function saveGmailConfig() {
+  const from = document.getElementById('gmail-from') ? document.getElementById('gmail-from').value.trim() : '';
+  const pass = document.getElementById('gmail-app-pass') ? document.getElementById('gmail-app-pass').value.trim().replace(/\s/g,'') : '';
+  if (from) localStorage.setItem('td_gmail_from', from);
+  if (pass) localStorage.setItem('td_gmail_app_pass', pass);
+  updateCommsBanners();
+  toast(from && pass ? 'Gmail saved ✓ — send & inbox ready' : 'Saved (fill both fields for full functionality)');
+}
+
+function saveGmailEmailCol() {
+  const col = document.getElementById('gmail-email-col').value.trim();
+  localStorage.setItem('td_gmail_email_col', col || 'Email');
+  toast('Email column name saved');
+}
+
+function disconnectGmail() {
+  localStorage.removeItem('td_gmail_from');
+  localStorage.removeItem('td_gmail_app_pass');
+  updateCommsBanners();
+  toast('Gmail credentials cleared');
+}
+
+function saveReminderSettings() {
+  localStorage.setItem('td_reminder_days', document.getElementById('reminder-days').value);
+  localStorage.setItem('td_reminder_channel', document.getElementById('reminder-channel').value);
+  localStorage.setItem('td_reminder_template', document.getElementById('reminder-template').value);
+  toast('Reminder settings saved ✓');
+}
+
+function updateCommsBanners() {
+  const eztHardcoded = !!(HARDCODED.eztUser && HARDCODED.eztPass);
+  const gmailHardcoded = !!(HARDCODED.gmailFrom && HARDCODED.gmailAppPass);
+  const eztOk = INTEG.eztUser && INTEG.eztPass;
+  const gmailOk = !!(INTEG.gmailFrom && INTEG.gmailAppPass);
+
+  // Show/hide hardcoded notices and manual fields
+  const eztNotice = document.getElementById('ezt-hardcoded-notice');
+  const eztFields = document.getElementById('ezt-manual-fields');
+  const gmailNotice = document.getElementById('gmail-hardcoded-notice');
+  const gmailFields = document.getElementById('gmail-manual-fields');
+  if (eztNotice) eztNotice.style.display = eztHardcoded ? 'block' : 'none';
+  if (eztFields) eztFields.style.display = eztHardcoded ? 'none' : 'block';
+  if (gmailNotice) gmailNotice.style.display = gmailHardcoded ? 'block' : 'none';
+  if (gmailFields) gmailFields.style.display = gmailHardcoded ? 'none' : 'block';
+
+  // Top banners in Comms tab
+  const eztBanner = document.getElementById('eztxt-banner');
+  const gmailBanner = document.getElementById('gmail-banner');
+  if (eztBanner) eztBanner.style.display = eztOk ? 'none' : 'block';
+  if (gmailBanner) gmailBanner.style.display = gmailOk ? 'none' : 'block';
+  checkInbox();
+
+  const eztSt = document.getElementById('ezt-status');
+  const gmailSt = document.getElementById('gmail-status');
+  if (eztSt) {
+    if (eztHardcoded) { eztSt.textContent = '✓ Set in file'; eztSt.style.color = '#4CAF50'; }
+    else if (INTEG.eztUser) { eztSt.textContent = '✓ Saved locally'; eztSt.style.color = '#4CAF50'; }
+  }
+  if (gmailSt) {
+    if (gmailHardcoded || (INTEG.gmailFrom && INTEG.gmailAppPass)) { gmailSt.textContent = '✓ Ready — send & inbox enabled'; gmailSt.style.color = '#4CAF50'; }
+  }
+
+  // Populate manual fields only if not hardcoded
+  if (!eztHardcoded) {
+    const eu = document.getElementById('ezt-user'); if (eu && INTEG.eztUser) eu.value = INTEG.eztUser;
+    const ep = document.getElementById('ezt-pass'); if (ep && INTEG.eztPass) ep.value = INTEG.eztPass;
+  }
+  const ec = document.getElementById('ezt-phone-col'); if (ec) ec.value = INTEG.eztPhoneCol;
+  if (!gmailHardcoded) {
+    const gc = document.getElementById('gmail-client-id'); if (gc && INTEG.gmailClientId) gc.value = INTEG.gmailClientId;
+  }
+  const ge = document.getElementById('gmail-email-col'); if (ge) ge.value = INTEG.gmailEmailCol;
+  const rd = document.getElementById('reminder-days'); if (rd) rd.value = INTEG.reminderDays;
+  const rc = document.getElementById('reminder-channel'); if (rc) rc.value = INTEG.reminderChannel;
+  const rt = document.getElementById('reminder-template'); if (rt && INTEG.reminderTemplate) rt.value = INTEG.reminderTemplate;
+}
+
+/* ── RECIPIENT HELPERS ── */
+function getRecipientList() {
+  const phoneCol = INTEG.eztPhoneCol;
+  const emailCol = INTEG.gmailEmailCol;
+  const roster = DATA.roster || [];
+  let members = [];
+
+  if (COMMS.recipient === 'all') {
+    members = roster;
+  } else if (COMMS.recipient === 'individual') {
+    const idx = document.getElementById('sel-individual').value;
+    if (idx !== '') members = [roster[parseInt(idx)]].filter(Boolean);
+  } else if (COMMS.recipient === 'group') {
+    const role = document.getElementById('sel-role').value.toLowerCase();
+    const day  = document.getElementById('sel-day').value.toLowerCase();
+    members = roster.filter(r => {
+      const rMatch = !role || (r['Role']||'').toLowerCase().includes(role);
+      const dMatch = !day  || (r['Day']||'').toLowerCase().includes(day) || (r['Day']||'').toLowerCase() === 'all days';
+      return rMatch && dMatch;
+    });
+  } else if (COMMS.recipient === 'custom') {
+    const raw = document.getElementById('txt-custom-recipients').value;
+    return raw.split(/[\n,]/).map(s => s.trim()).filter(Boolean).map(v => ({
+      _custom: true, Phone: v.match(/^\+?[\d\s\-().]+$/) ? v : '', Email: v.includes('@') ? v : '', Name: v
+    }));
+  }
+  return members;
+}
+
+function updateRecipientPreview() {
+  const members = getRecipientList();
+  const phoneCol = INTEG.eztPhoneCol;
+  const emailCol = INTEG.gmailEmailCol;
+  const withPhone = members.filter(m => m[phoneCol] || m._custom).length;
+  const withEmail = members.filter(m => m[emailCol] || (m._custom && m.Email)).length;
+  const el = document.getElementById('rec-preview');
+  if (!el) return;
+  if (COMMS.channel === 'sms')   el.textContent = members.length + ' recipients · ' + withPhone + ' with phone numbers';
+  else if (COMMS.channel === 'email') el.textContent = members.length + ' recipients · ' + withEmail + ' with email addresses';
+  else el.textContent = members.length + ' recipients · ' + withPhone + ' SMS, ' + withEmail + ' emails';
+}
+
+function populateRosterSelects() {
+  const roster = DATA.roster || [];
+  const sel = document.getElementById('sel-individual');
+  if (sel) {
+    sel.innerHTML = '<option value="">— Select team member —</option>' +
+      roster.map((r,i) => '<option value="'+i+'">'+(r['Name']||'Member '+(i+1))+(r['Role']?' – '+r['Role']:'')+'</option>').join('');
+  }
+  const rolesSeen = new Set();
+  roster.forEach(r => { if(r['Role']) rolesSeen.add(r['Role']); });
+  const rolesSel = document.getElementById('sel-role');
+  if (rolesSel) {
+    rolesSel.innerHTML = '<option value="">All roles</option>' +
+      [...rolesSeen].map(r => '<option>'+r+'</option>').join('');
+  }
+}
+
+/* ── CHANNEL & RECIPIENT TOGGLES ── */
+function setChannel(ch) {
+  COMMS.channel = ch;
+  document.querySelectorAll('.ch-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('ch-' + ch);
+  if (btn) btn.classList.add('active');
+  const subj = document.getElementById('email-subject-row');
+  if (subj) subj.style.display = (ch === 'email' || ch === 'both') ? 'block' : 'none';
+  const ctr = document.getElementById('sms-counter');
+  if (ctr) ctr.style.display = (ch === 'sms' || ch === 'both') ? 'block' : 'none';
+  updateRecipientPreview();
+}
+
+function setRecipient(type, btn) {
+  COMMS.recipient = type;
+  document.querySelectorAll('.rec-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  ['individual','group','custom'].forEach(t => {
+    const el = document.getElementById('rec-' + t);
+    if (el) el.style.display = (t === type) ? 'block' : 'none';
+  });
+  updateRecipientPreview();
+}
+
+/* ── SMS CHARACTER COUNTER ── */
+const msgBody = document.getElementById('msg-body');
+if (msgBody) {
+  msgBody.addEventListener('input', () => {
+    const len = msgBody.value.length;
+    const parts = Math.ceil(len / 160) || 1;
+    const ctr = document.getElementById('sms-counter');
+    if (ctr) ctr.textContent = len + ' chars · ' + parts + ' SMS segment' + (parts > 1 ? 's' : '');
+    if (COMMS.channel === 'sms' || COMMS.channel === 'both') updateRecipientPreview();
+  });
+}
+
+function insertVar(v) {
+  const ta = document.getElementById('msg-body');
+  if (!ta) return;
+  const s = ta.selectionStart, e = ta.selectionEnd;
+  ta.value = ta.value.slice(0, s) + v + ta.value.slice(e);
+  ta.focus(); ta.selectionStart = ta.selectionEnd = s + v.length;
+}
+
+/* ── SEND MESSAGE ── */
+async function sendMessage() {
+  const body = document.getElementById('msg-body').value.trim();
+  if (!body) { toast('Please write a message first.'); return; }
+  const members = getRecipientList();
+  if (!members.length) { toast('No recipients selected.'); return; }
+
+  const statusEl = document.getElementById('send-status');
+  statusEl.textContent = 'Sending…';
+  const subject = document.getElementById('msg-subject') ? document.getElementById('msg-subject').value.trim() : '';
+
+  let smsOk = 0, smsErr = 0, emailOk = 0, emailErr = 0;
+  const phoneCol = INTEG.eztPhoneCol;
+  const emailCol = INTEG.gmailEmailCol;
+
+  for (const m of members) {
+    const personalized = body.replace(/{name}/g, m['Name']||'').replace(/{role}/g, m['Role']||'').replace(/{date}/g, new Date().toLocaleDateString());
+
+    if ((COMMS.channel === 'sms' || COMMS.channel === 'both') && INTEG.eztUser) {
+      const phone = (m[phoneCol]||'').replace(/\D/g,'');
+      if (phone) {
+        const ok = await sendEZT(phone, personalized);
+        ok ? smsOk++ : smsErr++;
+      }
+    }
+    if ((COMMS.channel === 'email' || COMMS.channel === 'both') && INTEG.gmailToken) {
+      const email = m[emailCol] || m.Email || '';
+      if (email) {
+        const ok = await sendGmail(email, subject || 'Message from Team Portal', personalized);
+        ok ? emailOk++ : emailErr++;
+      }
+    }
+  }
+
+  const result = [];
+  if (smsOk)   result.push(smsOk + ' SMS sent');
+  if (smsErr)  result.push(smsErr + ' SMS failed');
+  if (emailOk) result.push(emailOk + ' emails sent');
+  if (emailErr)result.push(emailErr + ' emails failed');
+  const summary = result.join(' · ') || 'No messages sent (check credentials & phone/email columns)';
+  statusEl.textContent = summary;
+
+  addToLog({
+    time: new Date().toLocaleString(),
+    channel: COMMS.channel,
+    recipients: members.length,
+    subject: subject,
+    preview: body.slice(0, 80) + (body.length > 80 ? '…' : ''),
+    smsOk, smsErr, emailOk, emailErr,
+  });
+
+  COMMS.sentCount += smsOk + emailOk;
+  updateStats();
+  toast(summary);
+}
+
+/* ── EZTexting API call ── */
+async function sendEZT(phone, message) {
+  try {
+    const resp = await fetch('https://app.eztexting.com/sending/messages?format=json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        User: INTEG.eztUser,
+        Password: INTEG.eztPass,
+        PhoneNumber: phone,
+        Message: message,
+        MessageTypeID: '1',
+      })
+    });
+    const data = await resp.json();
+    return data.Response && data.Response.Status === 'Success';
+  } catch(e) {
+    console.warn('EZT error:', e);
+    return false;
+  }
+}
+
+/* ── Gmail SMTP via Apps Script proxy OR direct SMTP ── */
+/* Since browsers can't do raw SMTP, we use Gmail REST API with App Password via
+   a lightweight Google Apps Script web app as a proxy. Instructions in Admin setup guide. */
+async function sendGmail(to, subject, body) {
+  const proxyUrl = localStorage.getItem('td_gmail_proxy') || HARDCODED.gmailProxy || '';
+  if (!proxyUrl) {
+    // Fallback: open mailto if no proxy configured
+    window.open('mailto:'+to+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body));
+    return true;
+  }
+  try {
+    const resp = await fetch(proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to, subject, body,
+        from: INTEG.gmailFrom,
+        appPass: INTEG.gmailAppPass,
+      })
+    });
+    return resp.ok;
+  } catch(e) {
+    console.warn('Gmail proxy error:', e);
+    return false;
+  }
+}
+
+/* ── Read inbox via Gmail REST API (App Password + proxy) ── */
+/* ══════════════════════════════════════
+   EMAIL CLIENT
+══════════════════════════════════════ */
+let EMAIL_STORE = JSON.parse(localStorage.getItem('td_email_store') || '{"inbox":[],"sent":[],"drafts":[],"archive":[],"trash":[],"palanca":[],"custom":{}}');
+let CUSTOM_FOLDERS = JSON.parse(localStorage.getItem('td_custom_folders') || '[]');
+let STARRED = JSON.parse(localStorage.getItem('td_starred') || '[]');
+let currentFolder = 'inbox';
+let selectedEmailId = null;
+let allEmailsFlat = [];
+
+function saveEmailStore() {
+  localStorage.setItem('td_email_store', JSON.stringify(EMAIL_STORE));
+  localStorage.setItem('td_custom_folders', JSON.stringify(CUSTOM_FOLDERS));
+  localStorage.setItem('td_starred', JSON.stringify(STARRED));
+}
+
+const SYSTEM_FOLDERS = [
+  {id:'inbox',label:'Inbox',icon:'📥'},
+  {id:'sent',label:'Sent',icon:'📤'},
+  {id:'palanca',label:'Palanca',icon:'💌'},
+  {id:'drafts',label:'Drafts',icon:'📝'},
+  {id:'starred',label:'Starred',icon:'⭐'},
+  {id:'archive',label:'Archive',icon:'🗄️'},
+  {id:'trash',label:'Trash',icon:'🗑️'},
+];
+
+function renderFolderList() {
+  var fl = document.getElementById('folder-list');
+  if (!fl) return;
+  var html = '';
+  SYSTEM_FOLDERS.forEach(function(f) {
+    var emails = getEmailsForFolder(f.id);
+    var unread = emails.filter(function(e){return !e.read;}).length;
+    var active = currentFolder === f.id;
+    html += '<button class="folder-btn' + (active?' active':'') + '" data-folder="' + f.id + '" onclick="selectFolderBtn(this)">';
+    html += '<span>' + f.icon + '</span><span style="flex:1">' + f.label + '</span>';
+    if (unread > 0) html += '<span class="folder-count">' + unread + '</span>';
+    html += '</button>';
+  });
+  fl.innerHTML = html;
+
+  var cfl = document.getElementById('custom-folder-list');
+  if (!cfl) return;
+  var chtml = '';
+  CUSTOM_FOLDERS.forEach(function(f) {
+    var active = currentFolder === 'custom:' + f;
+    chtml += '<div style="display:flex;align-items:center">';
+    chtml += '<button class="folder-btn' + (active?' active':'') + '" data-folder="custom:' + f + '" onclick="selectFolderBtn(this)" style="flex:1">📁 ' + f + '</button>';
+    chtml += '<button data-fname="' + f + '" onclick="deleteFolderBtn(this)" style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:14px;padding:4px 8px">&times;</button>';
+    chtml += '</div>';
+  });
+  cfl.innerHTML = chtml;
+}
+
+function selectFolderBtn(btn) { selectFolder(btn.getAttribute('data-folder')); }
+function deleteFolderBtn(btn) { deleteFolder(btn.getAttribute('data-fname')); }
+
+function getEmailsForFolder(folderId) {
+  if (folderId === 'starred') return allEmailsFlat.filter(function(e){return STARRED.indexOf(e.id)>-1;});
+  if (folderId.startsWith('custom:')) return EMAIL_STORE.custom[folderId.slice(7)] || [];
+  return EMAIL_STORE[folderId] || [];
+}
+
+function selectFolder(folderId) {
+  currentFolder = folderId;
+  selectedEmailId = null;
+  var dp = document.getElementById('email-detail-panel');
+  if (dp) dp.style.display = 'none';
+  var grid = document.getElementById('email-main-grid');
+  if (grid) grid.style.gridTemplateColumns = '1fr';
+  var labelMap = {};
+  SYSTEM_FOLDERS.forEach(function(f){labelMap[f.id]=f.label;});
+  var label = folderId.startsWith('custom:') ? folderId.slice(7) : (labelMap[folderId] || folderId);
+  var lbl = document.getElementById('current-folder-label');
+  if (lbl) lbl.textContent = label;
+  renderFolderList();
+  renderEmailList();
+}
+
+function renderEmailList(emailsOverride) {
+  var el = document.getElementById('email-list-items');
+  if (!el) return;
+  var emails = emailsOverride || getEmailsForFolder(currentFolder);
+  var cnt = document.getElementById('email-count');
+  if (cnt) cnt.textContent = emails.length + ' message' + (emails.length!==1?'s':'');
+  if (!emails.length) { el.innerHTML = '<div class="empty" style="padding:40px">No messages here.</div>'; return; }
+  var html = '';
+  emails.forEach(function(e) {
+    var unread = !e.read;
+    var starred = STARRED.indexOf(e.id) > -1;
+    var selected = selectedEmailId === e.id;
+    var initials = (e.from||'U').split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
+    html += '<div class="email-row' + (unread?' unread':'') + (selected?' selected':'') + '" data-emailid="' + e.id + '" onclick="openEmailRow(this)" id="erow-' + e.id + '">';
+    html += '<div class="email-row-avatar">' + initials + '</div>';
+    html += '<div style="flex:1;min-width:0">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">';
+    html += '<div class="email-row-from">' + (e.from||'Unknown') + '</div>';
+    html += '<div class="email-row-time">' + (e.date||'') + '</div></div>';
+    html += '<div class="email-row-subj">' + (e.subject||'(no subject)') + '</div>';
+    html += '<div class="email-row-preview">' + (e.snippet||e.body||'').slice(0,80) + '</div>';
+    html += '</div>';
+    html += '<button class="email-row-star' + (starred?' starred':'') + '" data-starid="' + e.id + '" onclick="event.stopPropagation();toggleStarBtn(this)" title="Star">&#9733;</button>';
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+function openEmailRow(row) { openEmail(row.getAttribute('data-emailid')); }
+function toggleStarBtn(btn) { toggleStar(btn.getAttribute('data-starid')); }
+
+function openEmail(id) {
+  var emails = getEmailsForFolder(currentFolder);
+  var e = null;
+  for (var i=0;i<emails.length;i++){if(emails[i].id===id){e=emails[i];break;}}
+  if (!e) return;
+  selectedEmailId = id;
+  e.read = true;
+  saveEmailStore();
+  renderFolderList();
+  document.querySelectorAll('.email-row').forEach(function(r){r.classList.remove('selected');});
+  var row = document.getElementById('erow-' + id);
+  if (row) { row.classList.add('selected'); row.classList.remove('unread'); }
+  var panel = document.getElementById('email-detail-panel');
+  var content = document.getElementById('email-detail-content');
+  if (!panel||!content) return;
+  panel.style.display = 'block';
+  var grid = document.getElementById('email-main-grid');
+  if (grid) grid.style.gridTemplateColumns = '1fr 1.4fr';
+  var starred = STARRED.indexOf(id) > -1;
+  var html = '';
+  html += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px">';
+  html += '<div class="detail-subject">' + (e.subject||'(no subject)') + '</div>';
+  html += '<button class="email-row-star' + (starred?' starred':'') + '" data-starid="' + id + '" onclick="toggleStarBtn(this)" style="font-size:18px;margin-top:4px">&#9733;</button>';
+  html += '</div>';
+  html += '<div class="detail-from">' + (e.from||'Unknown') + '</div>';
+  html += '<div class="detail-meta">To: ' + (e.to||INTEG.gmailFrom||'Team') + ' &middot; ' + (e.date||'') + '</div>';
+  html += '<div class="detail-body">' + (e.body||e.snippet||'(no content)') + '</div>';
+  html += '<div class="detail-actions">';
+  html += '<button class="subbtn" data-replyid="' + id + '" onclick="replyEmailBtn(this)" style="font-size:13px;padding:8px 18px">&#8617; Reply</button>';
+  if (currentFolder !== 'trash') {
+    html += '<button data-mvid="' + id + '" data-mvto="archive" onclick="moveBtn(this)" style="background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;color:var(--t2);font-family:inherit">&#128450;&#65039; Archive</button>';
+    html += '<button data-mvid="' + id + '" data-mvto="trash" onclick="moveBtn(this)" style="background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;color:var(--t2);font-family:inherit">&#128465;&#65039; Trash</button>';
+    if (currentFolder !== 'palanca') {
+      html += '<button data-mvid="' + id + '" data-mvto="palanca" onclick="moveBtn(this)" style="background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;color:var(--t2);font-family:inherit">&#128140; Tag Palanca</button>';
+    }
+  } else {
+    html += '<button data-delid="' + id + '" onclick="deleteForeverBtn(this)" style="background:#FEECE7;border:1px solid #F5C0B0;padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;color:#B33A1A;font-family:inherit">&#128465; Delete forever</button>';
+    html += '<button data-mvid="' + id + '" data-mvto="inbox" onclick="moveBtn(this)" style="background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:20px;font-size:13px;cursor:pointer;color:var(--t2);font-family:inherit">&#8617; Restore</button>';
+  }
+  if (CUSTOM_FOLDERS.length) {
+    html += '<select data-selid="' + id + '" onchange="moveCustomSelect(this)" style="font-size:13px;padding:8px 12px;border:1px solid var(--bd);border-radius:20px;font-family:inherit;background:none;color:var(--t2);cursor:pointer">';
+    html += '<option value="">Move to folder&#8230;</option>';
+    CUSTOM_FOLDERS.forEach(function(f){ html += '<option value="' + f + '">' + f + '</option>'; });
+    html += '</select>';
+  }
+  html += '</div>';
+  content.innerHTML = html;
+}
+
+function replyEmailBtn(btn) { replyToEmail(btn.getAttribute('data-replyid')); }
+function moveBtn(btn) { moveToFolder(btn.getAttribute('data-mvid'), btn.getAttribute('data-mvto')); }
+function deleteForeverBtn(btn) { deleteForever(btn.getAttribute('data-delid')); }
+function moveCustomSelect(sel) { if(sel.value) moveToCustomFolder(sel.getAttribute('data-selid'), sel.value); }
+
+function moveToFolder(emailId, targetFolder) {
+  var srcKey = currentFolder.startsWith('custom:') ? null : currentFolder;
+  var customSrc = currentFolder.startsWith('custom:') ? currentFolder.slice(7) : null;
+  var email = null;
+  if (customSrc) {
+    var arr = EMAIL_STORE.custom[customSrc] || [];
+    email = arr.filter(function(e){return e.id===emailId;})[0];
+    EMAIL_STORE.custom[customSrc] = arr.filter(function(e){return e.id!==emailId;});
+  } else if (srcKey && EMAIL_STORE[srcKey]) {
+    email = EMAIL_STORE[srcKey].filter(function(e){return e.id===emailId;})[0];
+    EMAIL_STORE[srcKey] = EMAIL_STORE[srcKey].filter(function(e){return e.id!==emailId;});
+  }
+  if (email && EMAIL_STORE[targetFolder] !== undefined) EMAIL_STORE[targetFolder].unshift(email);
+  saveEmailStore(); syncFlatStore();
+  document.getElementById('email-detail-panel').style.display = 'none';
+  var grid = document.getElementById('email-main-grid');
+  if (grid) grid.style.gridTemplateColumns = '1fr';
+  renderFolderList(); renderEmailList();
+  toast('Moved to ' + targetFolder);
+}
+
+function moveToCustomFolder(emailId, folderName) {
+  if (!folderName) return;
+  var srcKey = currentFolder.startsWith('custom:') ? null : currentFolder;
+  var customSrc = currentFolder.startsWith('custom:') ? currentFolder.slice(7) : null;
+  var email = null;
+  if (customSrc) {
+    var arr = EMAIL_STORE.custom[customSrc]||[];
+    email = arr.filter(function(e){return e.id===emailId;})[0];
+    EMAIL_STORE.custom[customSrc] = arr.filter(function(e){return e.id!==emailId;});
+  } else if (srcKey) {
+    email = (EMAIL_STORE[srcKey]||[]).filter(function(e){return e.id===emailId;})[0];
+    EMAIL_STORE[srcKey] = (EMAIL_STORE[srcKey]||[]).filter(function(e){return e.id!==emailId;});
+  }
+  if (email) { if(!EMAIL_STORE.custom[folderName]) EMAIL_STORE.custom[folderName]=[]; EMAIL_STORE.custom[folderName].unshift(email); }
+  saveEmailStore(); syncFlatStore(); renderFolderList(); renderEmailList();
+  document.getElementById('email-detail-panel').style.display = 'none';
+  toast('Moved to ' + folderName);
+}
+
+function deleteForever(emailId) {
+  EMAIL_STORE.trash = (EMAIL_STORE.trash||[]).filter(function(e){return e.id!==emailId;});
+  saveEmailStore(); syncFlatStore();
+  document.getElementById('email-detail-panel').style.display = 'none';
+  var grid = document.getElementById('email-main-grid'); if(grid) grid.style.gridTemplateColumns='1fr';
+  renderFolderList(); renderEmailList(); toast('Deleted permanently');
+}
+
+function toggleStar(emailId) {
+  var idx = STARRED.indexOf(emailId);
+  if (idx > -1) STARRED.splice(idx,1); else STARRED.push(emailId);
+  saveEmailStore(); renderFolderList(); renderEmailList();
+}
+
+function showNewFolderPrompt() { document.getElementById('new-folder-form').style.display='block'; document.getElementById('new-folder-input').focus(); }
+function cancelNewFolder() { document.getElementById('new-folder-form').style.display='none'; document.getElementById('new-folder-input').value=''; }
+function createFolder() {
+  var name = document.getElementById('new-folder-input').value.trim();
+  if (!name) return;
+  if (CUSTOM_FOLDERS.indexOf(name) === -1) {
+    CUSTOM_FOLDERS.push(name);
+    if (!EMAIL_STORE.custom[name]) EMAIL_STORE.custom[name] = [];
+    saveEmailStore(); renderFolderList(); toast('Folder created: ' + name);
+  }
+  cancelNewFolder();
+}
+function deleteFolder(name) {
+  CUSTOM_FOLDERS = CUSTOM_FOLDERS.filter(function(f){return f!==name;});
+  var moved = EMAIL_STORE.custom[name] || [];
+  EMAIL_STORE.inbox = (EMAIL_STORE.inbox||[]).concat(moved);
+  delete EMAIL_STORE.custom[name];
+  saveEmailStore(); syncFlatStore();
+  if (currentFolder === 'custom:' + name) selectFolder('inbox'); else renderFolderList();
+  toast('Folder deleted, emails moved to Inbox');
+}
+
+function openCompose(opts) {
+  opts = opts || {};
+  var modal = document.getElementById('compose-modal');
+  var title = document.getElementById('compose-title');
+  if (!modal) return;
+  modal.style.display = 'block';
+  document.getElementById('cm-to').value = opts.to || '';
+  document.getElementById('cm-subject').value = opts.subject || '';
+  document.getElementById('cm-body').value = opts.body || '';
+  document.getElementById('cm-status').textContent = '';
+  if (title) title.textContent = opts.mode === 'reply' ? 'Reply' : opts.mode === 'draft' ? 'Edit Draft' : 'New Message';
+  document.getElementById('cm-body').focus();
+}
+function closeCompose() { document.getElementById('compose-modal').style.display='none'; }
+
+function replyToEmail(emailId) {
+  var emails = getEmailsForFolder(currentFolder);
+  var e = null; for(var i=0;i<emails.length;i++){if(emails[i].id===emailId){e=emails[i];break;}}
+  if (!e) return;
+  var subj = e.subject && e.subject.startsWith('Re:') ? e.subject : 'Re: '+(e.subject||'');
+  var quote = '\n\n--- Original message ---\n' + (e.body||'').slice(0,300);
+  openCompose({mode:'reply', to: e.replyTo||e.from||'', subject: subj, body: quote});
+}
+
+function toggleRecipientAll() {
+  var roster = DATA.roster || [];
+  var emailCol = INTEG.gmailEmailCol;
+  var emails = roster.map(function(r){return r[emailCol];}).filter(Boolean).join(', ');
+  document.getElementById('cm-to').value = emails;
+  toast('Added ' + roster.filter(function(r){return r[emailCol];}).length + ' team emails');
+}
+
+function updateRecipientSuggestions(val) {
+  var sugg = document.getElementById('cm-suggestions');
+  if (!sugg) return;
+  if (!val || val.length < 2) { sugg.style.display='none'; return; }
+  var roster = DATA.roster || [];
+  var emailCol = INTEG.gmailEmailCol;
+  var q = val.toLowerCase();
+  var matches = roster.filter(function(r){
+    return (r['Name']||'').toLowerCase().includes(q) || (r[emailCol]||'').toLowerCase().includes(q);
+  }).slice(0,5);
+  if (!matches.length) { sugg.style.display='none'; return; }
+  sugg.style.display='block';
+  var html = '';
+  matches.forEach(function(r) {
+    var initials = (r['Name']||'?').split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
+    var email = r[emailCol]||'no email';
+    html += '<div class="cm-suggest-row" data-sugg="' + email + '" onclick="selectSuggestionBtn(this)">';
+    html += '<div class="email-row-avatar" style="width:26px;height:26px;font-size:10px;flex-shrink:0">' + initials + '</div>';
+    html += '<div><div style="font-size:13px;font-weight:600">' + r['Name'] + '</div>';
+    html += '<div style="font-size:11px;color:var(--t3)">' + email + '</div></div></div>';
+  });
+  sugg.innerHTML = html;
+}
+function selectSuggestionBtn(el) {
+  var email = el.getAttribute('data-sugg');
+  var to = document.getElementById('cm-to');
+  var existing = to.value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  if (existing.indexOf(email) === -1) existing.push(email);
+  to.value = existing.join(', ');
+  document.getElementById('cm-suggestions').style.display = 'none';
+  to.focus();
+}
+
+async function sendComposedEmail() {
+  var to = document.getElementById('cm-to').value.trim();
+  var subject = document.getElementById('cm-subject').value.trim();
+  var body = document.getElementById('cm-body').value.trim();
+  var status = document.getElementById('cm-status');
+  if (!to) { status.textContent='Please add a recipient.'; return; }
+  if (!body) { status.textContent='Please write a message.'; return; }
+  status.textContent = 'Sending\u2026';
+  var recipients = to.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  var ok = 0, fail = 0;
+  for (var i=0;i<recipients.length;i++) {
+    var sent = await sendGmail(recipients[i], subject||'(no subject)', body);
+    sent ? ok++ : fail++;
+  }
+  var sentEmail = {id:'sent_'+Date.now(), from:INTEG.gmailFrom||'You', to:to, subject:subject, body:body, snippet:body.slice(0,100), date:new Date().toLocaleDateString(), read:true, folder:'sent'};
+  EMAIL_STORE.sent.unshift(sentEmail);
+  syncFlatStore(); saveEmailStore();
+  addToLog({time:new Date().toLocaleString(),channel:'email',recipients:recipients.length,subject:subject,preview:body.slice(0,80),emailOk:ok,emailErr:fail});
+  if (ok > 0) {
+    status.textContent = '\u2713 Sent to ' + ok + ' recipient' + (ok>1?'s':'');
+    setTimeout(closeCompose, 1500);
+    renderFolderList();
+    if (currentFolder === 'sent') renderEmailList();
+    toast('Email sent \u2713');
+  } else {
+    status.textContent = 'Failed to send. Check Gmail config in Admin.';
+  }
+}
+
+function saveAsDraft() {
+  var to = document.getElementById('cm-to').value.trim();
+  var subject = document.getElementById('cm-subject').value.trim();
+  var body = document.getElementById('cm-body').value.trim();
+  if (!body && !subject) { toast('Nothing to save.'); return; }
+  var draft = {id:'draft_'+Date.now(), from:INTEG.gmailFrom||'You', to:to, subject:subject, body:body, snippet:body.slice(0,100), date:new Date().toLocaleDateString(), read:true, folder:'drafts'};
+  EMAIL_STORE.drafts.unshift(draft);
+  syncFlatStore(); saveEmailStore(); renderFolderList(); closeCompose(); toast('Draft saved');
+}
+
+function searchEmails(query) {
+  if (!query) { renderEmailList(); return; }
+  var q = query.toLowerCase();
+  var emails = getEmailsForFolder(currentFolder).filter(function(e) {
+    return (e.from||'').toLowerCase().includes(q)||(e.subject||'').toLowerCase().includes(q)||(e.body||'').toLowerCase().includes(q);
+  });
+  renderEmailList(emails);
+}
+
+function syncFlatStore() {
+  allEmailsFlat = [];
+  ['inbox','sent','drafts','archive','trash','palanca'].forEach(function(k){allEmailsFlat=allEmailsFlat.concat(EMAIL_STORE[k]||[]);});
+  Object.values(EMAIL_STORE.custom||{}).forEach(function(arr){allEmailsFlat=allEmailsFlat.concat(arr);});
+}
+
+async function refreshEmail() {
+  var proxyUrl = localStorage.getItem('td_gmail_proxy') || (typeof HARDCODED!=='undefined'?HARDCODED.gmailProxy:'') || '';
+  var gmailOk = INTEG.gmailFrom && INTEG.gmailAppPass;
+  if (!gmailOk) { setEmailStatus('','Not configured \u2014 add Gmail in Admin'); return; }
+  if (!proxyUrl) { setEmailStatus('o','Apps Script proxy not set \u2014 see Setup Guide'); return; }
+  setEmailStatus('sp','Fetching\u2026');
+  try {
+    var resp = await fetch(proxyUrl+'?action=inbox&from='+encodeURIComponent(INTEG.gmailFrom)+'&appPass='+encodeURIComponent(INTEG.gmailAppPass));
+    if (!resp.ok) throw new Error(resp.status);
+    var emails = await resp.json();
+    var existingIds = new Set((EMAIL_STORE.inbox||[]).map(function(e){return e.id;}));
+    var added = 0;
+    emails.forEach(function(e){
+      if (!existingIds.has(e.id)) { EMAIL_STORE.inbox.unshift(Object.assign({},e,{read:false,folder:'inbox'})); added++; }
+    });
+    syncFlatStore(); saveEmailStore();
+    setEmailStatus('g','Live \u00B7 '+new Date().toLocaleTimeString());
+    renderFolderList(); renderEmailList();
+    if (added>0) toast(added+' new message'+(added>1?'s':'')+' \uD83D\uDCEC'); else toast('Inbox up to date \u2713');
+  } catch(e) {
+    setEmailStatus('o','Fetch failed \u2014 check proxy URL');
+  }
+}
+
+function setEmailStatus(state, text) {
+  var d=document.getElementById('email-dot'), s=document.getElementById('email-status');
+  if(d) d.className='dot '+(state==='g'?'g':state==='sp'?'sp':state==='o'?'o':'');
+  if(s) s.innerHTML=text;
+}
+
+
+
+function checkInbox() { refreshEmail(); }
+
+function initEmailClient() {
+  syncFlatStore(); renderFolderList(); selectFolder('inbox'); updateInboxBadge();
+}
+
+
+
+/* ── SEND LOG ── */
+function addToLog(entry) {
+  COMMS.log.unshift(entry);
+  if (COMMS.log.length>50) COMMS.log=COMMS.log.slice(0,50);
+  localStorage.setItem('td_comms_log', JSON.stringify(COMMS.log));
+  renderLog();
+}
+function renderLog() {
+  var el = document.getElementById('send-log');
+  if (!el) return;
+  if (!COMMS.log.length) { el.innerHTML='<div class="empty">No messages sent yet.</div>'; return; }
+  var html = '';
+  COMMS.log.forEach(function(e) {
+    var chTag = e.channel==='sms'?'log-tag-sms':e.channel==='email'?'log-tag-email':'log-tag-both';
+    var chLabel = e.channel==='sms'?'📱 SMS':e.channel==='email'?'📧 Email':'📱📧 Both';
+    var ok=(e.smsOk||0)+(e.emailOk||0), fail=(e.smsErr||0)+(e.emailErr||0);
+    html += '<div class="log-entry"><div class="log-entry-hdr"><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">';
+    html += '<span class="'+chTag+'">'+chLabel+'</span>';
+    html += '<span style="font-weight:600;font-size:13px">'+e.recipients+' recipient'+(e.recipients!==1?'s':'')+'</span>';
+    if (ok)   html += '<span class="log-tag-ok">'+ok+' ok</span>';
+    if (fail) html += '<span class="log-tag-fail">'+fail+' failed</span>';
+    html += '</div><span style="font-size:11px;color:var(--t3)">'+e.time+'</span></div>';
+    if (e.subject) html += '<div style="font-size:12px;color:var(--t3);margin-bottom:3px">Subject: '+e.subject+'</div>';
+    html += '<div style="font-size:13px;color:var(--t2)">'+e.preview+'</div></div>';
+  });
+  el.innerHTML = html;
+}
+function clearLog() {
+  COMMS.log=[];
+  localStorage.removeItem('td_comms_log');
+  renderLog();
+  toast('Send log cleared');
+}
+
+/* ── PREVIEW ── */
+function previewMessage() {
+  var body = document.getElementById('msg-body').value.trim();
+  if (!body) { toast('Write a message first.'); return; }
+  var members = getRecipientList();
+  var sample = members[0]||{Name:'Team Member',Role:'Role'};
+  var previewed = body.replace(/{name}/g,sample['Name']||'').replace(/{role}/g,sample['Role']||'').replace(/{date}/g,new Date().toLocaleDateString());
+  toast('Preview: '+previewed.slice(0,120), 4000);
+}
+
+/* ── MEETING REMINDERS ── */
+function getDaysUntil(dateStr) {
+  if (!dateStr) return null;
+  var parts = dateStr.match(/(\d+)\/(\d+)\/(\d+)/);
+  if (!parts) return null;
+  var d = new Date(parseInt(parts[3]),parseInt(parts[1])-1,parseInt(parts[2]));
+  var today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((d-today)/86400000);
+}
+function renderReminderList() {
+  var el = document.getElementById('reminder-list');
+  if (!el) return;
+  var meetings = DATA.meetings||[];
+  if (!meetings.length) { el.innerHTML='<div class="empty">No meetings loaded. Connect your Meetings sheet in Admin.</div>'; return; }
+  var html = '';
+  meetings.forEach(function(m,idx) {
+    var key='remind_'+(m['Title']||'').replace(/\s+/g,'_')+'_'+(m['Date']||'');
+    var sent=COMMS.remindersSent[key];
+    var daysLeft=getDaysUntil(m['Date']);
+    var isDue=daysLeft!==null&&daysLeft<=INTEG.reminderDays&&daysLeft>=0;
+    var badge=sent?'<span class="reminder-sent">✓ Reminder sent</span>':isDue?'<span class="reminder-due">⏰ Due to send</span>':daysLeft!==null?'<span class="reminder-ok">'+daysLeft+' days away</span>':'';
+    html+='<div class="reminder-card"><div class="mic" style="flex-shrink:0">📅</div>';
+    html+='<div style="flex:1"><div style="font-weight:700;font-size:14px;margin-bottom:2px">'+(m['Title']||'')+'</div>';
+    html+='<div style="font-size:13px;color:var(--ru);font-weight:600;margin-bottom:4px">'+(m['Date']||'')+(m['Time']?' @ '+m['Time']:'')+'</div>';
+    if(m['Location']) html+='<div style="font-size:12px;color:var(--t3);margin-bottom:6px">📍 '+m['Location']+'</div>';
+    html+='<div style="display:flex;gap:8px;flex-wrap:wrap">'+badge+'</div></div>';
+    html+='<button data-mtgidx="'+idx+'" onclick="sendReminderBtn(this)" class="subbtn" style="font-size:12px;padding:7px 14px;white-space:nowrap;align-self:center">Send Reminder</button></div>';
+  });
+  el.innerHTML=html;
+  updateStats();
+}
+function sendReminderBtn(btn) { sendMeetingReminder(parseInt(btn.getAttribute('data-mtgidx'))); }
+function sendMeetingReminder(idx) {
+  var m=(DATA.meetings||[])[idx]; if(!m) return;
+  var msg=INTEG.reminderTemplate.replace(/{meeting}/g,m['Title']||'').replace(/{date}/g,m['Date']||'').replace(/{time}/g,m['Time']||'').replace(/{location}/g,m['Location']||'(see app)').replace(/{name}/g,'');
+  var key='remind_'+(m['Title']||'').replace(/\s+/g,'_')+'_'+(m['Date']||'');
+  var ch=INTEG.reminderChannel;
+  var bodyEl=document.getElementById('msg-body'); if(bodyEl) bodyEl.value=msg;
+  var subjEl=document.getElementById('msg-subject'); if(subjEl) subjEl.value='Meeting Reminder: '+(m['Title']||'');
+  setChannel(ch);
+  setRecipient('all',document.querySelectorAll('.rec-btn')[0]);
+  showPage('comms');
+  COMMS.remindersSent[key]=new Date().toISOString();
+  localStorage.setItem('td_reminders_sent',JSON.stringify(COMMS.remindersSent));
+  renderReminderList();
+  toast('Message pre-filled — review and hit Send Now');
+}
+function checkReminders() {
+  var meetings=DATA.meetings||[], due=0;
+  meetings.forEach(function(m){
+    var daysLeft=getDaysUntil(m['Date']);
+    var key='remind_'+(m['Title']||'').replace(/\s+/g,'_')+'_'+(m['Date']||'');
+    if(daysLeft!==null&&daysLeft<=INTEG.reminderDays&&daysLeft>=0&&!COMMS.remindersSent[key]) due++;
+  });
+  var alertEl=document.getElementById('reminder-alerts');
+  if(alertEl&&due>0) alertEl.innerHTML='<div style="background:#FFF3E0;border:1px solid #FFB74D;border-radius:var(--r);padding:14px 18px;font-size:13px;color:#E65100;display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="font-size:18px">⏰</span><div><strong>'+due+' meeting reminder'+(due>1?'s':'')+' due to send!</strong> Scroll down to Meeting Reminders.</div></div>';
+  else if(alertEl) alertEl.innerHTML='';
+  renderReminderList(); updateStats();
+  if(due>0) toast(due+' reminder'+(due>1?'s':'')+' ready to send ⏰');
+  else toast('All reminders up to date ✓');
+}
+function updateStats() {
+  var meetings=DATA.meetings||[], pending=0;
+  meetings.forEach(function(m){
+    var daysLeft=getDaysUntil(m['Date']);
+    var key='remind_'+(m['Title']||'').replace(/\s+/g,'_')+'_'+(m['Date']||'');
+    if(daysLeft!==null&&daysLeft<=INTEG.reminderDays&&daysLeft>=0&&!COMMS.remindersSent[key]) pending++;
+  });
+  var sc=document.getElementById('cs-sent'); if(sc) sc.textContent=COMMS.log.length;
+  var sp=document.getElementById('cs-pending'); if(sp) sp.textContent=pending;
+  if(pending>0) document.querySelectorAll('.nb').forEach(function(b){if(b.textContent.includes('Comms')) b.textContent='💬 Comms ('+pending+')';});
+}
+
+
+
+
+/* ── GOOGLE FORMS ── */
+function saveFormUrls() {
+  var pf = document.getElementById('url-prayerform');
+  var paf = document.getElementById('url-palancaform');
+  if (pf) { URLS['prayerform'] = pf.value.trim(); localStorage.setItem('td_prayerform', URLS['prayerform']); }
+  if (paf) { URLS['palancaform'] = paf.value.trim(); localStorage.setItem('td_palancaform', URLS['palancaform']); }
+  updateFormLinks();
+  toast('Form URLs saved \u2713');
+}
+
+function updateFormLinks() {
+  var pUrl = URLS['prayerform'] || localStorage.getItem('td_prayerform') || '';
+  var paUrl = URLS['palancaform'] || localStorage.getItem('td_palancaform') || '';
+
+  var pBtn = document.getElementById('prayer-form-btn');
+  var pMiss = document.getElementById('prayer-form-missing');
+  var pPrev = document.getElementById('prayer-form-preview');
+  if (pBtn) { pBtn.href = pUrl || '#'; }
+  if (pMiss) pMiss.style.display = pUrl ? 'none' : 'block';
+  if (pPrev) { pPrev.href = pUrl || '#'; pPrev.style.display = pUrl ? 'inline' : 'none'; }
+
+  var paBtn = document.getElementById('palanca-form-btn');
+  var paMiss = document.getElementById('palanca-form-missing');
+  var paPrev = document.getElementById('palanca-form-preview');
+  if (paBtn) { paBtn.href = paUrl || '#'; }
+  if (paMiss) paMiss.style.display = paUrl ? 'none' : 'block';
+  if (paPrev) { paPrev.href = paUrl || '#'; paPrev.style.display = paUrl ? 'inline' : 'none'; }
+
+  var pfInput = document.getElementById('url-prayerform');
+  var pafInput = document.getElementById('url-palancaform');
+  if (pfInput && pUrl) pfInput.value = pUrl;
+  if (pafInput && paUrl) pafInput.value = paUrl;
+}
+
+
+function renderRightNow() {
+  var items = DATA['rightnow'] || [];
+  var rncard = document.getElementById('rightnow-card');
+  var rnbody = document.getElementById('rn-body');
+  if (!rncard || !rnbody) return;
+  // Filter to non-empty messages
+  var msgs = items.filter(function(r){
+    return (r['Message']||r['message']||'').trim();
+  });
+  if (!msgs.length) {
+    // Fall back to localStorage announcement
+    return;
+  }
+  rncard.style.display = 'block';
+  var icons = ['\uD83D\uDCC5','\uD83D\uDD14','\u26A0\uFE0F','\uD83D\uDCA1','\uD83D\uDCCC'];
+  rnbody.innerHTML = msgs.slice(0,5).map(function(r,i){
+    var msg = r['Message']||r['message']||'';
+    var date = r['Date']||r['date']||'';
+    return '<div class="rn-item">'+
+      '<div class="rn-item-ic">'+icons[i%icons.length]+'</div>'+
+      '<div><div class="rn-item-text">'+msg+'</div>'+
+      (date?'<div class="rn-item-sub">'+date+'</div>':'')+
+      '</div></div>';
+  }).join('');
+}
+
+/* ── NAV ── */
+var _mobOpen = false;
+function hamClick() {
+  _mobOpen = !_mobOpen;
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('sb-overlay');
+  var ham = document.getElementById('tb-ham');
+  if (sb) sb.classList.toggle('mob-open', _mobOpen);
+  if (ov) ov.classList.toggle('show', _mobOpen);
+  if (ham) ham.className = 'tb-ham' + (_mobOpen ? ' open' : '');
+}
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('active'); });
+  var pg = document.getElementById('page-' + p);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.sb-btn[data-page]').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-page') === p);
+  });
+  if (_mobOpen) hamClick();
+  var mc = document.getElementById('main-content');
+  if (mc) mc.scrollTo(0, 0);
+}
+function goM(p) { showPage(p); }
+function toggleM() { hamClick(); }
+(function(){
+  document.querySelectorAll('.sb-btn[data-page]').forEach(function(btn){
+    btn.addEventListener('click', function(){ showPage(this.getAttribute('data-page')); });
+  });
+})();
+function setStatus(state, text) {
+  ['status-dot','rdot','adot'].forEach(function(id){
+    var d=document.getElementById(id);
+    if(d) d.className='dot '+(state==='ok'?'g':state==='load'?'sp':state==='warn'?'o':state==='err'?'r':'');
+  });
+  ['status-text','rst','ast'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.textContent=text;
+  });
+}
+function updateInboxBadge() {
+  var unread=(typeof EMAIL_STORE!=='undefined'?(EMAIL_STORE.inbox||[]):[]).filter(function(e){return !e.read;}).length;
+  var b=document.getElementById('inbox-badge');
+  if(b){b.textContent=unread;b.style.display=unread>0?'inline-block':'none';}
+}
+function updateCommsBadge(count) {
+  var btn=document.getElementById('snav-comms'); if(!btn) return;
+  var ex=btn.querySelector('.sb-badge-c');
+  if(count>0){
+    if(!ex){ex=document.createElement('span');ex.className='sb-badge sb-badge-c';btn.appendChild(ex);}
+    ex.textContent=count;ex.style.display='inline-block';
+  } else if(ex){ex.style.display='none';}
+}
+(function(){
+  updateCommsBanners();
+  renderLog();
+  initEmailClient();
+  updateFormLinks();
+  showPage('home');
+  setTimeout(function(){ renderReminderList(); checkReminders(); }, 800);
+  setInterval(refreshAll, 60000);
+})();
+
+
+
+var _mobOpen = false;
+function hamClick() {
+  _mobOpen = !_mobOpen;
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('sb-overlay');
+  var ham = document.getElementById('tb-ham');
+  if (sb) sb.classList.toggle('mob-open', _mobOpen);
+  if (ov) ov.classList.toggle('show', _mobOpen);
+  if (ham) ham.className = 'tb-ham' + (_mobOpen ? ' open' : '');
+}
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('active'); });
+  var pg = document.getElementById('page-' + p);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.sb-btn[data-page]').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-page') === p);
+  });
+  if (_mobOpen) hamClick();
+  var mc = document.getElementById('main-content');
+  if (mc) mc.scrollTo(0, 0);
+}
+function goM(p) { showPage(p); }
+function toggleM() { hamClick(); }
+(function(){
+  document.querySelectorAll('.sb-btn[data-page]').forEach(function(btn){
+    btn.addEventListener('click', function(){ showPage(this.getAttribute('data-page')); });
+  });
+})();
+function setStatus(state, text) {
+  ['status-dot','rdot','adot'].forEach(function(id){
+    var d=document.getElementById(id);
+    if(d) d.className='dot '+(state==='ok'?'g':state==='load'?'sp':state==='warn'?'o':state==='err'?'r':'');
+  });
+  ['status-text','rst','ast'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.textContent=text;
+  });
+}
+function updateInboxBadge() {
+  var unread=(typeof EMAIL_STORE!=='undefined'?(EMAIL_STORE.inbox||[]):[]).filter(function(e){return !e.read;}).length;
+  var b=document.getElementById('inbox-badge');
+  if(b){b.textContent=unread;b.style.display=unread>0?'inline-block':'none';}
+}
+function updateCommsBadge(count) {
+  var btn=document.getElementById('snav-comms'); if(!btn) return;
+  var ex=btn.querySelector('.sb-badge-c');
+  if(count>0){
+    if(!ex){ex=document.createElement('span');ex.className='sb-badge sb-badge-c';btn.appendChild(ex);}
+    ex.textContent=count;ex.style.display='inline-block';
+  } else if(ex){ex.style.display='none';}
+}
+(function(){
+  updateCommsBanners();
+  renderLog();
+  initEmailClient();
+  if(typeof updateFormLinks==='function') updateFormLinks();
+  showPage('home');
+  setTimeout(function(){ renderReminderList(); checkReminders(); }, 800);
+  setInterval(refreshAll, 60000);
+})();
+
+</script>
+</body>
+</html>
