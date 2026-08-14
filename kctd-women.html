@@ -298,12 +298,16 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);backgrou
     height:auto !important;
   }
   .jobs-grid > div:first-child{
-    max-height:190px;
-    border-right:none !important;
-    border-bottom:1px solid var(--bd);
+    display:none !important;
   }
   .jobs-grid > div:last-child{
-    min-height:480px;
+    min-height:520px;
+    border-radius:var(--r);
+    border:1px solid var(--bd);
+    overflow:hidden;
+  }
+  .jobs-mobile-select{
+    display:block !important;
   }
 }
 
@@ -454,12 +458,16 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);backgrou
     height:auto !important;
   }
   .jobs-grid > div:first-child{
-    max-height:190px;
-    border-right:none !important;
-    border-bottom:1px solid var(--bd);
+    display:none !important;
   }
   .jobs-grid > div:last-child{
-    min-height:480px;
+    min-height:520px;
+    border-radius:var(--r);
+    border:1px solid var(--bd);
+    overflow:hidden;
+  }
+  .jobs-mobile-select{
+    display:block !important;
   }
 }
 </style>
@@ -717,6 +725,14 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);backgrou
 </div>
 
 <div id="page-jobs" class="page">
+
+  <!-- Mobile dropdown — only visible on small screens -->
+  <div class="jobs-mobile-select" style="display:none;margin-bottom:12px">
+    <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text3);display:block;margin-bottom:6px">Select a role</label>
+    <select id="jobs-dropdown" onchange="selectJob(this.value)" style="width:100%;padding:12px 14px;border:1.5px solid var(--bd);border-radius:10px;font-size:14px;font-family:inherit;color:var(--text);background:var(--bg);appearance:none;-webkit-appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239C8A6E' d='M6 8L1 3h10z'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center;cursor:pointer">
+    </select>
+  </div>
+
   <div class="jobs-grid" style="display:grid;grid-template-columns:220px 1fr;gap:0;height:calc(100vh - 90px);min-height:500px;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)">
     <div style="background:var(--bg2);border-right:1px solid var(--bd);display:flex;flex-direction:column;overflow:hidden">
       <div style="padding:12px 14px 10px;border-bottom:1px solid var(--bd);flex-shrink:0;background:linear-gradient(135deg,var(--th-nav-bg),var(--th-heading))">
@@ -4970,6 +4986,10 @@ function selectJob(idx) {
     b.classList.toggle('active', i===idx);
   });
   document.getElementById('job-doc-body').scrollTop = 0;
+
+  // Sync mobile dropdown
+  var dd = document.getElementById('jobs-dropdown');
+  if (dd) dd.value = idx;
 }
 
 function printJobDoc() {
@@ -4982,6 +5002,18 @@ function printJobDoc() {
 }
 
 // Init first job
+// Populate mobile dropdown
+(function(){
+  var dd = document.getElementById('jobs-dropdown');
+  if (dd && typeof JOB_DOCS !== 'undefined') {
+    JOB_DOCS.forEach(function(job, i) {
+      var opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = job.title;
+      dd.appendChild(opt);
+    });
+  }
+})();
 selectJob(0);
 
 
