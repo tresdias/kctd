@@ -597,6 +597,21 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);backgrou
 
 </script>
 <script>
+function refreshCurrentPageIframes() {
+  var pages = ['prayer','palanca','roster'];
+  pages.forEach(function(p) {
+    var pg = document.getElementById('page-' + p);
+    if (pg && pg.classList.contains('active')) {
+      pg.querySelectorAll('iframe').forEach(function(iframe) {
+        var src = iframe.src;
+        iframe.src = '';
+        setTimeout(function(){ iframe.src = src; }, 100);
+      });
+    }
+  });
+}
+
+
 
 const WI_KEY = 'td_weekend_info';
 
@@ -1081,7 +1096,6 @@ function clearUrls(){
 
 /* ── INIT ── */
 KEYS.forEach(k=>{const el=document.getElementById('url-'+k);if(el)el.value=URLS[k];});
-refreshAll();
 setInterval(refreshAll,60000);
 
 /* ── THEME ENGINE ── */
@@ -1314,7 +1328,8 @@ function setStatus(state, text) {
   var paNone=document.getElementById('palanca-no-link');
   if(paLink&&paUrl){paLink.href=paUrl;if(paNone)paNone.style.display='none';}
   else if(paNone){paNone.style.display='block';}
-  // Show home
+  // Load sheet data then show home
+  refreshAll();
   showPage('home');
 })();
 
