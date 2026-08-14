@@ -499,29 +499,58 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--text3);backgrou
 </div>
 
 <div id="page-prayer" class="page">
-  <div style="max-width:480px;margin:0 auto">
-    <div style="text-align:center;padding:32px 20px 24px">
-      <div style="font-size:48px;margin-bottom:16px">&#128591;</div>
-      <div style="font-family:'Crimson Pro',Georgia,serif;font-size:26px;font-weight:600;color:var(--bark);margin-bottom:8px">Prayer Requests</div>
-      <div style="font-size:15px;color:var(--text2);line-height:1.6;margin-bottom:28px">Submit a prayer request for yourself, a candidate, or someone on the team. Responses go directly to the team leadership.</div>
-      <a id="prayer-form-link" href="#" target="_blank"
-        style="display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;text-decoration:none;padding:14px 32px;border-radius:28px;font-size:15px;font-weight:600;font-family:inherit;transition:.15s">
-        &#128279; Open Prayer Request Form
-      </a>
-      <div id="prayer-no-link" style="display:none;margin-top:16px;font-size:13px;color:var(--text3)">
-        Form link not set yet. Go to <button onclick="showPage('admin')" style="background:none;border:none;color:var(--accent);cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;padding:0">Admin</button> to add it.
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;height:calc(100vh - 80px);min-height:600px">
+
+    <!-- LEFT: Google Form -->
+    <div style="display:flex;flex-direction:column;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)">
+      <div style="background:linear-gradient(135deg,var(--th-nav-bg),var(--th-heading));padding:12px 16px;flex-shrink:0">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:2px">Submit</div>
+        <div style="font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-weight:600;color:#fff">&#128591; Prayer Request Form</div>
       </div>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdmm28Mw5ACMZ7eaa7I7fJEcryjEEOGF_VYDW6frrbb3uYwHw/viewform?embedded=true"
+        style="flex:1;border:none;width:100%;background:#fff"
+        title="Prayer Request Form"
+        loading="lazy">
+        Loading form&hellip;
+      </iframe>
     </div>
-    <div style="background:var(--bg2);border-radius:var(--r);padding:18px 20px;margin-top:8px">
-      <div style="font-size:13px;font-weight:700;color:var(--bark);margin-bottom:8px">&#128221; How it works</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.7">
-        1. Tap the button above to open the form<br>
-        2. Fill in your request — you can stay anonymous<br>
-        3. Your request is saved to the weekend spreadsheet<br>
-        4. Team leadership will pray over every request
+
+    <!-- RIGHT: Responses Sheet -->
+    <div style="display:flex;flex-direction:column;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)">
+      <div style="background:linear-gradient(135deg,var(--th-nav-bg),var(--th-heading));padding:12px 16px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:2px">Responses</div>
+          <div style="font-family:'Crimson Pro',Georgia,serif;font-size:16px;font-weight:600;color:#fff">&#128203; Prayer Requests</div>
+        </div>
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDBbzZa4b4GYlF_JYvGLzV8afdlGaq0msDoAyFh6Sk5Wah6N6nFWawVnRAz7t7q9x7zK-YmfWQZ9HG/pubhtml?gid=1139880064&single=true" target="_blank"
+          style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none;background:rgba(255,255,255,0.1);padding:4px 10px;border-radius:12px;white-space:nowrap">
+          Open full &#8599;
+        </a>
       </div>
+      <iframe
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDBbzZa4b4GYlF_JYvGLzV8afdlGaq0msDoAyFh6Sk5Wah6N6nFWawVnRAz7t7q9x7zK-YmfWQZ9HG/pubhtml?gid=1139880064&single=true&widget=true&headers=false"
+        style="flex:1;border:none;width:100%;background:#fff"
+        title="Prayer Requests Sheet"
+        loading="lazy">
+        Loading&hellip;
+      </iframe>
     </div>
+
   </div>
+
+  <!-- Mobile: stack vertically -->
+  <style>
+    @media(max-width:768px){
+      #page-prayer > div:first-child {
+        grid-template-columns:1fr;
+        height:auto;
+      }
+      #page-prayer > div:first-child > div {
+        height:500px;
+      }
+    }
+  </style>
 </div>
 
 <div id="page-palanca" class="page">
